@@ -22,9 +22,9 @@ public class KeepsRepository
 
         keepData.Id = _db.ExecuteScalar<int>(sql, keepData);
         //extra
-        keepData.CreatedAt = DateTime.UtcNow;
-        keepData.UpdatedAt = DateTime.UtcNow;
-        DataColumn.Kept = 0;
+        // keepData.CreatedAt = DateTime.UtcNow;
+        // keepData.UpdatedAt = DateTime.UtcNow;
+        keepData.Kept = 0;
         return keepData;
     }
 }
