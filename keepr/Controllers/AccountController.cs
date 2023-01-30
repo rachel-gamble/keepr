@@ -30,7 +30,7 @@ public class AccountController : ControllerBase
 
     [HttpGet("vaults")]
     [Authorize]
-    public async Task<ActionResult<List<Vault>>> GetMyVaults()
+    public async Task<ActionResult<List<Vault>>> GetMyVaults(id)
     {
         try
         {

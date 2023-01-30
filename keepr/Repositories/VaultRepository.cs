@@ -103,14 +103,14 @@ public class VaultsRepository
         }, new { id }).ToList();
     }
 
-    // internal List<VaultKeepViewModel> GetVaultKeepsById(int id)
-    // {
-    //     string sql = @"
-    //         SELECT
-    //         vk.*
-    //         FROM keeps vk
-    //         WHERE vk.id = @id
-    //         ";
-    //     return _db.Query<VaultKeepViewModel>(sql, new { id }).ToList();
-    // }
+    internal List<VaultKeep> GetVaultKeepsById(int id)
+    {
+        string sql = @"
+            SELECT
+            vk.*
+            FROM keeps vk
+            WHERE vk.id = @id
+            ";
+        return _db.Query<VaultKeep>(sql, new { id }).ToList();
+    }
 }
