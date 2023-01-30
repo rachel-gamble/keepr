@@ -42,6 +42,10 @@ public class VaultsController : ControllerBase
         {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
             Vault vault = _VaultService.Get(id, userInfo?.Id);
+            if (vault.IsPrivate == true)
+            {
+                throw new Exception("This vault is private.");
+            }
             return Ok(vault);
         }
         catch (System.Exception e)

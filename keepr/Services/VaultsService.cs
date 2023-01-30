@@ -9,9 +9,9 @@ public class VaultsService
         _repo = repo;
     }
 
-    public Vault Create(Vault vaultData)
+    public Vault Create(Vault vaultData, string userId)
     {
-        return _repo.Create(vaultData);
+        return _repo.Create(vaultData, userId);
     }
 
     internal List<Vault> GetByCreatorId(string profileId)

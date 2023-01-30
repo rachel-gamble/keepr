@@ -9,7 +9,7 @@ public class VaultsRepository
         _db = db;
     }
 
-    internal Vault Create(Vault vaultData)
+    internal Vault Create(Vault vaultData, string userId)
     {
         string sql = @"
             INSERT INTO vaults
