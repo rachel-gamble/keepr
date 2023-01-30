@@ -5,7 +5,7 @@
   <main class="app-bg">
     <router-view />
   </main>
-  <footer class="">
+  <footer class="app-bg">
     Made with ✨💀🌙 by Sautrah
   </footer>
 </template>
