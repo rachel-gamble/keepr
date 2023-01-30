@@ -89,14 +89,16 @@ public class VaultsController : ControllerBase
         }
     }
 
-    [HttpGet("{id/keeps)")]
-    public async Task<ActionResult<List<VaultKeep>>> GetVaultKeepsById(int id, string accountId)
+//NOTE - look @ restaurant controller for example in helpReviews
+
+    [HttpGet("{id}/keeps")]
+    public async Task<ActionResult<List<VaultKeep>>> GetVaultKeepsById(int id)
     {
         try
         {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-            if (accountId != null) { userInfo == accountId }
-            List<VaultKeep> vaultKeeps = VaultsService.GetVaultKeepsById(id, accountId);
+            // if (accountId != null) { userInfo == accountId };
+            List<VaultKeep> vaultKeeps = KeepsService.GetKeepsById(id, userInfo?.Id);
             return Ok(vaultKeeps);
         }
         catch (System.Exception e)

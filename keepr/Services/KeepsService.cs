@@ -3,10 +3,12 @@ namespace keepr.Services;
 public class KeepsService
 {
     public readonly KeepsRepository _repo;
+    public readonly VaultsService _vs;
 
-    public KeepsService(KeepsRepository repo)
+    public KeepsService(KeepsRepository repo, VaultsService vs)
     {
         _repo = repo;
+        _vs = vs;
     }
 
     public Keep Create(Keep keepData)
@@ -67,5 +69,13 @@ public class KeepsService
             throw new Exception("You do not own this keep");
         }
         _repo.Delete(id);
+    }
+
+    // get keeps by vault id
+    internal List<Keep> GetKeeps(int vaultId, string userId)
+    {
+        Vault vault = _vs.GetOne(vaultId, userId);
+        List<Keep> keeps = _repo.Get(vaultId);
+        return keeps;
     }
 }

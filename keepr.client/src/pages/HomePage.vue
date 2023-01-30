@@ -1,5 +1,12 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+  <!-- <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+  </div> -->
+  <div class="container">
+<!--SECTION Keep Card-->
+    <section class="row">
+      <div v-for="k in keeps" class="col-md-3 m-auto"></div>
+      <KeepCard :keep="k" />
+    </section>
 
   </div>
 </template>

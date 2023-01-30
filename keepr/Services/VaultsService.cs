@@ -57,16 +57,24 @@ public class VaultsService
         _repo.Delete(id);
     }
 
-
-    internal List<VaultKeep> GetVaultKeepsById(int id, string userId)
-
+    internal Vault GetOne(int id, string userId)
     {
-        Vault found = Get(id, userId);
-        if (found.IsPrivate && found.CreatorId != userId)
-        {
-            throw new Exception("You do not have access");
-        }
-        List<VaultKeep> vaultKeeps = _repo.GetVaultKeepFromVault(id);
-        return vaultKeeps;
+        Vault vault = _repo.getOne(id);
+        if(vault == null) throw new Exception($"No vault at {id}.");
+        if(vault.IsPrivate == true && vault.CreatorId != userId) throw new Exception($"That vault is private.");
+        return vault;
     }
+
+
+    // internal List<VaultKeep> GetVaultKeepsById(int id, string userId)
+
+    // {
+    //     Vault found = Get(id, userId);
+    //     if (found.IsPrivate && found.CreatorId != userId)
+    //     {
+    //         throw new Exception("You do not have access");
+    //     }
+    //     List<VaultKeep> vaultKeeps = _repo.GetVaultKeepFromVault(id);
+    //     return vaultKeeps;
+    // }
 }
