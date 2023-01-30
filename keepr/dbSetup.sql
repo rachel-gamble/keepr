@@ -18,11 +18,13 @@ CREATE TABLE
         description TEXT NOT NULL,
         img TEXT NOT NULL,
         views INT DEFAULT 0,
-        -- createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-        -- updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        kept INT,
         FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
     ) DEFAULT CHARSET UTF8 COMMENT '';
 
+
+        -- createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        -- updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
 DROP TABLE keeps;
 
 CREATE TABLE

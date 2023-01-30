@@ -40,7 +40,7 @@ public class KeepsService
         if (original.CreatorId != userId)
         {
             if (keepData.Name != original.Name && keepData.Description != original.Description && keepData.Img != original.Img)
-            { throw new Exception("You're trying to edit forbidden properties."); }
+            { throw new Exception("These properties are forbidden to edit at this time."); }
             original.Views = keepData.Views > 0 ? keepData.Views : original.Views;
             original.Kept = keepData.Kept > 0 ? keepData.Kept : original.Kept;
             _repo.Edit(original);
@@ -56,7 +56,7 @@ public class KeepsService
             _repo.Edit(original);
             return original;
         }
-        else { throw new Exception("something went wrong"); }
+        else { throw new Exception("error editing this keep"); }
     }
 
     internal void Delete(int id, string userId)
