@@ -5,7 +5,7 @@
 
         <!--SECTION HOME BUTTON-->
 
-        <router-link class="" :to="{ name: 'Home' }">
+        <router-link class="" :to="{ name: 'Home' }" title="Go Home">
           <button class="btn home-btn">
             <p class="home-btn p-2">Home</p>
           </button>
@@ -13,7 +13,7 @@
 
         <!--SECTION CREATE BUTTON-->
         <div class="dropdown show justify-content-center">
-          <a class="btn btn dropdown-toggle create-button m-2 pb-2" href="#" role="button" id="dropdownMenuLink"
+          <a class="btn create-btn dropdown-toggle m-2 pb-2" href="#" role="button" id="dropdownMenuLink"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Create
           </a>
@@ -29,7 +29,7 @@
       <div class="">
         <h1 class="keepr-logo p-1 mx-3 px-3">the<br>keepr<br>co.</h1>
       </div>
-      <div class="">
+      <div class="right-section" title="Manage Account">
         <Login />
       </div>
       <!--END-->
@@ -52,13 +52,18 @@ section {
   background-color: #FEF6F0;
 }
 
+
 .nav-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-left-section {
+.left-section {
+  display: flex;
+}
+
+.right-section {
   display: flex;
 }
 
@@ -91,7 +96,7 @@ left-section {
   font-weight: 700;
 }
 
-.create-button {
+.create-btn {
   font-family: 'Oxygen', sans-serif;
   background-color: #FEF6F0;
   font-weight: 700;
