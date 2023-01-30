@@ -19,7 +19,7 @@ public class VaultKeepsService
         {
             throw new System.Exception("You must be logged in to post.");
         }
-        Vault vault = AccountService.GetMyVaults(userId);
+        Vault vault = AccountService.GetMyVaults(vaultKeepData.VaultId, userId);
         if (vault.CreatorId != userId)
         {
             throw new System.Exception("Forbidden post action!");
@@ -33,8 +33,5 @@ public class VaultKeepsService
     {
         return _repo.Get(id);
     }
-
-
-
 
 }

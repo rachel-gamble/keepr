@@ -9,13 +9,13 @@ public class VaultKeepsController : ControllerBase
     private readonly VaultKeepsService _VaultKeepsService;
 
 
-    public VaultKeepsController(Auth0Provider auth, VaultsService VaultService, VaultsService vaultService, VaultKeepsService vaultKeepsService)
+    public VaultKeepsController(Auth0Provider auth, VaultsService VaultService, VaultKeepsService vaultKeepsService)
     {
         _auth = auth;
         _VaultService = VaultService;
-        _VaultKeepsService = VaultKeepsService;
-
+        _VaultKeepsService = vaultKeepsService;
     }
+
 
     [HttpPost]
     [Authorize]
