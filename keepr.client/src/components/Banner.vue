@@ -1,9 +1,37 @@
 <template>
-    <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+  <section class="row">
+    <section class="col-md-12 d-flex">
+
+      <!--SECTION HOME BUTTON-->
+      <router-link class="" :to="{ name: 'Home' }">
+        <div class="btn home-button">
+          <p>Home</p>
+        </div>
+      </router-link>
+
+      <!--SECTION CREATE BUTTON-->
+      <div class="dropdown show justify-content-center">
+        <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Create
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="#">Keep</a>
+          <a class="dropdown-item" href="#">Vault</a>
+        </div>
       </div>
-    </router-link>
+
+      <!--SECTION Mid-Right // Login and Logo-->
+      <div class="border">
+        <h1 class="keepr-logo p-1 mx-3 px-3">the<br>keepr<br>co.</h1>
+      </div>
+      <div class="">
+        <Login />
+      </div>
+      <!--END-->
+    </section>
+  </section>
 </template>
 
 <script>
@@ -17,5 +45,30 @@ export default {
 </script>
 
 <style>
+.keepr-logo {
+  /* position: absolute;
+  width: 47px;
+  height: 60px; */
+  left: calc(50% - 47px/2 - 7.76px);
+  top: calc(50% - 60px/2 - 0.63px);
 
+  font-family: 'Marko One', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15.2491px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+
+  color: #2D2D2D;
+
+  box-sizing: border-box;
+  border: 1.66787px solid #2D2D2D;
+  border-radius: 4.76534px;
+}
+
+.home-button {
+  background-color: #E9D8D6;
+  border-radius: 15px;
+}
 </style>

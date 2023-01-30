@@ -1,6 +1,6 @@
 <template>
-  <header>
-    <Navbar />
+  <header class="mb-4 m-2 p-2">
+    <Banner />
   </header>
   <main>
     <router-view />
@@ -14,6 +14,7 @@
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+import Banner from './components/Banner.vue'
 
 export default {
   setup() {
@@ -21,7 +22,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
+  components: { Banner }
 }
 </script>
 <style lang="scss">
