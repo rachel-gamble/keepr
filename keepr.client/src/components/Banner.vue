@@ -1,29 +1,32 @@
 <template>
-  <section class="row">
-    <section class="col-md-12 d-flex">
+  <section class="row app-bg m-3">
+    <section class="col-md-12 nav-section">
+      <div class="left-section d-flex">
 
-      <!--SECTION HOME BUTTON-->
-      <router-link class="" :to="{ name: 'Home' }">
-        <div class="btn home-button">
-          <p>Home</p>
+        <!--SECTION HOME BUTTON-->
+
+        <router-link class="" :to="{ name: 'Home' }">
+          <button class="btn home-btn">
+            <p class="home-btn p-2">Home</p>
+          </button>
+        </router-link>
+
+        <!--SECTION CREATE BUTTON-->
+        <div class="dropdown show justify-content-center">
+          <a class="btn btn dropdown-toggle create-button m-2 pb-2" href="#" role="button" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Create
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Keep</a>
+            <a class="dropdown-item" href="#">Vault</a>
+          </div>
         </div>
-      </router-link>
 
-      <!--SECTION CREATE BUTTON-->
-      <div class="dropdown show justify-content-center">
-        <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Create
-        </a>
-
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" href="#">Keep</a>
-          <a class="dropdown-item" href="#">Vault</a>
-        </div>
       </div>
-
       <!--SECTION Mid-Right // Login and Logo-->
-      <div class="border">
+      <div class="">
         <h1 class="keepr-logo p-1 mx-3 px-3">the<br>keepr<br>co.</h1>
       </div>
       <div class="">
@@ -45,6 +48,20 @@ export default {
 </script>
 
 <style>
+section {
+  background-color: #FEF6F0;
+}
+
+.nav-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+left-section {
+  display: flex;
+}
+
 .keepr-logo {
   /* position: absolute;
   width: 47px;
@@ -67,8 +84,16 @@ export default {
   border-radius: 4.76534px;
 }
 
-.home-button {
+.home-btn {
   background-color: #E9D8D6;
   border-radius: 15px;
+  font-family: 'Oxygen', sans-serif;
+  font-weight: 700;
+}
+
+.create-button {
+  font-family: 'Oxygen', sans-serif;
+  background-color: #FEF6F0;
+  font-weight: 700;
 }
 </style>

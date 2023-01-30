@@ -1,8 +1,8 @@
 <template>
-  <header class="mb-4 m-2 p-2">
+  <header class="app-bg">
     <Banner />
   </header>
-  <main>
+  <main class="app-bg">
     <router-view />
   </main>
   <footer class="">
@@ -32,6 +32,13 @@ export default {
   --main-height: calc(100vh - 32px - 64px);
 }
 
+main {
+  background-color: #FEF6F0;
+}
+
+.app-bg {
+  background-color: #FEF6F0;
+}
 
 footer {
   display: grid;
