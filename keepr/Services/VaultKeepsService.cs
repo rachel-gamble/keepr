@@ -22,7 +22,7 @@ public class VaultKeepsService
         Vault vault = AccountService.GetMyVaults(vaultKeepData.VaultId, userId);
         if (vault.CreatorId != userId)
         {
-            throw new System.Exception("Forbidden post action!");
+            throw new System.Exception("You do not have access.");
         }
         VaultKeep newVaultKeep = _repo.Create(vaultKeepData);
 
