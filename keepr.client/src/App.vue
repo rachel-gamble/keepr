@@ -4,6 +4,9 @@
   </header>
   <main class="app-bg">
     <router-view />
+    <Modal id="keepForm" modal-title="Create Keep">
+      <CreateKeepForm />
+    </Modal>
   </main>
   <footer class="app-bg">
     Made with ✨💀🌙 by Sautrah
@@ -15,6 +18,7 @@ import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import Banner from './components/Banner.vue'
+import CreateKeepForm from './components/CreateKeepForm.vue'
 
 export default {
   setup() {
@@ -22,7 +26,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Banner }
+  components: { Banner, CreateKeepForm }
 }
 </script>
 <style lang="scss">

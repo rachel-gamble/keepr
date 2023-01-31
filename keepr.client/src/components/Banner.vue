@@ -12,14 +12,15 @@
         </router-link>
 
         <!--SECTION CREATE BUTTON-->
-        <div class="dropdown show justify-content-center">
-          <a class="btn create-btn dropdown-toggle m-2 pb-2" href="#" role="button" id="dropdownMenuLink"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="dropdown">
+          <button class="btn create-btn dropdown-toggle mt-2" type="button" id="dropdownMenuButton"
+            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Create
-          </a>
+          </button>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Keep</a>
+            <a data-bs-toggle="modal" data-bs-target="#keepForm" class="dropdown-item" @click="showModal"
+              title="Create New Keep" href="#">Keep</a>
             <a class="dropdown-item" href="#">Vault</a>
           </div>
         </div>
@@ -39,11 +40,14 @@
 
 <script>
 import Login from './Login.vue'
+import CreateKeepForm from './CreateKeepForm.vue';
+import Modal from './Modal.vue';
+
 export default {
   setup() {
     return {}
   },
-  components: { Login }
+  components: { Login, Modal, CreateKeepForm }
 }
 </script>
 
