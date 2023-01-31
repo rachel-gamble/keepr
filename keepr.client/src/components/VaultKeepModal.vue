@@ -36,26 +36,12 @@
                 <section class="justify-space-between m-2">
 
                     <!-- add keep to vault-->
-                    <div v-if="account.id == !activeKeep?.creator.id">
-                        <form class="dropdown" @submit.prevent="addKeepToVault()">
-                            <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                🌱
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li v-for="mv in myVaults" :key="mv" value="mv" class="action"><a class="dropdown-item"
-                                        href="#" @click.prevent="addKeepToVault()">
-                                        {{ mv?.name.substring(0, 15) }}
-                                    </a></li>
-                            </div>
-                            <button type="submit" class="btn vault-btn selectable mdi mdi-check-outline"
-                                title="Submit"></button>
-                        </form>
-                    </div>
-                    <div v-show="account.id == activeKeep?.creator.id" class="btn btn-light mdi mdi-cancel selectable"
-                        title="Delete this keep" @click.prevent="removeKeep()"></div>
+                    <!-- remove keep from vault-->
+                    <button v-show="account?.id == activeVault?.creatorId" class="btn orchid-btn mdi mdi-cancel"
+                        title="Remove Keep" @click="removeFromVault()">
+                        Remove</button>
                 </section>
+
                 <!-- profile info -->
                 <div class="mt-1">
                     <img :src="activeKeep?.creator.picture" alt=""
@@ -106,9 +92,9 @@ export default {
             async removeKeep() {
                 try {
                     if (await Pop.confirm("Remove this keep?")) {
-                        await keepsService.removeKeep()
-                        Modal.getOrCreateInstance(document.getElementById("#keepDetails")).hide()
+                        await vaultKeepsService.removeFromVault()
                         Pop.toast("Keep removed. ✅")
+                        Modal.getOrCreateInstance(document.getElementById("#keepModal")).hide()
                     }
                 } catch (error) {
                     logger.error(error)
@@ -146,6 +132,11 @@ export default {
 
 .keep-body {
     font-family: 'Sansation';
+}
+
+.orchid-btn {
+    color: #A76BBD;
+
 }
 
 .keep-box {
