@@ -37,7 +37,6 @@
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
-import AccountForm from './components/AccountForm.vue'
 import Modal from './Modal.vue'
 import AccountForm from './AccountForm.vue'
 

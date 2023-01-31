@@ -1,25 +1,27 @@
 <template>
-    <form class="input-group p-3 justify-content-center" @submit.prevent="updateAccount()">
-        <div class="d-flex flex-column">
-            <label class="mt-2" for="name">Change username</label>
-            <input class="mt-2 col-12 form-input" type="text" name="name" placeholder="new username..."
-                v-model="editing.name" />
+    <section class="d-flex">
+        <form class="input-group p-3 justify-content-center" @submit.prevent="updateAccount()">
+            <div class="d-flex flex-column">
+                <label class="mt-2" for="name">Change username</label>
+                <input class="mt-2 col-12 form-input" type="text" name="name" placeholder="new username..."
+                    v-model="editing.name" />
 
-            <label class="mt-2" for="picture">Profile Picture:
-            </label>
-            <input class="mt-2 form-input" type="url" name="picture" placeholder="new profile picture url..."
-                v-model="editing.picture" />
+                <label class="mt-2" for="picture">Profile Picture:
+                </label>
+                <input class="mt-2 form-input" type="url" name="picture" placeholder="new profile picture url..."
+                    v-model="editing.picture" />
 
-            <label class="mt-2" for="coverImg">Cover Image:
-            </label>
-            <input class="mt-2 form-input" type="url" name="picture" placeholder="New cover img url..."
-                v-model="editing.picture" />
+                <label class="mt-2" for="coverImg">Cover Image:
+                </label>
+                <input class="mt-2 form-input" type="url" name="picture" placeholder="New cover img url..."
+                    v-model="editing.picture" />
 
-        </div>
-        <div class="mt-2">
-            <button type="submit" class="btn selectable mt-2 hover elevation-2 submit">Submit</button>
-        </div>
-    </form>
+            </div>
+            <div class="mt-2"><br>
+                <button type="submit" class="btn btn-dark selectable mt-2 hover elevation-2">Submit</button>
+            </div>
+        </form>
+    </section>
 </template>
 
 <script>
