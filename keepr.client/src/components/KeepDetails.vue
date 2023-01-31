@@ -1,61 +1,69 @@
 <template>
-    <div class="modal-body" id="">
-        <!--SECTION LEFT SIDE-->
-        <div class="left-section">
-            <img :src="activeKeep?.img" alt="" class="img-fluid rounded-top selectable hover-shadow">
-        </div>
+    <div class="container-fluid app-bg">
+        <section class="row app-bg">
+            <!--SECTION LEFT SIDE-->
+            <div class="col-md-6 p-0">
+                <img :src="activeKeep?.img" alt="" class="img-fluid rounded-top selectable hover-shadow"
+                    title="keep image">
+            </div>
 
-        <!--SECTION LEFT SIDE-->
-        <div class="right-section">
-            <!--top-->
-            <section class="text center">
-                <div class="views"> <i class="mdi mdi-eye"></i> {{ activeKeep?.views }}
-                </div>
-                <div>
-                    <p>K</p> {{ activeKeep?.kept }}
+            <!--SECTION Right SIDE-->
+
+            <div class="col-md-6 align-items-center">
+
+                <!-- view count -->
+                <div class="d-flex counts m-2 justify-content-center">
+                    <i class="mdi mdi-eye mx-1 bold"></i>
+                    <p class=""> {{ activeKeep?.views }} </p>
+                    <p class="mx-2">|</p>
+                    <!-- keep count-->
+                    <p class="keep-box px-1"> K </p>
+                    <p class="mx-1">{{ activeKeep?.kept }}</p>
                 </div>
 
-            </section>
-            <!--body-->
-            <section class="align-content-center">
-                <div class="text-center keep-title">
-                    <h2>{{ activeKeep?.name }}</h2>
-                </div>
-                <div class="keep-body">
-                    {{ activeKeep?.description }}
-                </div>
-            </section>
-            <!--bottom-->
-            <section class="justify-space-between m-2">
-                <div class="col-md-8">
-                    <!--TODO Add keep to user's vault here-->
-                    <form class="dropdown" @submit.prevent="addKeepToVault()">
-                        <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            🌱
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li v-for="mv in myVaults" :key="mv" value="mv" class="action"><a class="dropdown-item"
-                                    href="#" @click.prevent="addKeepToVault()">
-                                    {{ mv?.name.substring(0, 15) }}
-                                </a></li>
-                        </div>
-                        <button type="submit" class="btn vault-btn selectable mdi mdi-check-outline"
-                            title="Submit"></button>
-                    </form>
-                </div>
-                <!-- <router-link class="" :to="{ name: 'Profile', params: { id: activeKeep?.creator.id } }">
-                        {{ activeKeep?.creator.picture }} {{ activeKeep?.creator.name }}
-                    </router-link> -->
-                <div class="mt-1 selectable">
-                    <img :src="activeKeep?.creator.picture" alt="" class="img-fluid thumbnail-img"
+                <!--body-->
+                <!--title + description-->
+                <section class="align-content-center">
+                    <div class="text-center keep-title">
+                        <h2>{{ activeKeep?.name }}</h2>
+                    </div>
+                    <div class="keep-body">
+                        {{ activeKeep?.description }}
+                    </div>
+                </section>
+
+                <!--bottom-->
+                <section class="justify-space-between m-2">
+
+                    <!-- add keep to vault-->
+                    <div>
+
+                        <form class="dropdown" @submit.prevent="addKeepToVault()">
+                            <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                🌱
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li v-for="mv in myVaults" :key="mv" value="mv" class="action"><a class="dropdown-item"
+                                        href="#" @click.prevent="addKeepToVault()">
+                                        {{ mv?.name.substring(0, 15) }}
+                                    </a></li>
+                            </div>
+                            <button type="submit" class="btn vault-btn selectable mdi mdi-check-outline"
+                                title="Submit"></button>
+                        </form>
+                    </div>
+                </section>
+                <!-- profile info -->
+                <div class="mt-1">
+                    <img :src="activeKeep?.creator.picture" alt=""
+                        class="img-fluid prof-img rounded-circle app-bg selectable"
                         :title="`Created by ${activeKeep?.creator.name}`" @click="goToProfile()" />
                     {{ activeKeep?.creator.name }}
                 </div>
-            </section>
-
-        </div>
+            </div>
+        </section>
     </div>
 </template>
 
@@ -125,6 +133,23 @@ export default {
 </script>
 
 <style>
+.prof-img {
+    border-radius: 50%;
+    height: 5em;
+    width: 5em;
+}
+
+.keep-box {
+    font-family: 'Marko One', serif;
+    box-sizing: border-box;
+    border: 1.66787px solid #2D2D2D;
+    border-radius: 5px;
+}
+
+.counts {
+    color: #636E72
+}
+
 /* .left-section {
   display: flex;
 }

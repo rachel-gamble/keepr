@@ -86,14 +86,6 @@ export default {
   text-shadow: 3px 3px 4px black;
 }
 
-.thumbnail-img {
-  border-radius: 50%;
-  height: 2em;
-  width: 2em;
-  transform: translateY(-2.2em);
-  margin-right: 0.5em;
-}
-
 .home {
   display: grid;
   height: 80vh;

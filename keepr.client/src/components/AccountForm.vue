@@ -9,12 +9,12 @@
                 <label class="mt-2" for="picture">Profile Picture:
                 </label>
                 <input class="mt-2 form-input" type="url" name="picture" placeholder="new profile picture url..."
-                    v-model="editing.picture" />
+                    v-model="editing.picture" title="edit profile picture" />
 
                 <label class="mt-2" for="coverImg">Cover Image:
                 </label>
-                <input class="mt-2 form-input" type="url" name="picture" placeholder="New cover img url..."
-                    v-model="editing.picture" />
+                <input class="mt-2 form-input" type="url" name="coverImg" title="edit cover Img"
+                    placeholder="New cover img url..." v-model="editing.coverImg" />
 
             </div>
             <div class="mt-2"><br>

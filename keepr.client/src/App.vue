@@ -55,6 +55,16 @@ export default {
   --main-height: calc(100vh - 32px - 64px);
 }
 
+//SECTION media  
+
+.thumbnail-img {
+  border-radius: 50%;
+  height: 2em;
+  width: 2em;
+  transform: translateY(-2.2em);
+  margin-right: 0.5em;
+}
+
 //SECTION background colors 
 
 main {
