@@ -13,11 +13,6 @@
         </div>
         <div class="dropdown-menu dropdown-menu-lg-left p-0" aria-labelledby="authDropdown">
           <div class="list-group">
-            <!-- <router-link :to="{ name: 'Profile' }">
-              <div class="list-group-item dropdown-item list-group-item-action">
-                My Profile
-              </div>
-            </router-link> -->
             <router-link :to="{ name: 'Account' }">
               <div class="list-group-item dropdown-item list-group-item-action">
                 My Profile

@@ -1,6 +1,7 @@
 <template>
   <header class="app-bg">
     <Banner />
+    <!-- <Navbar /> -->
   </header>
   <main class="app-bg">
     <router-view />
@@ -26,7 +27,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Banner, CreateKeepForm }
+  components: { Banner, CreateKeepForm, Navbar }
 }
 </script>
 <style lang="scss">
@@ -96,5 +97,10 @@ footer {
   display: grid;
   place-content: center;
   height: 32px;
+}
+
+.masonry-container {
+  column-count: 4;
+  column-gap: 3em;
 }
 </style>

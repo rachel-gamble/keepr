@@ -34,8 +34,8 @@ public class AccountService
         return _repo.Edit(original);
     }
 
-    internal List<Vault> GetMyVaults(int vaultId, string userId)
+    internal List<Vault> GetMyVaults(string userId)
     {
-        return _vr.GetMyVaults(vaultId, userId);
+        return _vr.GetMyVaults(userId);
     }
 }

@@ -1,7 +1,11 @@
 <template>
-<div class="card my-4 elevation-5 hover-card">
-  <!-- <router-link :to"{name:'Vault', params: {id: vault.id}}"></router-link> -->
-</div>
+  <div class="card my-4 elevation-5 hover-card">
+    
+    <!-- <router-link :to"{name:'Vault', params: {id: vault.id}}"></router-link> -->
+    <img :src="keep?.img" alt="http://thiscatdoesnotexist.com" class="img-fluid hover-shadow">
+    {{ keep?.name }}
+  </div>
+
 
 </template>
 
@@ -9,13 +13,13 @@
 
 export default {
 
+  setup(props) {
 
+    return {
+    
+    };
 
-setup() {
-
-  return {};
-
-}
+  }
 }
 </script>
 

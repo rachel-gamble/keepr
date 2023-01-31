@@ -1,25 +1,53 @@
 <template>
-  <!-- <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-  </div> -->
-  <div class="container">
-<!--SECTION Keep Card-->
+  <div class="masonry-container">
+    <!--SECTION Keep Card-->
     <section class="row">
-      <div v-for="k in keeps" class="col-md-3 m-auto"></div>
-      <KeepCard :keep="k" />
+      <!--NOTE k in keeps uses k.id | keep in keeps uses keep.id-->
+      <div v-for="keep in keeps" :key="keep.id" class="card my-4 elevation-5 hover-card">
+        <!-- <router-link :to"{name:'Vault', params: {id: vault.id}}"></router-link> -->
+        <img :src="keep?.img" alt="http://thiscatdoesnotexist.com" class="img-fluid hover-shadow">
+        {{ keep?.name }}
+
+      </div>
     </section>
 
   </div>
 </template>
 
 <script>
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { AppState } from '../AppState';
+import { keepsService } from '../services/KeepsService';
+import { logger } from '../utils/Logger';
+import Pop from '../utils/Pop';
+import { computed } from 'vue';
+
 export default {
   setup() {
-    return {}
+    const router = useRouter;
+    onMounted(async () => {
+      try {
+        await keepsService.getAllKeeps();
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message, 'error')
+      }
+    })
+    return {
+      keeps: computed(() => AppState.keeps)
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
+.keep-container {
+  padding: 1px;
+  animation-name: fadeInto;
+  animation-duration: 5000ms;
+}
+
 .home {
   display: grid;
   height: 80vh;

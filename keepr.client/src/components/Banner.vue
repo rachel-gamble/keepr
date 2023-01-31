@@ -91,6 +91,7 @@ section {
   box-sizing: border-box;
   border: 1.66787px solid #2D2D2D;
   border-radius: 4.76534px;
+  transform: translateX(-5vw);
 }
 
 .home-btn {
