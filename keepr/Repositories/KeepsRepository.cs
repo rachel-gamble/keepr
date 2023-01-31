@@ -59,7 +59,7 @@ public class KeepsRepository
             return k;
         }, new { id }).ToList();
     }
-    internal Keep Get(int id)
+    internal Keep GetKeepById(int id)
     {
         string sql = @"
             SELECT

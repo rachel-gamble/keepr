@@ -55,7 +55,7 @@ public class KeepsController : ControllerBase
     {
         try
         {
-            Keep keep = _keepsService.Get(id);
+            Keep keep = _keepsService.GetKeepById(id);
             return Ok(keep);
         }
         catch (System.Exception e)

@@ -13,21 +13,21 @@ public class VaultKeepsService
         _accountService = accountService;
     }
 
-    internal VaultKeep Create(VaultKeep vaultKeepData, string userId)
-    {
-        if (userId == null)
-        {
-            throw new System.Exception("You must be logged in to post.");
-        }
-        Vault vault = AccountService.GetMyVaults(vaultKeepData.VaultId, userId);
-        if (vault.CreatorId != userId)
-        {
-            throw new System.Exception("You do not have access.");
-        }
-        VaultKeep newVaultKeep = _repo.Create(vaultKeepData);
+    // internal VaultKeep Create(VaultKeep vaultKeepData, string userId)
+    // {
+    //     if (userId == null)
+    //     {
+    //         throw new System.Exception("You must be logged in to post.");
+    //     }
+    //     Vault vault = _accountService.GetMyVaults(vaultKeepData.VaultId, userId);
+    //     if (vault.CreatorId != userId)
+    //     {
+    //         throw new System.Exception("You do not have access.");
+    //     }
+    //     VaultKeep newVaultKeep = _repo.Create(vaultKeepData);
 
-        return newVaultKeep;
-    }
+    //     return newVaultKeep;
+    // }
 
     internal VaultKeep Get(int id)
     {

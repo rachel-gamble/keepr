@@ -26,9 +26,9 @@ public class KeepsService
         return _repo.Get();
     }
 
-    internal Keep Get(int id)
+    internal Keep GetKeepById(int id)
     {
-        Keep found = _repo.Get(id);
+        Keep found = _repo.GetKeepById(id);
         if (found == null)
         {
             throw new Exception("Invalid ID");
@@ -38,7 +38,7 @@ public class KeepsService
 
     internal Keep Edit(Keep keepData, string userId)
     {
-        Keep original = Get(keepData.Id);
+        Keep original = GetKeepById(keepData.Id);
         if (original.CreatorId != userId)
         {
             if (keepData.Name != original.Name && keepData.Description != original.Description && keepData.Img != original.Img)
@@ -63,7 +63,7 @@ public class KeepsService
 
     internal void Delete(int id, string userId)
     {
-        Keep original = Get(id);
+        Keep original = GetKeepById(id);
         if (original.CreatorId != userId)
         {
             throw new Exception("You do not own this keep");
@@ -72,10 +72,14 @@ public class KeepsService
     }
 
     // get keeps by vault id
-    internal List<Keep> GetKeeps(int vaultId, string userId)
-    {
-        Vault vault = _vs.GetOne(vaultId, userId);
-        List<Keep> keeps = _repo.Get(vaultId);
-        return keeps;
-    }
+    // internal List<Keep> GetKeepsByVaultId(int vaultId, string userId)
+    // {
+    //     Vault vault = _vs.GetOne(vaultId, userId);
+    //     List<Keep> keeps = _vs.GetVaultKeepsByVaultId(vaultId);
+    //     return keeps;
+    // }
+
+    // internal <VaultKeep> GetVaultKeepsById(int Id){
+    //     VaultKeep vaultKeep = _vs;
+    // }
 }

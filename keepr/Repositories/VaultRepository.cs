@@ -36,18 +36,18 @@ public class VaultsRepository
             return v;
         }, new { id }).FirstOrDefault();
     }
-    internal Vault GetOne(int id)
-    {
-        string sql = @"
-            SELECT 
-                v.*,
-                a.*
-            FROM vaults v
-            JOIN accounts a ON v.creatorId = a.id
-            WHERE v.id = @id";
-        Vault vault = _db.Query<Vault>(sql, new Object { id }).FirstOrDefault();
-        return vault;
-    }
+    // internal Vault GetOne(int id)
+    // {
+    //     string sql = @"
+    //         SELECT 
+    //             v.*,
+    //             a.*
+    //         FROM vaults v
+    //         JOIN accounts a ON v.creatorId = a.id
+    //         WHERE v.id = @id";
+    //     Vault vault = _db.Query<Vault>(sql, new Object { id }).FirstOrDefault();
+    //     return vault;
+    // }
 
     internal void Edit(Vault original)
     {
@@ -115,7 +115,7 @@ public class VaultsRepository
         }, new { id }).ToList();
     }
 
-    internal List<VaultKeep> GetVaultKeepsById(int id)
+    internal List<VaultKeep> GetVaultKeepsByVaultId(int id)
     {
         string sql = @"
             SELECT
