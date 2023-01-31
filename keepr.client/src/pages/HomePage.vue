@@ -2,14 +2,16 @@
   <div class="masonry-container">
     <!--SECTION Keep Card-->
     <section class="row">
-      <div v-for="keep in keeps" :key="keep.id" class="card my-3 elevation-5 hover-card keep-container"
+      <div v-for="keep in keeps" :key="keep.id" class="card my-3 elevation-5 hover-card keep-container mx-2"
         style="min-height: 20vh">
-        <img :src="keep?.img" alt="http://thiscatdoesnotexist.com" class="img-fluid hover-shadow rounded img-custom"
-          @click="openKeepDetails(k)" :title="'Open ' + keep.name + ' details'">
+        <img :src="keep?.img" alt="" class="img-fluid hover-shadow rounded img-custom" @click="openKeepDetails(k)"
+          :title="'Open ' + keep.name + ' details'">
         <div class="d-flex justify-content-between mobile-cleanup align-items-center" style="height: 0px">
           <h4 class="keep-name">
             {{ keep?.name }}
           </h4>
+          <img @click="goToProfile(keep.creator.id)" :src="keep.creator.picture" alt=""
+            class="thumbnail-img selectable rounded-circle" :title="'Posted by' + keep.creator.name" />
         </div>
       </div>
     </section>
@@ -68,7 +70,7 @@ export default {
 }
 
 .keep-name {
-  transform: translateY(-2.5em);
+  transform: translateY(-1.5em);
   margin-left: 0.8em;
   color: whitesmoke;
   text-shadow: 3px 3px 4px black;
@@ -76,8 +78,9 @@ export default {
 
 .thumbnail-img {
   border-radius: 50%;
-  height: 4em;
-  transform: translateY(-6em);
+  height: 2em;
+  width: 2em;
+  transform: translateY(-2.2em);
   margin-right: 0.5em;
 }
 
