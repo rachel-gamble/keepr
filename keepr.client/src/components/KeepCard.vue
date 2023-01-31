@@ -1,6 +1,6 @@
 <template>
-  <div class="card my-4 elevation-5 hover-card">
-    
+  <div class="card elevation-5 hover-card">
+
     <!-- <router-link :to"{name:'Vault', params: {id: vault.id}}"></router-link> -->
     <img :src="keep?.img" alt="http://thiscatdoesnotexist.com" class="img-fluid hover-shadow">
     {{ keep?.name }}

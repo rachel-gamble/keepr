@@ -103,4 +103,25 @@ footer {
   column-count: 4;
   column-gap: 3em;
 }
+
+@media only screen and (max-width:1068px) {
+  .masonry-container {
+    column-count: 3;
+    column-gap: .5em;
+  }
+
+  @media only screen and (max-width:768px) {
+    .masonry-container {
+      column-count: 2;
+      column-gap: .5em;
+    }
+  }
+
+  @media only screen and (max-width:538px) {
+    .masonry-container {
+      column-count: 1;
+      column-gap: .5em;
+    }
+  }
+}
 </style>

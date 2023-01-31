@@ -3,9 +3,9 @@
     <!--SECTION Keep Card-->
     <section class="row">
       <!--NOTE k in keeps uses k.id | keep in keeps uses keep.id-->
-      <div v-for="keep in keeps" :key="keep.id" class="card my-4 elevation-5 hover-card">
+      <div v-for="keep in keeps" :key="keep.id" class="card my-3 elevation-5 hover-card">
         <!-- <router-link :to"{name:'Vault', params: {id: vault.id}}"></router-link> -->
-        <img :src="keep?.img" alt="http://thiscatdoesnotexist.com" class="img-fluid hover-shadow">
+        <img :src="keep?.img" alt="http://thiscatdoesnotexist.com" class="img-fluid hover-shadow rounded">
         {{ keep?.name }}
 
       </div>
@@ -42,11 +42,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.keep-container {
-  padding: 1px;
-  animation-name: fadeInto;
-  animation-duration: 5000ms;
-}
+// .keep-container {
+//   padding: 1px;
+//   animation-name: fadeInto;
+//   animation-duration: 5000ms;
+// }
 
 .home {
   display: grid;
