@@ -2,15 +2,15 @@
   <div class="masonry-container">
     <!--SECTION Keep Card-->
     <section class="row">
-      <!--NOTE k in keeps uses k.id | keep in keeps uses keep.id-->
-      <div v-for="keep in keeps" :key="keep.id" class="card my-3 elevation-5 hover-card">
-        <!-- <router-link :to"{name:'Vault', params: {id: vault.id}}"></router-link> -->
-        <img :src="keep?.img" alt="http://thiscatdoesnotexist.com" class="img-fluid hover-shadow rounded"
+      <div v-for="keep in keeps" :key="keep.id" class="card my-3 elevation-5 hover-card keep-container"
+        style="min-height: 20vh">
+        <img :src="keep?.img" alt="http://thiscatdoesnotexist.com" class="img-fluid hover-shadow rounded img-custom"
           @click="openKeepDetails(k)" :title="'Open ' + keep.name + ' details'">
-        <p class="keep-name">
-          {{ keep?.name }}
-        </p>
-
+        <div class="d-flex justify-content-between mobile-cleanup align-items-center" style="height: 0px">
+          <h4 class="keep-name">
+            {{ keep?.name }}
+          </h4>
+        </div>
       </div>
     </section>
 
@@ -61,14 +61,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// .keep-container {
-//   padding: 1px;
-//   animation-name: fadeInto;
-//   animation-duration: 5000ms;
-// }
+.keep-container {
+  padding: 0px;
+  animation-name: fadeInto;
+  animation-duration: 5000ms;
+}
 
 .keep-name {
-  transform: translateY(-3.5em);
+  transform: translateY(-2.5em);
   margin-left: 0.8em;
   color: whitesmoke;
   text-shadow: 3px 3px 4px black;
@@ -99,5 +99,23 @@ export default {
       object-position: center;
     }
   }
+}
+
+@keyframes fadeInto {
+  0% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100;
+  }
+}
+
+.img-custom:hover {
+  transform: scale(1.005);
 }
 </style>
