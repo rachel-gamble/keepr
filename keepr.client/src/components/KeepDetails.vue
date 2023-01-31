@@ -1,5 +1,4 @@
 <template>
-    <!-- <Modal id="keepDetails"> -->
     <div class="modal-body" id="">
         <!--SECTION LEFT SIDE-->
         <div class="left-section">
@@ -30,16 +29,20 @@
             <section class="justify-space-between m-2">
                 <div class="col-md-8">
                     <!--TODO Add keep to user's vault here-->
-                    <form class="dropdown">
+                    <form class="dropdown" @submit.prevent="addKeepToVault()">
+                        <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Plants
+                            🌱
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#"></a>
-                            <a class="dropdown-item" href="#"></a>
-                            <a class="dropdown-item" href="#"></a>
+                            <li v-for="mv in myVaults" :key="mv" value="mv" class="action"><a class="dropdown-item"
+                                    href="#" @click.prevent="addKeepToVault()">
+                                    {{ mv?.name.substring(0, 15) }}
+                                </a></li>
                         </div>
+                        <button type="submit" class="btn vault-btn selectable mdi mdi-check-outline"
+                            title="Submit"></button>
                     </form>
                 </div>
                 <!-- <router-link class="" :to="{ name: 'Profile', params: { id: activeKeep?.creator.id } }">
@@ -54,7 +57,6 @@
 
         </div>
     </div>
-    <!-- </Modal> -->
 </template>
 
 <script>
@@ -131,6 +133,10 @@ export default {
   display: flex;
 } */
 
+.vault-btn {
+    background-color: #A76BBD;
+    color: #FEF6F0;
+}
 
 .keep-title {
     position: absolute;
