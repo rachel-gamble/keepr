@@ -35,6 +35,11 @@ import Modal from '../components/Modal.vue';
 export default {
   setup(props) {
     const router = useRouter;
+    //TODO - Add watch effect for new keeps
+    // watchEffect(() => {
+    //         if (AppState.keeps) {
+    //         }
+    //     })
     onMounted(async () => {
       try {
         await keepsService.getAllKeeps();

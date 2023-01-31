@@ -1,5 +1,4 @@
 <template>
-    <!-- <Modal id="vaultForm"> -->
     <div class="modal-body">
         <form @submit.prevent="createVault()">
 
@@ -29,7 +28,6 @@
 
         </form>
     </div>
-    <!-- </Modal> -->
 </template>
 
 <script>

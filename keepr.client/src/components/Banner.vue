@@ -49,7 +49,7 @@ export default {
   setup() {
     return {}
   },
-  components: { Login, Modal, KeepForm, VaultForm }
+  components: { Login, Modal, KeepForm, VaultForm, }
 }
 </script>
 

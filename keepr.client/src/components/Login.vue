@@ -14,11 +14,15 @@
         <div class="dropdown-menu dropdown-menu-lg-left p-0" aria-labelledby="authDropdown">
           <div class="list-group">
             <router-link :to="{ name: 'Account' }">
-              <div class="list-group-item dropdown-item list-group-item-action">
+              <div class="list-group-item dropdown-item list-group-item-action" title="Go to my Profile.">
                 My Profile
               </div>
             </router-link>
-            <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
+            <a data-bs-toggle="modal" data-bs-target="#accountForm" class="dropdown-item" @click="showModal"
+              title="Edit Account">Edit
+              Account</a>
+            <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout"
+              title="Logout">
               <i class="mdi mdi-logout"></i>
               logout
             </div>
@@ -33,6 +37,11 @@
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 import { AuthService } from '../services/AuthService'
+import AccountForm from './components/AccountForm.vue'
+import Modal from './Modal.vue'
+import AccountForm from './AccountForm.vue'
+
+
 export default {
   setup() {
     return {
@@ -45,7 +54,8 @@ export default {
         AuthService.logout({ returnTo: window.location.origin })
       }
     }
-  }
+  },
+  components: { AccountForm, Modal, }
 }
 </script>
 

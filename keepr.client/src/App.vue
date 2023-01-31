@@ -18,6 +18,10 @@
       <KeepDetails />
     </Modal>
 
+    <Modal id="accountForm" modal-title="Update Account">
+      <AccountForm />
+    </Modal>
+
   </main>
   <footer class="app-bg">
     Made with ✨💀🌙 by Sautrah
@@ -31,6 +35,7 @@ import Banner from './components/Banner.vue'
 import KeepForm from './components/KeepForm.vue'
 import VaultForm from './components/VaultForm.vue'
 import KeepDetails from './components/KeepDetails.vue'
+import AccountForm from './components/AccountForm.vue'
 
 export default {
   setup() {
@@ -40,7 +45,7 @@ export default {
       component: 'modal',
     }
   },
-  components: { Banner, KeepForm, VaultForm, KeepDetails, }
+  components: { Banner, KeepForm, VaultForm, KeepDetails, AccountForm, }
 }
 </script>
 <style lang="scss">
