@@ -22,7 +22,6 @@
             </div>
 
             <div class="modal-footer">
-                <!-- <button type="button" class="btn" data-bs-dismiss="modal">X</button> -->
                 <button type="submit btn-dark" class="btn">Create</button>
             </div>
 
@@ -41,9 +40,6 @@ export default {
         const editable = ref({})
         return {
             editable,
-            // async handleSubmit(){
-            //     editable.value.keepId = 
-            // },
             async createKeep() {
                 try {
                     await keepsService.createKeep(editable.value)

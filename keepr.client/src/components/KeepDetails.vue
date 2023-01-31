@@ -69,9 +69,9 @@ export default {
             myVaults: computed(() => AppState.myVaults),
             account: computed(() => AppState.account),
 
-            async addKeeptoVault() {
+            async addKeepToVault() {
                 try {
-                    await vaultKeepsService.addKeeptoVault(vaultSelect.value)
+                    await vaultKeepsService.addKeepToVault(vaultSelect.value)
                     Pop.toast("Keep added to your vault ✨", 'success')
                 } catch (error) {
                     logger.error(error)

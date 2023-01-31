@@ -6,7 +6,10 @@
   <main class="app-bg">
     <router-view />
     <Modal id="keepForm" modal-title="Create Keep">
-      <CreateKeepForm />
+      <KeepForm />
+    </Modal>
+    <Modal id="vaultForm" modal-title="Create Vault">
+      <VaultForm />
     </Modal>
     <Modal id="keepDetails" modal-title="">
       <KeepDetails />
@@ -20,9 +23,9 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
-import Navbar from './components/Navbar.vue'
 import Banner from './components/Banner.vue'
-import CreateKeepForm from './components/KeepForm.vue'
+import KeepForm from './components/KeepForm.vue'
+import VaultForm from './components/VaultForm.vue'
 import KeepDetails from './components/KeepDetails.vue'
 
 export default {
@@ -32,7 +35,7 @@ export default {
       // activeKeep: computed(() => AppState.activeKeep),
     }
   },
-  components: { Banner, CreateKeepForm, Navbar, KeepDetails }
+  components: { Banner, KeepForm, VaultForm, KeepDetails, }
 }
 </script>
 <style lang="scss">

@@ -21,7 +21,8 @@
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <a data-bs-toggle="modal" data-bs-target="#keepForm" class="dropdown-item" @click="showModal"
               title="New Keep" href="#">Keep</a>
-            <a class="dropdown-item" href="#" title="New Vault">Vault</a>
+            <a data-bs-toggle="modal" data-bs-target="#vaultForm" class="dropdown-item" @click="showModal"
+              title="New Vault" href="#">Vault</a>
           </div>
         </div>
 
@@ -40,14 +41,15 @@
 
 <script>
 import Login from './Login.vue'
-import CreateKeepForm from './KeepForm.vue';
+import KeepForm from './KeepForm.vue';
 import Modal from './Modal.vue';
+import VaultForm from './VaultForm.vue';
 
 export default {
   setup() {
     return {}
   },
-  components: { Login, Modal, CreateKeepForm }
+  components: { Login, Modal, KeepForm, VaultForm }
 }
 </script>
 

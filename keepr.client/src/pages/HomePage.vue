@@ -4,8 +4,10 @@
     <section class="row">
       <div v-for="keep in keeps" :key="keep.id" class="card my-3 elevation-5 hover-card keep-container mx-2"
         style="min-height: 20vh">
-        <img :src="keep?.img" alt="" class="img-fluid hover-shadow rounded img-custom" @click="openKeepDetails(k)"
-          :title="'Open ' + keep.name + ' details'" data-bs-target="#keep-details" data-bs-toggle="modal">
+        <img :src="keep?.img" alt="" class="img-fluid hover-shadow rounded img-custom"
+          :title="'Open ' + keep.name + ' details'">
+        <!-- <img :src="keep?.img" alt="" class="img-fluid hover-shadow rounded img-custom" @click="openKeepDetails(k)"
+          :title="'Open ' + keep.name + ' details'" data-bs-target="#keep-details" data-bs-toggle="modal"> -->
         <div class="d-flex justify-content-between mobile-cleanup align-items-center" style="height: 0px">
           <h4 class="keep-name">
             {{ keep?.name }}
