@@ -22,7 +22,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn" data-bs-dismiss="modal">X</button>
+                <!-- <button type="button" class="btn" data-bs-dismiss="modal">X</button> -->
                 <button type="submit btn-dark" class="btn">Create</button>
             </div>
 

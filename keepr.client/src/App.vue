@@ -8,6 +8,9 @@
     <Modal id="keepForm" modal-title="Create Keep">
       <CreateKeepForm />
     </Modal>
+    <Modal id="keepDetails" modal-title="">
+      <KeepDetails />
+    </Modal>
   </main>
   <footer class="app-bg">
     Made with ✨💀🌙 by Sautrah
@@ -20,14 +23,16 @@ import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import Banner from './components/Banner.vue'
 import CreateKeepForm from './components/KeepForm.vue'
+import KeepDetails from './components/KeepDetails.vue'
 
 export default {
   setup() {
     return {
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
+      // activeKeep: computed(() => AppState.activeKeep),
     }
   },
-  components: { Banner, CreateKeepForm, Navbar }
+  components: { Banner, CreateKeepForm, Navbar, KeepDetails }
 }
 </script>
 <style lang="scss">

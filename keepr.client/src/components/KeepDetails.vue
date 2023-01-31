@@ -1,33 +1,33 @@
 <template>
-    <Modal id="keep-details">
+    <div class="modal-body">
         <!--SECTION LEFT SIDE-->
         <div class="left-section">
-            <img :src="activeKeep?.img" alt="http://thiscatdoesnotexist.com" class="img-fluid rounded-top">
+            <img :src="activeKeep?.img" alt="" class="img-fluid rounded-top">
         </div>
 
         <!--SECTION LEFT SIDE-->
         <div class="right-section">
             <!--top-->
             <section class="text center">
-                <div class="views">                    <i class="mdi mdi-eye"></i> {{ keep.views }}
+                <div class="views"> <i class="mdi mdi-eye"></i> {{ keep?.views }}
                 </div>
                 <div>
-                    <p>K</p> {{ keep.kept }}
+                    <p>K</p> {{ keep?.kept }}
                 </div>
 
             </section>
             <!--body-->
             <section class="align-content-center">
                 <div class="text-center keep-title">
-                    <h2>{{ keep.name }}</h2>
+                    <h2>{{ keep?.name }}</h2>
                 </div>
                 <div class="keep-body">
-                    {{ keep.description }}
+                    {{ keep?.description }}
                 </div>
             </section>
             <!--bottom-->
             <section class="justify-space-between m-2">
-                <div v-if="account.id" class="col-md-8">
+                <div class="col-md-8">
                     <!--TODO Add keep to user's vault here-->
                     <form class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -43,25 +43,43 @@
                 </div>
                 <div class="col-4 selectable">
                     <router-link class="" :to="{ name: 'Profile' }">
-                        {{ keep.creator.picture }} {{ keep.creator.name }}
+                        {{ keep?.creator.picture }} {{ keep?.creator.name }}
                     </router-link>
                 </div>
             </section>
 
         </div>
-    </Modal>
-
+    </div>
 </template>
 
 <script>
+import { useRouter } from 'vue-router';
+import { AppState } from '../AppState';
+import Pop from '../utils/Pop';
+
 
 export default {
 
-
-
     setup() {
+        const vaultSelect = ref({})
+        const router = useRouter();
+        return {
+            vaultSelect,
+            router,
+            myVaults: computed(() => AppState.myVaults),
+            account: computed(() => AppState.account),
 
-        return {};
+            async addKeeptoVault() {
+                try {
+                    await vaultKeepsService.addKeeptoVault(vaultSelect.value)
+                    Pop.toast("Keep added to your vault ✨", 'success')
+                } catch (error) {
+                    logger.error(error)
+                    Pop.toast(error.message, 'error')
+                }
+            }
+        }
+
 
     }
 }

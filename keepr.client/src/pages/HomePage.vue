@@ -5,12 +5,12 @@
       <div v-for="keep in keeps" :key="keep.id" class="card my-3 elevation-5 hover-card keep-container mx-2"
         style="min-height: 20vh">
         <img :src="keep?.img" alt="" class="img-fluid hover-shadow rounded img-custom" @click="openKeepDetails(k)"
-          :title="'Open ' + keep.name + ' details'">
+          :title="'Open ' + keep.name + ' details'" data-bs-target="#keep-details" data-bs-toggle="modal">
         <div class="d-flex justify-content-between mobile-cleanup align-items-center" style="height: 0px">
           <h4 class="keep-name">
             {{ keep?.name }}
           </h4>
-          <img @click="goToProfile(keep.creator.id)" :src="keep.creator.picture" alt=""
+          <img @click="goToProfile(keep?.creator.id)" :src="keep.creator.picture" alt=""
             class="thumbnail-img selectable rounded-circle" :title="'Posted by' + keep.creator.name" />
         </div>
       </div>
@@ -20,14 +20,12 @@
 </template>
 
 <script>
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { AppState } from '../AppState';
 import { keepsService } from '../services/KeepsService';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
-import { computed } from 'vue';
-import Modal from '../components/Modal.vue';
 
 export default {
   setup() {
@@ -45,7 +43,7 @@ export default {
 
       async openKeepDetails(k) {
         AppState.activeKeep = k;
-        Modal.getOrDestroyInstance(document.getElementById('keep-details')).show()
+        Modal.getOrDestroyInstance(document.getElementById('keepDetails'))
         await keepsService.incrementViews();
       },
 
