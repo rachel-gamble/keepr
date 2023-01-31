@@ -22,7 +22,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="submit btn-dark" class="btn">Create</button>
+                <button type="submit" class="btn btn-dark" title="Create">Create</button>
             </div>
 
         </form>

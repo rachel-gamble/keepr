@@ -29,7 +29,7 @@ class KeepsService {
         AppState.activeKeep.vaultKeepId = keep.vaultKeepId
     }
 
-    async deleteKeep() {
+    async removeKeep() {
         const id = AppState.activeKeep.id
         await api.delete("api/keeps/" + id)
         const index = AppState.keeps.find(k => k.id == id)

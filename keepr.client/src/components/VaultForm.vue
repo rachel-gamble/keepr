@@ -1,4 +1,5 @@
 <template>
+    <!-- <Modal id="vaultForm"> -->
     <div class="modal-body">
         <form @submit.prevent="createVault()">
 
@@ -15,19 +16,20 @@
             </div>
 
             <div class="form-check">
-                <label for="defaultCheck1" class="fs-6 fw-light">Private Vaults can only be seen by you</label>
-                <input v-model="editable.isPrivate" class="form-check-input" type="checkbox" value="" id="isPrivate">
-                <label class="form-check-label" for="defaultCheck1">
+                <small for="private-boolean" class="smol">Private Vaults can only be seen by you</small><br>
+                <input v-model="editable.isPrivate" class="form-check-input" type="checkbox" id="isPrivate">
+                <label class="form-check-label" for="private-boolean">
                     Make Vault Private?
                 </label>
             </div>
 
             <div class="modal-footer">
-                <button type="submit btn-dark" class="btn">Create</button>
+                <button type="submit" class="btn btn-dark" title="Create">Create</button>
             </div>
 
         </form>
     </div>
+    <!-- </Modal> -->
 </template>
 
 <script>
@@ -35,6 +37,7 @@ import { ref } from 'vue';
 import { vaultsService } from '../services/VaultsService';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
+import { Modal } from 'bootstrap';
 
 export default {
     setup(props) {
@@ -44,6 +47,8 @@ export default {
             async createVault() {
                 try {
                     await vaultsService.createVault(editable.value)
+                    Modal.getOrCreateInstance(document.getElementById('vaultForm')).hide()
+                    Pop.toast("Vault created. ✨", 'success')
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error.message)
@@ -56,5 +61,7 @@ export default {
 </script>
 
 <style>
-
+.smol {
+    color: rgb(79, 77, 77)
+}
 </style>

@@ -1,28 +1,29 @@
 <template>
-    <div class="modal-body">
+    <!-- <Modal id="keepDetails"> -->
+    <div class="modal-body" id="">
         <!--SECTION LEFT SIDE-->
         <div class="left-section">
-            <img :src="activeKeep?.img" alt="" class="img-fluid rounded-top">
+            <img :src="activeKeep?.img" alt="" class="img-fluid rounded-top selectable hover-shadow">
         </div>
 
         <!--SECTION LEFT SIDE-->
         <div class="right-section">
             <!--top-->
             <section class="text center">
-                <div class="views"> <i class="mdi mdi-eye"></i> {{ keep?.views }}
+                <div class="views"> <i class="mdi mdi-eye"></i> {{ activeKeep?.views }}
                 </div>
                 <div>
-                    <p>K</p> {{ keep?.kept }}
+                    <p>K</p> {{ activeKeep?.kept }}
                 </div>
 
             </section>
             <!--body-->
             <section class="align-content-center">
                 <div class="text-center keep-title">
-                    <h2>{{ keep?.name }}</h2>
+                    <h2>{{ activeKeep?.name }}</h2>
                 </div>
                 <div class="keep-body">
-                    {{ keep?.description }}
+                    {{ activeKeep?.description }}
                 </div>
             </section>
             <!--bottom-->
@@ -41,38 +42,74 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-4 selectable">
-                    <router-link class="" :to="{ name: 'Profile' }">
-                        {{ keep?.creator.picture }} {{ keep?.creator.name }}
-                    </router-link>
+                <!-- <router-link class="" :to="{ name: 'Profile', params: { id: activeKeep?.creator.id } }">
+                        {{ activeKeep?.creator.picture }} {{ activeKeep?.creator.name }}
+                    </router-link> -->
+                <div class="mt-1 selectable">
+                    <img :src="activeKeep?.creator.picture" alt="" class="img-fluid thumbnail-img"
+                        :title="`Created by ${activeKeep?.creator.name}`" @click="goToProfile()" />
+                    {{ activeKeep?.creator.name }}
                 </div>
             </section>
 
         </div>
     </div>
+    <!-- </Modal> -->
 </template>
 
 <script>
 import { useRouter } from 'vue-router';
 import { AppState } from '../AppState';
 import Pop from '../utils/Pop';
+import { logger } from '../utils/Logger'
+import { ref, computed } from 'vue';
+import { Modal } from 'bootstrap';
+import { keepsService } from '../services/KeepsService';
+import { vaultKeepsService } from '../services/VaultKeepsService';
+// import { Auth0ConfigurationOptions } from '@bcwdev/auth0provider-client';
+
 
 
 export default {
 
-    setup() {
+    setup(props) {
         const vaultSelect = ref({})
         const router = useRouter();
         return {
             vaultSelect,
             router,
             myVaults: computed(() => AppState.myVaults),
+            activeKeep: computed(() => AppState.activeKeep),
             account: computed(() => AppState.account),
 
             async addKeepToVault() {
                 try {
                     await vaultKeepsService.addKeepToVault(vaultSelect.value)
                     Pop.toast("Keep added to your vault ✨", 'success')
+                } catch (error) {
+                    logger.error(error)
+                    Pop.toast(error.message, 'error')
+                }
+            },
+
+            async removeKeep() {
+                try {
+                    if (await Pop.confirm("Remove this keep?")) {
+                        await keepsService.removeKeep()
+                        Pop.toast("Keep removed. ✅")
+                        Modal.getOrCreateInstance(document.getElementById("#keepModal")).hide()
+                    }
+                } catch (error) {
+                    logger.error(error)
+                    Pop.toast(error.message, 'error')
+                }
+            },
+
+            async goToProfile() {
+                try {
+                    const profileId = AppState.activeKeep.creatorId
+                    router.push({ name: 'Profile', params: { id: profileId } })
+                    Modal.getOrCreateInstance(document.getElementById("keepDetails")).hide()
                 } catch (error) {
                     logger.error(error)
                     Pop.toast(error.message, 'error')

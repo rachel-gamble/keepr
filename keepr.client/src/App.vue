@@ -5,15 +5,19 @@
   </header>
   <main class="app-bg">
     <router-view />
+
     <Modal id="keepForm" modal-title="Create Keep">
       <KeepForm />
     </Modal>
+
     <Modal id="vaultForm" modal-title="Create Vault">
       <VaultForm />
     </Modal>
+
     <Modal id="keepDetails" modal-title="">
       <KeepDetails />
     </Modal>
+
   </main>
   <footer class="app-bg">
     Made with ✨💀🌙 by Sautrah
@@ -32,7 +36,8 @@ export default {
   setup() {
     return {
       appState: computed(() => AppState),
-      // activeKeep: computed(() => AppState.activeKeep),
+      activeKeep: computed(() => AppState.activeKeep),
+      component: 'modal',
     }
   },
   components: { Banner, KeepForm, VaultForm, KeepDetails, }

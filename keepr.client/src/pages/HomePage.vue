@@ -1,19 +1,18 @@
 <template>
-  <div class="masonry-container">
-    <!--SECTION Keep Card-->
+  <div class="masonry-container app-bg">
+    <!--SECTION Keep Img-->
     <section class="row">
-      <div v-for="keep in keeps" :key="keep.id" class="card my-3 elevation-5 hover-card keep-container mx-2"
+      <div v-for="k in keeps" :key="k.id" class="card my-3 elevation-5 hover-card keep-container mx-2"
         style="min-height: 20vh">
-        <img :src="keep?.img" alt="" class="img-fluid hover-shadow rounded img-custom"
-          :title="'Open ' + keep.name + ' details'">
-        <!-- <img :src="keep?.img" alt="" class="img-fluid hover-shadow rounded img-custom" @click="openKeepDetails(k)"
-          :title="'Open ' + keep.name + ' details'" data-bs-target="#keep-details" data-bs-toggle="modal"> -->
+        <img @click="openKeepDetails(k)" :src="k?.img" alt="keep image"
+          class="img-fluid hover-shadow rounded img-custom" :title="'Open ' + k.name + ' details'">
+        <!--SECTION Keep Name + Creator-->
         <div class="d-flex justify-content-between mobile-cleanup align-items-center" style="height: 0px">
           <h4 class="keep-name">
-            {{ keep?.name }}
+            {{ k.name }}
           </h4>
-          <img @click="goToProfile(keep?.creator.id)" :src="keep.creator.picture" alt=""
-            class="thumbnail-img selectable rounded-circle" :title="'Posted by' + keep.creator.name" />
+          <img @click="goToProfile(k.creator.id)" :src="k.creator.picture" alt="profile image"
+            class="thumbnail-img selectable rounded-circle" :title="'Posted by' + k.creator.name" />
         </div>
       </div>
     </section>
@@ -22,15 +21,19 @@
 </template>
 
 <script>
-import { onMounted, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { onMounted, computed, ref } from 'vue';
 import { AppState } from '../AppState';
+import { useRouter } from 'vue-router';
 import { keepsService } from '../services/KeepsService';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
+import KeepForm from '../components/KeepForm.vue';
+import VaultForm from '../components/VaultForm.vue';
+import KeepDetails from '../components/KeepDetails.vue';
+import Modal from '../components/Modal.vue';
 
 export default {
-  setup() {
+  setup(props) {
     const router = useRouter;
     onMounted(async () => {
       try {
@@ -42,23 +45,25 @@ export default {
     })
     return {
       keeps: computed(() => AppState.keeps),
+      component: 'modal',
 
       async openKeepDetails(k) {
         AppState.activeKeep = k;
-        Modal.getOrDestroyInstance(document.getElementById('keepDetails'))
+        Modal.getOrDestroyInstance(document.getElementById('keepDetails')).show()
         await keepsService.incrementViews();
       },
 
-      async goToProfile(profileId) {
-        try {
-          router.push({ name: 'Profile', params: { id: profileId } })
-        } catch (error) {
-          logger.error(error)
-          Pop.toast(error.message, 'error')
-        }
-      }
+      // async goToProfile(profileId) {
+      //   try {
+      //     router.push({ name: 'Profile', params: { id: profileId } })
+      //   } catch (error) {
+      //     logger.error(error)
+      //     Pop.toast(error.message, 'error')
+      //   }
+      // }
     }
-  }
+  },
+  components: { KeepForm, VaultForm, KeepDetails, },
 }
 </script>
 
