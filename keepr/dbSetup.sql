@@ -5,8 +5,13 @@ CREATE TABLE
         updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
         name varchar(255) COMMENT 'User Name',
         email varchar(255) COMMENT 'User Email',
-        picture varchar(255) COMMENT 'User Picture'
+        picture varchar(255) COMMENT 'User Picture',
+        coverImg varchar(255) COMMENT 'User Cover Image'
     ) default charset utf8 COMMENT '';
+
+ALTER TABLE accounts ADD COLUMN coverImg VARCHAR(255);
+
+-- hell yeah
 
 -- SECTION Keeps
 
@@ -22,9 +27,10 @@ CREATE TABLE
         FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
     ) DEFAULT CHARSET UTF8 COMMENT '';
 
+-- createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
 
-        -- createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-        -- updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+-- updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+
 DROP TABLE keeps;
 
 CREATE TABLE
