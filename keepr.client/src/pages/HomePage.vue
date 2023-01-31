@@ -80,10 +80,11 @@ export default {
 }
 
 .keep-name {
-  transform: translateY(-1.5em);
+  transform: translateY(-1.3em);
   margin-left: 0.8em;
   color: whitesmoke;
   text-shadow: 3px 3px 4px black;
+  font-family: 'Marko One', serif;
 }
 
 .home {

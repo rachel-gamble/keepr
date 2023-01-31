@@ -139,10 +139,18 @@ export default {
     width: 5em;
 }
 
+.keep-title {
+    font-family: 'Marko One', serif;
+}
+
+.keep-body {
+    font-family: 'Sansation';
+}
+
 .keep-box {
     font-family: 'Marko One', serif;
     box-sizing: border-box;
-    border: 1.66787px solid #2D2D2D;
+    border: 1.66787px solid #636E72;
     border-radius: 5px;
 }
 
@@ -163,7 +171,7 @@ export default {
     color: #FEF6F0;
 }
 
-.keep-title {
+/* .keep-title {
     position: absolute;
     width: 430px;
     height: 61px;
@@ -179,10 +187,10 @@ export default {
 
     /* Dracula Orchid */
 
-    color: #2D3436;
-}
+/* color: #2D3436;
+} */
 
-.keep-body {
+/* .keep-body {
     position: absolute;
     width: 427px;
     height: 152px;
@@ -194,13 +202,9 @@ export default {
     font-weight: 400;
     font-size: 18px;
     line-height: 175%;
-    /* or 32px */
-
-
-    /* American River */
 
     color: #636E72;
-}
+} */
 
 .save-btn {
     position: absolute;
