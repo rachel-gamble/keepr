@@ -30,7 +30,7 @@ import Pop from '../utils/Pop';
 import KeepForm from '../components/KeepForm.vue';
 import VaultForm from '../components/VaultForm.vue';
 import KeepDetails from '../components/KeepDetails.vue';
-import Modal from '../components/Modal.vue';
+import { Modal } from 'bootstrap';
 
 export default {
   setup(props) {
@@ -54,18 +54,18 @@ export default {
 
       async openKeepDetails(k) {
         AppState.activeKeep = k;
-        Modal.getOrDestroyInstance(document.getElementById('keepDetails')).show()
+        Modal.getOrCreateInstance(document.getElementById('keepDetails')).show()
         await keepsService.incrementViews();
       },
 
-      // async goToProfile(profileId) {
-      //   try {
-      //     router.push({ name: 'Profile', params: { id: profileId } })
-      //   } catch (error) {
-      //     logger.error(error)
-      //     Pop.toast(error.message, 'error')
-      //   }
-      // }
+      async goToProfile(profileId) {
+        try {
+          router.push({ name: 'Profile', params: { id: profileId } })
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      }
     }
   },
   components: { KeepForm, VaultForm, KeepDetails, },
