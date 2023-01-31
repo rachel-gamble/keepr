@@ -6,8 +6,10 @@
       <div v-for="keep in keeps" :key="keep.id" class="card my-3 elevation-5 hover-card">
         <!-- <router-link :to"{name:'Vault', params: {id: vault.id}}"></router-link> -->
         <img :src="keep?.img" alt="http://thiscatdoesnotexist.com" class="img-fluid hover-shadow rounded"
-          @click="openKeepDetails(keep)" :title="'Open ' + keep.name + ' details'">
-        {{ keep?.name }}
+          @click="openKeepDetails(k)" :title="'Open ' + keep.name + ' details'">
+        <p class="keep-name">
+          {{ keep?.name }}
+        </p>
 
       </div>
     </section>
@@ -23,6 +25,7 @@ import { keepsService } from '../services/KeepsService';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
 import { computed } from 'vue';
+import Modal from '../components/Modal.vue';
 
 export default {
   setup() {
@@ -36,7 +39,22 @@ export default {
       }
     })
     return {
-      keeps: computed(() => AppState.keeps)
+      keeps: computed(() => AppState.keeps),
+
+      async openKeepDetails(k) {
+        AppState.activeKeep = k;
+        Modal.getOrDestroyInstance(document.getElementById('keep-details')).show()
+        await keepsService.incrementViews();
+      },
+
+      async goToProfile(profileId) {
+        try {
+          router.push({ name: 'Profile', params: { id: profileId } })
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      }
     }
   }
 }
@@ -48,6 +66,20 @@ export default {
 //   animation-name: fadeInto;
 //   animation-duration: 5000ms;
 // }
+
+.keep-name {
+  transform: translateY(-3.5em);
+  margin-left: 0.8em;
+  color: whitesmoke;
+  text-shadow: 3px 3px 4px black;
+}
+
+.thumbnail-img {
+  border-radius: 50%;
+  height: 4em;
+  transform: translateY(-6em);
+  margin-right: 0.5em;
+}
 
 .home {
   display: grid;
