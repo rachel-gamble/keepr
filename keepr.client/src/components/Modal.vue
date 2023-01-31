@@ -1,25 +1,32 @@
 <template>
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <slot></slot>
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <slot name="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">{{ modalTitle }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </slot>
+        </div>
+        <slot></slot>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
 export default {
-    props: {
-        modalTitle: {
-            type: String,
-            required: false,
-            default: 'Close'
-        },
+  props: {
+    modalTitle: {
+      type: String,
+      required: false,
+      default: 'Close'
     },
-    setup() {
-        return {}
-    }
+  },
+  setup() {
+    return {}
+  }
 }
 </script>
 

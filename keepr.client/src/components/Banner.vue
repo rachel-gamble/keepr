@@ -14,14 +14,14 @@
         <!--SECTION CREATE BUTTON-->
         <div class="dropdown">
           <button class="btn create-btn dropdown-toggle mt-2" type="button" id="dropdownMenuButton"
-            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Create">
             Create
           </button>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <a data-bs-toggle="modal" data-bs-target="#keepForm" class="dropdown-item" @click="showModal"
-              title="Create New Keep" href="#">Keep</a>
-            <a class="dropdown-item" href="#">Vault</a>
+              title="New Keep" href="#">Keep</a>
+            <a class="dropdown-item" href="#" title="New Vault">Vault</a>
           </div>
         </div>
 
@@ -40,7 +40,7 @@
 
 <script>
 import Login from './Login.vue'
-import CreateKeepForm from './CreateKeepForm.vue';
+import CreateKeepForm from './KeepForm.vue';
 import Modal from './Modal.vue';
 
 export default {

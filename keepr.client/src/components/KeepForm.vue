@@ -1,6 +1,6 @@
 <template>
-    <form @submit.prevent="createKeep()">
-        <div class="modal-body">
+    <div class="modal-body">
+        <form @submit.prevent="createKeep()">
 
             <div class="form-floating mb-3">
                 <input v-model="editable.name" required type="text" class="form-control" id="keepName"
@@ -26,8 +26,8 @@
                 <button type="submit btn-dark" class="btn">Create</button>
             </div>
 
-        </div>
-    </form>
+        </form>
+    </div>
 </template>
 
 <script>
@@ -41,6 +41,9 @@ export default {
         const editable = ref({})
         return {
             editable,
+            // async handleSubmit(){
+            //     editable.value.keepId = 
+            // },
             async createKeep() {
                 try {
                     await keepsService.createKeep(editable.value)

@@ -19,7 +19,7 @@ import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import Banner from './components/Banner.vue'
-import CreateKeepForm from './components/CreateKeepForm.vue'
+import CreateKeepForm from './components/KeepForm.vue'
 
 export default {
   setup() {

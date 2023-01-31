@@ -1,10 +1,13 @@
 import { AppState } from "../AppState";
 import { api } from "./AxiosService";
+import { logger } from "../utils/Logger.js"
+import { Keep } from "../models/Keep";
 
 class KeepsService {
-    async create(formData) {
+    async createKeep(formData) {
         const res = await api.post("api/keeps", formData)
-        AppState.keeps.unshift(res.data)
+        logger.log('wut', res.data)
+        AppState.keeps.unshift(new Keep(res.data))
     }
     async getAllKeeps() {
         const res = await api.get("api/keeps")
