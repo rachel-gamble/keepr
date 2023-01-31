@@ -5,7 +5,8 @@
       <!--NOTE k in keeps uses k.id | keep in keeps uses keep.id-->
       <div v-for="keep in keeps" :key="keep.id" class="card my-3 elevation-5 hover-card">
         <!-- <router-link :to"{name:'Vault', params: {id: vault.id}}"></router-link> -->
-        <img :src="keep?.img" alt="http://thiscatdoesnotexist.com" class="img-fluid hover-shadow rounded">
+        <img :src="keep?.img" alt="http://thiscatdoesnotexist.com" class="img-fluid hover-shadow rounded"
+          @click="openKeepDetails(keep)" :title="'Open ' + keep.name + ' details'">
         {{ keep?.name }}
 
       </div>
