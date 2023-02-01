@@ -56,7 +56,7 @@
                         <img :src="activeKeep?.creator.picture" alt=""
                             class="img-fluid prof-img rounded-circle app-bg selectable"
                             :title="`Created by ${activeKeep?.creator.name}`" @click="goToProfile()" />
-                        <span class="fs-6">
+                        <span class="fs-6 ">
                             {{ activeKeep?.creator.name }}
                         </span>
                     </div>
