@@ -71,8 +71,8 @@ export default {
 }
 
 .vault-card {
-  height: 20vh;
-  // width: 50vw;
+  height: 30vh;
+  // width: 30vw;
   background-size: cover;
 }
 
@@ -96,14 +96,14 @@ export default {
   object-fit: cover;
   justify-content: center;
   align-items: center;
-  transform: translateY(-10vh);
+  transform: translateY(-11vh);
   margin-bottom: -8vh;
 }
 
 //SECTION Vault Style
 
 .vault-name {
-  transform: translateY(4.5em);
+  transform: translateY(20vh);
   margin-left: 0.5em;
   color: whitesmoke;
   text-shadow: 3px 3px 4px black;

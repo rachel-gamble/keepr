@@ -2,14 +2,15 @@
     <div class="container-fluid app-bg oxygen">
         <!--SECTION Banner + Vault Details-->
         <section class="row d-flex justify-content-center text-center">
-            <img :src="activeVault?.img" class="banner-img" alt="profile cover image" title="Profile cover image">
-            <img :src="activeVault?.creator.picture" alt="profile picture" class="profile-icon-vault">
-            <h1>{{ activeVault?.creator.name }}</h1>
-            <div class="flex-column">
-
-
-
-
+            <div class="column">
+                <img :src="activeVault?.img" class="banner-img justify-item-center text-center"
+                    alt="profile cover image" title="Cover image"><br />
+            </div>
+            <span class="fs-1 vault-page-name">{{ activeVault?.name }}</span>
+            <span class="fs-6 vault-page-name">by</span>
+            <span class="fs-5 vault-page-name">{{ activeVault?.creator.name }}</span>
+            <div class="up">
+                <span></span>
                 <!--SECTION Button-->
                 <button v-show="activeVault?.creator.id == account.id" @click="removeVault()"
                     class="btn btn-dark">Delete
@@ -21,28 +22,27 @@
             </div>
         </section>
         <!--SECTION Keeps in Vault-->
-        <section class="row d-flex justify-content-center">
-            <div class="col-10">
-                <h3 class="sub-title fw-bold mx-3 my-1 mb-3">Keeps</h3>
-                <!--v-for--> <!-- Keep Masonry -->
-                <div class="masonry-container">
-                    <div v-for="k in vaultKeeps" :key="k.id">
-                        <div class="" @click="openKeepDetails(k)">
-                            <div class="rounded my-2 mb-2 elevation-5 hover-card keep-container vault-card image-custom image-fluid selectable hover-shadow"
-                                :style="`background-image: url(${k?.img})`"
-                                :title="'Open ' + k?.name + ' by ' + k?.creator.name">
-                                <div class="d-flex justify-content-between-mobile-cleanup">
-                                    <h4 class="vault-name">
-                                        {{ k?.name }}
-                                    </h4>
-                                </div>
-                                <br><br>
+        <section class="justify-content-center up">
+            <h3 class="sub-title fw-bold">Keeps</h3>
+            <!--v-for-->
+            <div class="row">
+                <div v-for="k in vaultKeeps" :key="k.id" class="col-3">
+                    <div class="">
+                        <div @click="openKeepDetails(k)"
+                            class="rounded my-2 mb-2 elevation-5 hover-card keep-container vault-card image-custom image-fluid selectable hover-shadow"
+                            :style="`background-image: url(${k?.img})`"
+                            :title="'Open ' + k?.name + ' by ' + k?.creator.name">
+                            <div class="d-flex justify-content-between-mobile-cleanup">
+                                <h4 class="vault-name">
+                                    {{ k?.name }}
+                                </h4>
                             </div>
+                            <br><br>
                         </div>
                     </div>
                 </div>
-                <!--end v-for-->
             </div>
+            <!--end v-for-->
         </section>
 
     </div>
@@ -113,5 +113,23 @@ export default {
 </script>
 
 <style>
+.up {
+    transform: translateY(-12vh);
+}
 
+.vault-page-name {
+    transform: translateY(-18vh);
+    margin-left: 0.5em;
+    color: whitesmoke;
+    text-shadow: 3px 3px 4px black;
+    font-family: 'Marko One', serif;
+}
+
+/* .vault-page-creator {
+    transform: translateY(-1vh);
+    margin-left: 0.5em;
+    color: whitesmoke;
+    text-shadow: 3px 3px 4px black;
+    font-family: 'Marko One', serif;
+} */
 </style>
