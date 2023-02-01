@@ -36,22 +36,22 @@ public class VaultKeepsController : ControllerBase
         }
     }
 
-    // [HttpDelete("{id}")]
-    // [Authorize]
-    // public async Task<ActionResult<VaultKeep>> Delete(int id)
-    // {
-    //     try
-    //     {
-    //         Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-    //         _VaultKeepsService.Delete(id, userInfo.Id);
-    //         return Ok("Vaulted Keep Deleted");
-    //     }
-    //     catch (System.Exception e)
-    //     {
+    [HttpDelete("{id}")]
+    [Authorize]
+    public async Task<ActionResult<VaultKeep>> Delete(int id)
+    {
+        try
+        {
+            Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+            _VaultKeepsService.Remove(id, userInfo.Id);
+            return Ok("Vaulted Keep Removed ✨");
+        }
+        catch (System.Exception e)
+        {
 
-    //         return BadRequest(e.Message);
-    //     }
-    // }
+            return BadRequest(e.Message);
+        }
+    }
 
 
 }

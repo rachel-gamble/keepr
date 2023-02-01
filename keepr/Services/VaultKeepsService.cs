@@ -34,4 +34,14 @@ public class VaultKeepsService
         return _repo.Get(id);
     }
 
+    internal void Remove(int id, string userId)
+    {
+        VaultKeep found = Get(id);
+        if (found.CreatorId != userId)
+        {
+            throw new Exception("You do not have permission to remove this Vault Keep.");
+        }
+        _repo.Remove(id);
+    }
+
 }
