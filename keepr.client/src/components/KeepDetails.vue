@@ -20,9 +20,13 @@
                     <p class="keep-box px-1"> K </p>
                     <p class="mx-1">{{ activeKeep?.kept }}</p>
                 </div>
+                <div class="text-center">
+                    <div v-show="account.id == activeKeep?.creator.id" class="btn btn-light mdi mdi-trash-can app-bg"
+                        title="Delete this keep" @click.prevent="removeKeep()"></div>
+                </div>
                 <!--body-->
                 <!--title + description-->
-                <section class="align-items-center">
+                <section class="align-items-center middle">
                     <div class="text-center keep-title">
                         <h2 class="mx-1">{{ activeKeep?.name }}</h2>
                     </div>
@@ -32,8 +36,9 @@
                 </section>
 
                 <!--bottom-->
-                <section class="row d-flex" style="position:absolute; bottom: 0;">
-                    <div class="col-5 justify-space-between mx-1 keep-body">
+                <section class="d-flex bottom">
+
+                    <div class="col-6 oxygen">
                         <!--SECTION Add to Vault Button-->
                         <div v-if="account.id" style="">
                             <form class="dropdown" @submit.prevent="addKeepToVault()">
@@ -43,22 +48,19 @@
                                         {{ mv?.name.substring(0, 15) }}
                                     </option>
                                 </select>
-                                <button type="submit" class="btn vault-btn selectable fs-6 mb-2 mt-1"
+                                <button type="submit" class="btn vault-btn selectable fs-6 mb-2 mt-1 mx-1"
                                     title="Submit">save</button>
                             </form>
                         </div>
-                        <div v-show="account.id == activeKeep?.creator.id"
-                            class="btn btn-light mdi mdi-cancel selectable" title="Delete this keep"
-                            @click.prevent="removeKeep()"></div>
                     </div>
                     <!-- profile info -->
-                    <div class="col-5 mt-1 my-3 d-flex" style="">
+                    <div class="col-5 mx-4 mt-1 my-3 text-center" style="">
                         <img :src="activeKeep?.creator.picture" alt=""
-                            class="img-fluid prof-img rounded-circle app-bg selectable"
+                            class=" col-12 img-fluid prof-img rounded-circle app-bg selectable"
                             :title="`Created by ${activeKeep?.creator.name}`" @click="goToProfile()" />
-                        <span class="fs-6 ">
+                        <div class="fs-6 col-12 oxygen">
                             {{ activeKeep?.creator.name }}
-                        </span>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -134,6 +136,14 @@ export default {
     width: 3em;
     object-fit: cover;
 }
+
+.bottom {
+    align-self: flex-end;
+    text-overflow: wrap;
+    position: absolute;
+    bottom: 0;
+}
+
 
 .keep-title {
     font-family: 'Marko One', serif;

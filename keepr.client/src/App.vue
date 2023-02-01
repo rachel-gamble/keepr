@@ -125,6 +125,7 @@ export default {
   padding: 0px;
   animation-name: fadeInto;
   animation-duration: 5000ms;
+  margin: auto;
 }
 
 //SECTION background colors 
@@ -162,6 +163,10 @@ main {
 
 .counts {
   color: #636E72;
+  font-family: 'Oxygen', sans-serif;
+}
+
+.oxygen {
   font-family: 'Oxygen', sans-serif;
 }
 

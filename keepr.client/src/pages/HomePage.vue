@@ -1,9 +1,9 @@
 <template>
-  <div class="masonry-container app-bg">
+  <div class="container-fluid masonry-container app-bg">
     <!--SECTION Keep Img-->
     <section class="row">
-      <div v-for="k in keeps" :key="k.id" class="card my-3 elevation-5 hover-card keep-container mx-2"
-        style="min-height: 20vh">
+      <div v-for="k in keeps" :key="k.id" class="card my-3 elevation-5 hover-card keep-container"
+        style="min-height: 18vh;">
         <img @click="openKeepDetails(k)" :src="k?.img ? k.img : 'https://thiscatdoesnotexist'" alt="keep image"
           class="img-fluid hover-shadow rounded img-custom" :title="'Open ' + k.name + ' details'">
         <!--SECTION Keep Name + Creator-->
