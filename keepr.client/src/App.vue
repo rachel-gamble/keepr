@@ -76,6 +76,30 @@ export default {
   background-size: cover;
 }
 
+.profile-icon {
+  width: 20vw;
+  height: 20vh;
+  /* border:1px solid; */
+  border-radius: 50%;
+  object-fit: cover;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-10vh);
+  margin-bottom: -8vh;
+}
+
+.profile-icon-vault {
+  width: 12em;
+  height: 12em;
+  /* border:1px solid; */
+  border-radius: 50%;
+  object-fit: cover;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-10vh);
+  margin-bottom: -8vh;
+}
+
 //SECTION Vault Style
 
 .vault-name {

@@ -152,17 +152,6 @@ export default {
     font-family: 'Oxygen', sans-serif;
 }
 
-.profile-icon {
-    width: 20vw;
-    height: 20vh;
-    /* border:1px solid; */
-    border-radius: 50%;
-    object-fit: cover;
-    justify-content: center;
-    align-items: center;
-    transform: translateY(-10vh);
-    margin-bottom: -8vh;
-}
 
 .vault {
     color: whitesmoke;

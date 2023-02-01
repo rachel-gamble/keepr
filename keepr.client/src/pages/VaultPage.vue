@@ -3,7 +3,13 @@
         <!--SECTION Banner + Vault Details-->
         <section class="row d-flex justify-content-center text-center">
             <img :src="activeVault?.img" class="banner-img" alt="profile cover image" title="Profile cover image">
+            <img :src="activeVault?.creator.picture" alt="profile picture" class="profile-icon-vault">
+            <h1>{{ activeVault?.creator.name }}</h1>
             <div class="flex-column">
+
+
+
+
                 <!--SECTION Button-->
                 <button v-show="activeVault?.creator.id == account.id" @click="removeVault()"
                     class="btn btn-dark">Delete
