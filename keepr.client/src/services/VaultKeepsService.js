@@ -10,8 +10,8 @@ class VaultKeepsService {
         const res = await api.post('api/vaultkeeps', vaultKeep)
         const modifiedKeep = AppState.activeKeep
         modifiedKeep.kept++
-        const incrementRes = await api.put("api/keeps/" + modifiedKeep.id, modifiedKeep)
-        logger('keep added to vault')
+        await api.put("api/keeps/" + modifiedKeep.id, modifiedKeep)
+        logger.log('keep added to vault')
     }
 
     async getKeepsByVaultId(vaultId) {
