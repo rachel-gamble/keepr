@@ -106,8 +106,9 @@ export default {
 
             async goToVault(v) {
                 const userId = AppState.account.id
-                if (v.isPrivate && v.creatorId != userId) {
-                    router.push({ name: 'Home' })
+                console.log(userId, v.creatorId)
+                if (v.creatorId.toString() != userId.toString() && v.isPrivate == true) {
+                    router.push({ name: 'Home' });
                     Pop.toast("You do not have access to this vault. 🔒")
                     return
                 }

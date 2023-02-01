@@ -42,7 +42,7 @@ public class VaultsController : ControllerBase
         {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
             Vault vault = _VaultService.GetOne(id, userInfo?.Id);
-            if (vault.IsPrivate == true)
+            if (vault.IsPrivate == true && vault.CreatorId != userInfo.Id)
             {
                 throw new Exception("This vault is private.");
             }

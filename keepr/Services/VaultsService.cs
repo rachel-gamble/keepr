@@ -36,7 +36,7 @@ public class VaultsService
     {
         Vault vault = _repo.GetOne(id);
         if (vault == null) throw new Exception($"No vault at {id}.");
-        if (vault.IsPrivate == true && vault.CreatorId != userId) throw new Exception($"That vault is private.");
+        if (vault.IsPrivate == true && vault.CreatorId != userId) throw new Exception($"That user's vault is private.");
         return vault;
     }
     internal Vault Edit(Vault vaultData, string userId)
