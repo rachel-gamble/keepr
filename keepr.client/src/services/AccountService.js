@@ -21,6 +21,16 @@ class AccountService {
       logger.error('Failed to edit account', error)
     }
   }
+
+  async getMyVaults() {
+    try {
+      const res = await api.get("/account/vaults")
+      AppState.myVaults = res.data
+    } catch (error) {
+      logger.error(error)
+      Pop.toast(error.message, 'error')
+    }
+  }
 }
 
 export const accountService = new AccountService()

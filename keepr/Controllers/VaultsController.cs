@@ -36,12 +36,12 @@ public class VaultsController : ControllerBase
 
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Vault>> Get(int id)
+    public async Task<ActionResult<Vault>> GetOne(int id)
     {
         try
         {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-            Vault vault = _VaultService.Get(id, userInfo?.Id);
+            Vault vault = _VaultService.GetOne(id, userInfo?.Id);
             if (vault.IsPrivate == true)
             {
                 throw new Exception("This vault is private.");
@@ -90,22 +90,6 @@ public class VaultsController : ControllerBase
     }
 
     //NOTE - look @ restaurant controller for example in helpReviews
-
-    // [HttpGet("{id}/keeps")]
-    // public async Task<ActionResult<List<VaultKeep>>> GetVaultKeepsByVaultId(int id)
-    // {
-    //     try
-    //     {
-    //         Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-    //         // if (accountId != null) { userInfo == accountId };
-    //         List<VaultKeep> vaultKeeps = _VaultService.GetVaultKeepsByVaultId(id, userInfo?.Id);
-    //         return Ok(vaultKeeps);
-    //     }
-    //     catch (System.Exception e)
-    //     {
-    //         return BadRequest(e.Message);
-    //     }
-    // }
 
     [HttpGet("{id}/keeps")]
     public async Task<ActionResult<List<KeepVaultVueModel>>> GetVaultKeepsByVaultId(int id)

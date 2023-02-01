@@ -1,4 +1,5 @@
 <template>
+    
     <div class="" @click="goToVault(vault)">
         <div class="rounded vault-img m-2" :style="`background-image: url(${vault?.img})`">
             <h4 class="keep-name">

@@ -16,12 +16,17 @@
             <div class="col-8 justify-items-center">
                 <h3 class="sub-title fw-bold">Vaults</h3><br>
 
-                <div v-for="v in vaults" :key="v.id" :message="vault">
-                    <VaultCard :vault="v" />
-                </div>
-                <!-- <VaultCard v-for="v in vaults" :key="v.id" class="card col-4 m-2 d-flex">
+                <div v-for="vault in vaults" :key="vault.id">
 
-                </VaultCard> -->
+                    <div class="" @click="goToVault(vault)">
+                        <div class="rounded vault-img m-2" :style="`background-image: url(${vault?.img})`">
+                            <h4 class="keep-name">
+                                {{ vault?.name }}
+                            </h4>
+                            <br><br>
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <div class="col-8 justify-items-center">
@@ -67,6 +72,9 @@ import { useRoute, useRouter } from 'vue-router'
 import { Modal } from 'bootstrap'
 
 export default {
+    props: {
+        vault: { type: Object, required: true },
+    },
     setup(props) {
         const route = useRoute();
         const router = useRouter();

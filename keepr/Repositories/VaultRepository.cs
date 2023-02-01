@@ -21,7 +21,7 @@ public class VaultsRepository
         return vaultData;
     }
 
-    internal Vault Get(int id)
+    internal Vault GetOne(int id)
     {
         string sql = @"
             SELECT 

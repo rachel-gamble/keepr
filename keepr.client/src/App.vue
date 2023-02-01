@@ -65,6 +65,10 @@ export default {
   margin-right: 0.5em;
 }
 
+.vault-img {
+  background-size: cover;
+}
+
 //SECTION background colors 
 
 main {

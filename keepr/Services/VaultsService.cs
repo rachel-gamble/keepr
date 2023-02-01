@@ -22,19 +22,26 @@ public class VaultsService
     }
 
 
-    internal Vault Get(int id, string userId)
-    {
-        Vault found = _repo.Get(id);
-        if (found == null)
-        {
-            throw new Exception("Invalid ID");
-        }
-        return found;
-    }
+    // internal Vault Get(int id, string userId)
+    // {
+    //     Vault found = _repo.Get(id);
+    //     if (found == null)
+    //     {
+    //         throw new Exception("Invalid ID");
+    //     }
+    //     return found;
+    // }
 
+    internal Vault GetOne(int id, string userId)
+    {
+        Vault vault = _repo.GetOne(id);
+        if (vault == null) throw new Exception($"No vault at {id}.");
+        if (vault.IsPrivate == true && vault.CreatorId != userId) throw new Exception($"That vault is private.");
+        return vault;
+    }
     internal Vault Edit(Vault vaultData, string userId)
     {
-        Vault original = Get(vaultData.Id, userId);
+        Vault original = GetOne(vaultData.Id, userId);
         if (original.CreatorId != userId)
         {
             throw new Exception("You don't have access.");
@@ -51,7 +58,7 @@ public class VaultsService
 
     internal void Delete(int id, string userId)
     {
-        Vault original = Get(id, userId);
+        Vault original = GetOne(id, userId);
         if (original.CreatorId != userId)
         {
             throw new Exception("O' you don't have the right!");
@@ -59,20 +66,13 @@ public class VaultsService
         _repo.Delete(id);
     }
 
-    internal Vault GetOne(int id, string userId)
-    {
-        Vault vault = _repo.Get(id);
-        if (vault == null) throw new Exception($"No vault at {id}.");
-        if (vault.IsPrivate == true && vault.CreatorId != userId) throw new Exception($"That vault is private.");
-        return vault;
-    }
 
 
     internal List<KeepVaultVueModel> GetVaultKeepsByVaultId(int id, string userId)
 
     {
-        Vault found = Get(id, userId);
-        if (found.IsPrivate == false && found.CreatorId != userId)
+        Vault found = GetOne(id, userId);
+        if (found.IsPrivate == true && found.CreatorId != userId)
         {
             throw new Exception("You do not have access");
         }

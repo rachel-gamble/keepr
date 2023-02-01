@@ -24,7 +24,7 @@ public class VaultKeepsController : ControllerBase
         try
         {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
-            if (userInfo == null) { throw new Exception("You do not have permission to add to this vault."); }
+            if (userInfo == null || vaultKeepData.CreatorId != userInfo.Id) { throw new Exception("You do not have permission to add to this vault."); }
             vaultKeepData.CreatorId = userInfo.Id;
             VaultKeep newVaultKeep = _VaultKeepsService.Create(vaultKeepData, userInfo?.Id);
             return Ok(newVaultKeep);
@@ -44,7 +44,7 @@ public class VaultKeepsController : ControllerBase
         {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
             _VaultKeepsService.Remove(id, userInfo.Id);
-            return Ok("Vaulted Keep Removed ✨");
+            return Ok("Vault Keep Removed ✨");
         }
         catch (System.Exception e)
         {

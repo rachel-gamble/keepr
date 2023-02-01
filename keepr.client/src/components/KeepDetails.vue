@@ -36,19 +36,18 @@
                 <section class="justify-space-between m-2">
 
                     <!-- add keep to vault-->
-                    <div v-if="account.id == !activeKeep?.creator.id">
+                    <div v-if="account.id != activeKeep?.creator.id">
                         <form class="dropdown" @submit.prevent="addKeepToVault()">
                             <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
+                            <br/>
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                🌱
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li v-for="mv in myVaults" :key="mv" value="mv" class="action"><a class="dropdown-item"
-                                        href="#" @click.prevent="addKeepToVault()">
-                                        {{ mv?.name.substring(0, 15) }}
-                                    </a></li>
-                            </div>
+                            <select name="" v-model="vaultSelect" class="action" title="Add to vault" required>
+                                <option v-for="mv in myVaults" :key="mv" :value="mv" class="action">
+                                    {{ mv?.name.substring(0, 15) }}
+                                </option>
+                            </select>
                             <button type="submit" class="btn vault-btn selectable mdi mdi-check-outline"
                                 title="Submit"></button>
                         </form>
@@ -77,10 +76,6 @@ import { ref, computed } from 'vue';
 import { Modal } from 'bootstrap';
 import { keepsService } from '../services/KeepsService';
 import { vaultKeepsService } from '../services/VaultKeepsService';
-// import { Auth0ConfigurationOptions } from '@bcwdev/auth0provider-client';
-
-
-
 export default {
 
     setup(props) {
