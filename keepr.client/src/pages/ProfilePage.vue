@@ -1,46 +1,50 @@
 <template>
-    <div class="container-fluid app-bg">
+    <div class="container-fluid app-bg oxygen">
         <!--SECTION Top info-->
 
-        <section class="row d-flex">
-            <img :src="profile?.picture" alt="profile picture" class="img-fluid">
+        <section class="row d-flex justify-content-center text-center">
+            <img :src="profile?.coverImg" class="banner-img" alt="profile cover image" title="Profile cover image">
+            <img :src="profile?.picture" alt="profile picture" class="profile-icon">
             <div class="flex-column">
                 <h1>{{ profile?.name }}</h1>
-                <span>Vaults: {{ numberOfVaults }}</span>
-                <span>Keeps: {{ numberOfKeeps }}</span>
+                <div class="counts">
+                    <span class="bold">{{ numberOfVaults }} Vaults</span>
+                    <span class="mx-1">|</span>
+                    <span class="bold">Keeps: {{ numberOfKeeps }}</span>
+                </div>
             </div>
         </section>
 
         <!--SECTION Vaults-->
         <section class="row d-flex justify-content-center">
-            <div class="col-8 justify-items-center">
-                <h3 class="sub-title fw-bold">Vaults</h3><br>
+            <div class="col-10">
+                <h3 class="sub-title fw-bold mx-3">Vaults</h3><br><br>
 
-                <div v-for="vault in vaults" :key="vault.id">
-
-                    <div class="" @click="goToVault(vault)">
-                        <div class="rounded vault-img m-2" :style="`background-image: url(${vault?.img})`">
-                            <h4 class="keep-name">
-                                {{ vault?.name }}
-                            </h4>
-                            <br><br>
+                <div class="masonry-container">
+                    <div v-for="vault in vaults" :key="vault.id">
+                        <div class="" @click="goToVault(vault)">
+                            <div class="rounded my-2 elevation-5 hover-card keep-container"
+                                :style="`background-image: url(${vault?.img})`"
+                                :title="'Go to ' + vault?.name + ' by ' + vault?.creatorId.name">
+                                <div class="d-flex justify-content-between-mobile-cleanup">
+                                    <h4 class="keep-name">
+                                        {{ vault?.name }}
+                                    </h4>
+                                </div>
+                                <br><br>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
+            <!--SECTION Keeps
+-->
             <div class="col-8 justify-items-center">
-                <h3 class="sub-title fw-bold">Keeps</h3><br>
+                <h3 class="sub-title fw-bold mx-2">Keeps</h3><br><br>
                 <div v-for="v in vaults" :key="v.id" class="col-sm-6 col-md-4 col-lg-2 p-2"></div>
             </div>
         </section>
-
-
-
-
-
     </div>
-
     <!--SECTION Keeps-->
     <div class="masonry-container-profile">
         <div class="keep-container" v-for="k in keeps" :key="k.id">
@@ -129,12 +133,34 @@ export default {
 </script>
 
 <style>
+.oxygen {
+    font-family: 'Oxygen', sans-serif;
+}
+
+.profile-icon {
+    width: 20vw;
+    height: 20vh;
+    /* border:1px solid; */
+    border-radius: 50%;
+    object-fit: cover;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-10vh);
+    margin-bottom: -8vh;
+}
+
+.banner-img {
+    width: 85vw;
+    height: 50vh;
+    object-fit: cover;
+}
+
 .bg-img {
     height: 20vh;
 }
 
 .keep-name {
-    transform: translateY(-1.3em);
+    transform: translateY(3em);
     margin-left: 0.8em;
     color: whitesmoke;
     text-shadow: 3px 3px 4px black;

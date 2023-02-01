@@ -45,7 +45,12 @@ export default {
       component: 'modal',
     }
   },
-  components: { Banner, KeepForm, VaultForm, KeepDetails, AccountForm, }
+  components: { Banner, KeepForm, VaultForm, KeepDetails, AccountForm, },
+  async openKeepDetails(k) {
+    AppState.activeKeep = k;
+    Modal.getOrCreateInstance(document.getElementById('keepDetails')).show()
+    await keepsService.incrementViews();
+  },
 }
 </script>
 <style lang="scss">
@@ -69,6 +74,12 @@ export default {
   background-size: cover;
 }
 
+.keep-container {
+  padding: 0px;
+  animation-name: fadeInto;
+  animation-duration: 5000ms;
+}
+
 //SECTION background colors 
 
 main {
@@ -81,6 +92,14 @@ main {
 
 //SECTION FONTS
 
+.keep-name {
+  transform: translateY(-1.3em);
+  margin-left: 0.8em;
+  color: whitesmoke;
+  text-shadow: 3px 3px 4px black;
+  font-family: 'Marko One', serif;
+}
+
 .titles {
   position: absolute;
   left: 32.85%;
@@ -92,6 +111,11 @@ main {
   transform: matrix(-1, 0, 0, 1, 0, 0);
   font-family: 'Oxygen', sans-serif;
 
+}
+
+.counts {
+  color: #636E72;
+  font-family: 'Oxygen', sans-serif;
 }
 
 .img-font {

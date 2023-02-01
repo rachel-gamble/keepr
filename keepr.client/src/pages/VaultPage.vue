@@ -11,6 +11,7 @@
                 </div>
                 <div>
                     <button @click="removeVault()" class="btn btn-dark">Delete Vault</button>
+                    <!-- <div class="counts">{{ vault }}</div> -->
                 </div>
             </div>
         </section>

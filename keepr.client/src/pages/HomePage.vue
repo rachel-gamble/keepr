@@ -12,7 +12,7 @@
             {{ k.name }}
           </h4>
           <img @click="goToProfile(k.creator.id)" :src="k.creator.picture" alt="profile image"
-            class="thumbnail-img selectable rounded-circle" :title="'Posted by' + k.creator.name" />
+            class="thumbnail-img selectable rounded-circle"  />
         </div>
       </div>
     </section>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { onMounted, computed, ref } from 'vue';
+import { onMounted, computed, ref, watchEffect } from 'vue';
 import { AppState } from '../AppState';
 import { useRouter } from 'vue-router';
 import { keepsService } from '../services/KeepsService';
@@ -40,7 +40,7 @@ export default {
     //         if (AppState.keeps) {
     //         }
     //     })
-    onMounted(async () => {
+    watchEffect(async () => {
       try {
         await keepsService.getAllKeeps();
       } catch (error) {
@@ -73,20 +73,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.keep-container {
-  padding: 0px;
-  animation-name: fadeInto;
-  animation-duration: 5000ms;
-}
-
-.keep-name {
-  transform: translateY(-1.3em);
-  margin-left: 0.8em;
-  color: whitesmoke;
-  text-shadow: 3px 3px 4px black;
-  font-family: 'Marko One', serif;
-}
-
 .home {
   display: grid;
   height: 80vh;

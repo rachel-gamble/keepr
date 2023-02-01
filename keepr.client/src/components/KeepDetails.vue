@@ -13,7 +13,7 @@
 
                 <!-- view count -->
                 <div class="d-flex counts m-2 justify-content-center">
-                    <i class="mdi mdi-eye mx-1 bold"></i>
+                    <i class="mdi mdi-eye mx-1"></i>
                     <p class=""> {{ activeKeep?.views }} </p>
                     <p class="mx-2">|</p>
                     <!-- keep count-->
@@ -36,22 +36,22 @@
                 <section class="justify-space-between m-2">
 
                     <!-- add keep to vault-->
-                    <div v-if="account.id != activeKeep?.creator.id">
-                        <form class="dropdown" @submit.prevent="addKeepToVault()">
-                            <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
-                            <br/>
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            </button>
-                            <select name="" v-model="vaultSelect" class="action" title="Add to vault" required>
-                                <option v-for="mv in myVaults" :key="mv" :value="mv" class="action">
-                                    {{ mv?.name.substring(0, 15) }}
-                                </option>
-                            </select>
-                            <button type="submit" class="btn vault-btn selectable mdi mdi-check-outline"
-                                title="Submit"></button>
-                        </form>
-                    </div>
+                    <!-- <div v-if="account.id != activeKeep?.creator.id"> -->
+                    <form class="dropdown" @submit.prevent="addKeepToVault()">
+                        <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
+                        <br />
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        </button>
+                        <select name="" v-model="vaultSelect" class="action" title="Add to vault" required>
+                            <option v-for="mv in myVaults" :key="mv" :value="mv" class="action">
+                                {{ mv?.name.substring(0, 15) }}
+                            </option>
+                        </select>
+                        <button type="submit" class="btn vault-btn selectable mdi mdi-check-outline"
+                            title="Submit"></button>
+                    </form>
+                    <!-- </div> -->
                     <div v-show="account.id == activeKeep?.creator.id" class="btn btn-light mdi mdi-cancel selectable"
                         title="Delete this keep" @click.prevent="removeKeep()"></div>
                 </section>
@@ -133,6 +133,7 @@ export default {
     border-radius: 50%;
     height: 5em;
     width: 5em;
+    object-fit: cover;
 }
 
 .keep-title {
@@ -151,7 +152,8 @@ export default {
 }
 
 .counts {
-    color: #636E72
+    color: #636E72;
+    font-family: 'Sansation';
 }
 
 /* .left-section {
