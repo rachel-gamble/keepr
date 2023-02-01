@@ -4,7 +4,7 @@
     <section class="row">
       <div v-for="k in keeps" :key="k.id" class="card my-3 elevation-5 hover-card keep-container mx-2"
         style="min-height: 20vh">
-        <img @click="openKeepDetails(k)" :src="k?.img" alt="keep image"
+        <img @click="openKeepDetails(k)" :src="k?.img ? k.img : 'https://thiscatdoesnotexist'" alt="keep image"
           class="img-fluid hover-shadow rounded img-custom" :title="'Open ' + k.name + ' details'">
         <!--SECTION Keep Name + Creator-->
         <div class="d-flex justify-content-between mobile-cleanup align-items-center" style="height: 0px">
@@ -34,7 +34,7 @@ import { Modal } from 'bootstrap';
 
 export default {
   setup(props) {
-    const router = useRouter;
+    const router = useRouter();
     //TODO - Add watch effect for new keeps
     // watchEffect(() => {
     //         if (AppState.keeps) {

@@ -1,4 +1,5 @@
 import { AppState } from "../AppState"
+import { api } from "./AxiosService"
 
 class ProfilesService {
     async getUserProfile(profileId) {

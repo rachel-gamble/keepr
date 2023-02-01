@@ -3,15 +3,21 @@
         <form @submit.prevent="createVault()">
 
             <div class="form-floating mb-3">
-                <input v-model="editable.name" required type="text" class="form-control" id="keepName"
+                <input v-model="editable.name" required type="text" class="form-control" id="vaultName"
                     placeholder="Title...">
                 <label for="keepName">Title</label>
             </div>
 
             <div class="form-floating mb-3">
-                <input v-model="editable.img" required type="url" class="form-control" id="keepImg"
+                <input v-model="editable.img" required type="url" class="form-control" id="vaultImg"
                     placeholder="Image URL...">
                 <label for="keepImg">Image URL...</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <textarea v-model="editable.description" required type="text" class="form-control" id="vaultDescription"
+                    placeholder="Description"></textarea>
+                <label for="keepName">Description</label>
             </div>
 
             <div class="form-check">
