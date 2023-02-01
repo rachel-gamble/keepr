@@ -9,6 +9,9 @@
                         <div class="keep-name fs-2">{{ k.name }}</div>
                     </div>
                 </div>
+                <div>
+                    <button @click="removeVault()" class="btn btn-dark">Delete Vault</button>
+                </div>
             </div>
         </section>
     </div>
@@ -41,7 +44,7 @@ export default {
             } catch (error) {
                 router.push({ name: 'Home' })
                 logger.error(error)
-                Pop.toast("This vault is private.", 'error')
+                Pop.toast("You cannot access this vault.", 'error')
             }
         })
         return {
@@ -56,6 +59,18 @@ export default {
                 AppState.activeKeep = k;
                 Modal.getOrCreateInstance(document.getElementById('vaultKeepModal')).show()
                 await keepsService.incrementViews();
+            },
+            async removeVault() {
+                try {
+                    if (await Pop.confirm("Delete this Vault?", 'warning')) {
+                        await vaultsService.removeVault(route.params.id)
+                        router.push({ name: 'Home' })
+                        Pop.toast("Vault removed.", 'success')
+                    }
+                } catch (error) {
+                    logger.error(error)
+                    Pop.toast("Error removing this vault.", 'error')
+                }
             }
         };
 
