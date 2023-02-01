@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid app-bg oxygen">
-        <!--SECTION Top info-->
+        <!--SECTION Banner + Profile Details-->
 
         <section class="row d-flex justify-content-center text-center">
             <img :src="profile?.coverImg" class="banner-img" alt="profile cover image" title="Profile cover image">
@@ -162,12 +162,6 @@ export default {
     align-items: center;
     transform: translateY(-10vh);
     margin-bottom: -8vh;
-}
-
-.banner-img {
-    width: 85vw;
-    height: 50vh;
-    object-fit: cover;
 }
 
 .vault {

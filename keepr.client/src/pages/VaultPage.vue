@@ -1,20 +1,44 @@
 <template>
-    <div class="container-fluid">
-        <section class="row">
-            <div class="masonry-container">
-                <div class="keep-container" v-for="k in vaultKeeps" :key="k.id">
-                    <!--TODO add on click-->
-                    <img @click="openVaultKeepModal(k)" :src="k.img" class="" title="Open Details">
-                    <div>
-                        <div class="keep-name fs-2">{{ k.name }}</div>
-                    </div>
-                </div>
-                <div>
-                    <button @click="removeVault()" class="btn btn-dark">Delete Vault</button>
-                    <!-- <div class="counts">{{ vault }}</div> -->
+    <div class="container-fluid app-bg oxygen">
+        <!--SECTION Banner + Vault Details-->
+        <section class="row d-flex justify-content-center text-center">
+            <img :src="activeVault?.img" class="banner-img" alt="profile cover image" title="Profile cover image">
+            <div class="flex-column">
+                <!--SECTION Button-->
+                <button v-show="activeVault?.creator.id == account.id" @click="removeVault()"
+                    class="btn btn-dark">Delete
+                    Vault</button>
+
+                <div class="counts">
+                    <span class="bold">{{ numberOfKeeps }} *11* Keeps</span>
                 </div>
             </div>
         </section>
+        <!--SECTION Keeps in Vault-->
+        <section class="row d-flex justify-content-center">
+            <div class="col-10">
+                <h3 class="sub-title fw-bold mx-3 my-1 mb-3">Keeps</h3>
+                <!--v-for--> <!-- Keep Masonry -->
+                <div class="masonry-container">
+                    <div v-for="k in vaultKeeps" :key="k.id">
+                        <div class="" @click="openKeepDetails(k)">
+                            <div class="rounded my-2 mb-2 elevation-5 hover-card keep-container vault-card image-custom image-fluid selectable hover-shadow"
+                                :style="`background-image: url(${k?.img})`"
+                                :title="'Open ' + k?.name + ' by ' + k?.creator.name">
+                                <div class="d-flex justify-content-between-mobile-cleanup">
+                                    <h4 class="vault-name">
+                                        {{ k?.name }}
+                                    </h4>
+                                </div>
+                                <br><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end v-for-->
+            </div>
+        </section>
+
     </div>
 </template>
 
@@ -31,9 +55,6 @@ import { keepsService } from '../services/KeepsService';
 
 
 export default {
-
-
-
     setup() {
         const route = useRoute();
         const router = useRouter();
@@ -55,6 +76,7 @@ export default {
             keepsInVault: computed(() => AppState.vaultKeeps.length),
             activeVault: computed(() => AppState.activeVault),
             account: computed(() => AppState.account),
+            numberOfKeeps: computed(() => AppState.numberOfKeeps),
 
             async openVaultKeepModal(k) {
                 AppState.activeKeep = k;
@@ -72,7 +94,12 @@ export default {
                     logger.error(error)
                     Pop.toast("Error removing this vault.", 'error')
                 }
-            }
+            },
+            async openKeepDetails(k) {
+                AppState.activeKeep = k;
+                Modal.getOrCreateInstance(document.getElementById('keepDetails')).show()
+                await keepsService.incrementViews();
+            },
         };
 
     }

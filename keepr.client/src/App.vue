@@ -86,6 +86,13 @@ export default {
   font-family: 'Marko One', serif;
 }
 
+
+.banner-img {
+  width: 85vw;
+  height: 50vh;
+  object-fit: cover;
+}
+
 // .vault-img {
 //   background-size: cover;
 // }
