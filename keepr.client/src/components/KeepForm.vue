@@ -34,15 +34,19 @@ import { ref } from 'vue';
 import { keepsService } from '../services/KeepsService';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
+import { Modal } from 'bootstrap';
 
 export default {
     setup(props) {
         const editable = ref({})
         return {
             editable,
+            showModal: false,
             async createKeep() {
                 try {
                     await keepsService.createKeep(editable.value)
+                    Modal.getOrCreateInstance(document.getElementById('keepDetails')).hide()
+                    this.showModal = false;
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error.message)

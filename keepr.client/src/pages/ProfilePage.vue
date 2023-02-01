@@ -135,7 +135,7 @@ export default {
             },
 
             createVault() {
-                Modal.getOrCreateInstance(document.getElementById("new-vault-modal")).show()
+                Modal.getOrCreateInstance(document.getElementById('new-vault-modal')).show()
             },
             createKeep() {
                 Modal.getOrCreateInstance(document.getElementById('new-keep-modal')).show()

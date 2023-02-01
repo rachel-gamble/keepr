@@ -12,7 +12,7 @@
             {{ k.name }}
           </h4>
           <img @click="goToProfile(k.creator.id)" :src="k.creator.picture" alt="profile image"
-            class="thumbnail-img selectable rounded-circle"  />
+            class="thumbnail-img selectable rounded-circle" />
         </div>
       </div>
     </section>
@@ -65,6 +65,13 @@ export default {
           logger.error(error)
           Pop.toast(error.message, 'error')
         }
+      },
+
+      createVault() {
+        Modal.getOrCreateInstance(document.getElementById("new-vault-modal")).show()
+      },
+      createKeep() {
+        Modal.getOrCreateInstance(document.getElementById('new-keep-modal')).show()
       }
     }
   },

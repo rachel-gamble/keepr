@@ -20,47 +20,47 @@
                     <p class="keep-box px-1"> K </p>
                     <p class="mx-1">{{ activeKeep?.kept }}</p>
                 </div>
-
                 <!--body-->
                 <!--title + description-->
-                <section class="align-content-center">
+                <section class="align-items-center">
                     <div class="text-center keep-title">
-                        <h2>{{ activeKeep?.name }}</h2>
+                        <h2 class="mx-1">{{ activeKeep?.name }}</h2>
                     </div>
-                    <div class="keep-body">
+                    <div class="mx-2 justify-content-center keep-body">
                         {{ activeKeep?.description }}
                     </div>
                 </section>
 
                 <!--bottom-->
-                <section class="justify-space-between m-2">
-                    <!--SECTION Add to Vault Button-->
-                    <div v-if="account.id">
-                        <form class="dropdown" @submit.prevent="addKeepToVault()">
-                            <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
-                            <br />
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            </button>
-                            <select name="" v-model="vaultSelect" class="action" title="Add to vault" required>
-                                <option v-for="mv in myVaults" :key="mv" :value="mv" class="action">
-                                    {{ mv?.name.substring(0, 15) }}
-                                </option>
-                            </select>
-                            <button type="submit" class="btn vault-btn selectable mdi mdi-check-outline"
-                                title="Submit"></button>
-                        </form>
+                <section class="row d-flex" style="position:absolute; bottom: 0;">
+                    <div class="col-5 justify-space-between mx-1 keep-body">
+                        <!--SECTION Add to Vault Button-->
+                        <div v-if="account.id" style="">
+                            <form class="dropdown" @submit.prevent="addKeepToVault()">
+                                <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
+                                <select name="" v-model="vaultSelect" class="action" title="Add to vault" required>
+                                    <option v-for="mv in myVaults" :key="mv" :value="mv" class="action">
+                                        {{ mv?.name.substring(0, 15) }}
+                                    </option>
+                                </select>
+                                <button type="submit" class="btn vault-btn selectable fs-6 mb-2 mt-1"
+                                    title="Submit">save</button>
+                            </form>
+                        </div>
+                        <div v-show="account.id == activeKeep?.creator.id"
+                            class="btn btn-light mdi mdi-cancel selectable" title="Delete this keep"
+                            @click.prevent="removeKeep()"></div>
                     </div>
-                    <div v-show="account.id == activeKeep?.creator.id" class="btn btn-light mdi mdi-cancel selectable"
-                        title="Delete this keep" @click.prevent="removeKeep()"></div>
+                    <!-- profile info -->
+                    <div class="col-5 mt-1 my-3 d-flex" style="">
+                        <img :src="activeKeep?.creator.picture" alt=""
+                            class="img-fluid prof-img rounded-circle app-bg selectable"
+                            :title="`Created by ${activeKeep?.creator.name}`" @click="goToProfile()" />
+                        <span class="fs-6">
+                            {{ activeKeep?.creator.name }}
+                        </span>
+                    </div>
                 </section>
-                <!-- profile info -->
-                <div class="mt-1">
-                    <img :src="activeKeep?.creator.picture" alt=""
-                        class="img-fluid prof-img rounded-circle app-bg selectable"
-                        :title="`Created by ${activeKeep?.creator.name}`" @click="goToProfile()" />
-                    {{ activeKeep?.creator.name }}
-                </div>
             </div>
         </section>
     </div>
@@ -101,7 +101,7 @@ export default {
                 try {
                     if (await Pop.confirm("Remove this keep?")) {
                         await keepsService.removeKeep()
-                        Modal.getOrCreateInstance(document.getElementById("#keepDetails")).hide()
+                        Modal.getOrCreateInstance(document.getElementById('keepDetails')).hide()
                         Pop.toast("Keep removed. ✅")
                     }
                 } catch (error) {
@@ -130,8 +130,8 @@ export default {
 <style>
 .prof-img {
     border-radius: 50%;
-    height: 5em;
-    width: 5em;
+    height: 3em;
+    width: 3em;
     object-fit: cover;
 }
 

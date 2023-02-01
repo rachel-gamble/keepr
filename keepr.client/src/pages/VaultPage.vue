@@ -21,6 +21,7 @@
                 </div>
             </div>
         </section>
+
         <!--SECTION Keeps in Vault-->
         <section class="justify-content-center up">
             <h3 class="sub-title fw-bold">Keeps</h3>
@@ -33,6 +34,7 @@
                             :style="`background-image: url(${k?.img})`"
                             :title="'Open ' + k?.name + ' by ' + k?.creator.name">
                             <div class="d-flex justify-content-between-mobile-cleanup">
+                                <div class="mdi mdi-trash-can text-white m-2" @click="removeVaultKeep(k)"></div>
                                 <h4 class="vault-name">
                                     {{ k?.name }}
                                 </h4>
@@ -91,7 +93,7 @@ export default {
             },
             async removeVault() {
                 try {
-                    if (await Pop.confirm("Delete this Vault?", 'warning')) {
+                    if (await Pop.confirm("Delete this Vault?", 'danger')) {
                         await vaultsService.removeVault(route.params.id)
                         router.push({ name: 'Home' })
                         Pop.toast("Vault removed.", 'success')
@@ -106,6 +108,10 @@ export default {
                 Modal.getOrCreateInstance(document.getElementById('keepDetails')).show()
                 await keepsService.incrementViews();
             },
+
+            async removeVaultKeep(k) {
+
+            }
         };
 
     }
