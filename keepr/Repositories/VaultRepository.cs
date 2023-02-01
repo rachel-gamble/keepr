@@ -36,20 +36,9 @@ public class VaultsRepository
             return v;
         }, new { id }).FirstOrDefault();
     }
-    // internal Vault GetOne(int id)
-    // {
-    //     string sql = @"
-    //         SELECT 
-    //             v.*,
-    //             a.*
-    //         FROM vaults v
-    //         JOIN accounts a ON v.creatorId = a.id
-    //         WHERE v.id = @id";
-    //     Vault vault = _db.Query<Vault>(sql, new Object { id }).FirstOrDefault();
-    //     return vault;
-    // }
 
-    internal void Edit(Vault original)
+
+    internal Vault Edit(Vault original)
     {
         string sql = @"
             UPDATE vaults
@@ -60,27 +49,8 @@ public class VaultsRepository
             isPrivate = @IsPrivate
             WHERE id = @Id;";
         _db.Execute(sql, original);
+        return original;
     }
-
-    // internal List<VaultKeepViewModel> GetVaultKeepViewModelFromVault(int id)
-    // {
-    //     //FIXME I need to get keeps via VaultId utilizing the VaultKeep Object relationship.
-    //     //NOTE The "vk.id AS vaultKeepId" MUST come after k.* and before a.*
-    //     string sql = @"
-    //         SELECT 
-    //             k.*,
-    //             vk.id AS vaultKeepId,
-    //             a.*
-    //         FROM vaultkeeps vk
-    //         JOIN keeps k ON vk.keepId = k.id
-    //         JOIN accounts a ON k.creatorId = a.id
-    //         WHERE vk.vaultId = @id";
-    //     return _db.Query<VaultKeepViewModel, Profile, VaultKeepViewModel>(sql, (k, p) =>
-    //     {
-    //         k.Creator = p;
-    //         return k;
-    //     }, new { id }).ToList();
-    // }
 
     internal void Delete(int id)
     {

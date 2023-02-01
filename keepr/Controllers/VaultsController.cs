@@ -57,7 +57,7 @@ public class VaultsController : ControllerBase
 
     [HttpPut("{id}")]
     [Authorize]
-    public async Task<ActionResult<Vault>> Edit(int id, [FromBody] Vault vaultData)
+    public async Task<ActionResult<Vault>> Edit([FromBody] Vault vaultData, int id)
     {
         try
         {
