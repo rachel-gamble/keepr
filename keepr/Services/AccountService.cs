@@ -16,6 +16,16 @@ public class AccountService
         return _repo.GetByEmail(email);
     }
 
+    internal Profile GetProfileById(string id)
+    {
+        Profile found = _repo.GetProfileById(id);
+        if (found == null)
+        {
+            throw new Exception("Invalid profile id");
+        }
+        return found;
+    }
+
     internal Account GetOrCreateProfile(Account userInfo)
     {
         Account profile = _repo.GetById(userInfo.Id);
