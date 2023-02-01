@@ -34,24 +34,23 @@
 
                 <!--bottom-->
                 <section class="justify-space-between m-2">
-
-                    <!-- add keep to vault-->
-                    <!-- <div v-if="account.id != activeKeep?.creator.id"> -->
-                    <form class="dropdown" @submit.prevent="addKeepToVault()">
-                        <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
-                        <br />
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        </button>
-                        <select name="" v-model="vaultSelect" class="action" title="Add to vault" required>
-                            <option v-for="mv in myVaults" :key="mv" :value="mv" class="action">
-                                {{ mv?.name.substring(0, 15) }}
-                            </option>
-                        </select>
-                        <button type="submit" class="btn vault-btn selectable mdi mdi-check-outline"
-                            title="Submit"></button>
-                    </form>
-                    <!-- </div> -->
+                    <!--SECTION Add to Vault Button-->
+                    <div v-if="account.id">
+                        <form class="dropdown" @submit.prevent="addKeepToVault()">
+                            <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
+                            <br />
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </button>
+                            <select name="" v-model="vaultSelect" class="action" title="Add to vault" required>
+                                <option v-for="mv in myVaults" :key="mv" :value="mv" class="action">
+                                    {{ mv?.name.substring(0, 15) }}
+                                </option>
+                            </select>
+                            <button type="submit" class="btn vault-btn selectable mdi mdi-check-outline"
+                                title="Submit"></button>
+                        </form>
+                    </div>
                     <div v-show="account.id == activeKeep?.creator.id" class="btn btn-light mdi mdi-cancel selectable"
                         title="Delete this keep" @click.prevent="removeKeep()"></div>
                 </section>
