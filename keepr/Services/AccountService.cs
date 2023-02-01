@@ -49,4 +49,10 @@ public class AccountService
     {
         return _vr.GetMyVaults(userId);
     }
+
+    internal Account GetAccountById(string profileId)
+    {
+        Account profile = _repo.GetById(profileId);
+        return profile;
+    }
 }

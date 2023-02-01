@@ -32,5 +32,38 @@ public class ProfilesController : ControllerBase
         }
     }
 
+    [HttpGet("{profileId}/keeps")]
+    public ActionResult<List<Keep>> GetKeepsByProfileId(string profileId)
+    {
+        try
+        {
+            _aserv.GetProfileById(profileId);
+            List<Keep> keeps = _ks.GetByCreatorId(profileId);
+            return Ok(keeps);
+        }
+        catch (System.Exception e)
+        {
+
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpGet("{profileId}/vaults")]
+    public async Task<ActionResult<List<Vault>>> GetVaultsByProfileIdAsync(string profileId)
+    {
+        try
+        {
+            Account userInfo = await _au.GetUserInfoAsync<Account>(HttpContext);
+            Profile profile = _aserv.GetProfileById(profileId);
+            List<Vault> vaults = _vs.GetVaultsByCreatorId(profileId, userInfo?.Id);
+            return Ok(vaults);
+
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
 
 }

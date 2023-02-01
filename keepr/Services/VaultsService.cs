@@ -2,11 +2,13 @@ namespace keepr.Services;
 
 public class VaultsService
 {
-    public readonly VaultsRepository _repo;
+    private readonly VaultsRepository _repo;
+    private readonly AccountService _aserv;
 
-    public VaultsService(VaultsRepository repo)
+    public VaultsService(VaultsRepository repo, AccountService aserv)
     {
         _repo = repo;
+        _aserv = aserv;
     }
 
     public Vault Create(Vault vaultData, string userId)
@@ -76,5 +78,19 @@ public class VaultsService
         }
         List<KeepVaultVueModel> vaultKeeps = _repo.GetVaultKeepsByVaultId(id);
         return vaultKeeps;
+    }
+
+    internal List<Vault> GetVaultsByCreatorId(string profileId, string userInfo)
+    {
+        List<Vault> foundVaults = _repo.GetVaultsByCreatorId(profileId);
+        Account foundAccount = _aserv.GetAccountById(profileId);
+        if (foundAccount.Id != userInfo)
+        {
+            foundVaults = foundVaults.FindAll(v => v.IsPrivate == false);
+            return foundVaults;
+        }
+
+        return foundVaults;
+
     }
 }
