@@ -27,7 +27,7 @@
             <h3 class="sub-title fw-bold">Keeps</h3>
             <!--v-for-->
             <div class="row">
-                <div v-for="k in vaultKeeps" :key="k.id" class="col-3">
+                <div v-for="k in vaultKeeps" :key="k.id" class="col-lg-3 col-md-6 col-sm-12">
                     <div class="">
                         <div @click="openKeepDetails(k)"
                             class="rounded my-2 mb-2 elevation-5 hover-card keep-container vault-card image-custom image-fluid selectable hover-shadow"
