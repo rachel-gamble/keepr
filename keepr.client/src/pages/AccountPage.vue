@@ -21,12 +21,16 @@
     <section class="row d-flex justify-content-center">
       <div class="col-8 justify-items-center">
         <h3 class="sub-title fw-bold">Vaults</h3><br>
-        <div v-for="my in myKeeps" class="card"></div>
+
+        <div v-for="v in vaults" :key="v.id" :message="vault">
+          <VaultCard :vault="v" />
+        </div>
+
       </div>
       <div class="col-8 justify-items-center">
         <h3 class="sub-title fw-bold">Keeps</h3><br>
         <div v-for="v in vaults" :key="v.id" class="col-sm-6 col-md-4 col-lg-2 p-2"></div>
-        </div>
+      </div>
     </section>
 
   </div>

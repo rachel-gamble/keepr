@@ -12,30 +12,46 @@
         </section>
 
         <!--SECTION Vaults-->
+        <section class="row d-flex justify-content-center">
+            <div class="col-8 justify-items-center">
+                <h3 class="sub-title fw-bold">Vaults</h3><br>
 
-        <div v-for="v in vaults" :key="v.id" class="col-sm-6 col-md-4 col-lg-2 p-2">
-
-
-        </div>
-
-        <!--SECTION Keeps-->
-        <div class="masonry-container-profile">
-            <div class="keep-container" v-for="k in keeps" :key="k.id">
-                <!-- Keep Masonry -->
-                <div class="p-2">
-                    <img @click="openKeepDetails(k)" :src="k.img" alt="keep image" class="img-fluid img-custom"
-                        :title="'Open ' + k.name + ' details'" />
-                    <div class="d-flex justify-content-between" style="height: 0px">
-                        <h5 class="keep-name">
-                            {{ k.name }}
-                        </h5>
-                    </div>
+                <div v-for="v in vaults" :key="v.id" :message="vault">
+                    <VaultCard :vault="v" />
                 </div>
+                <!-- <VaultCard v-for="v in vaults" :key="v.id" class="card col-4 m-2 d-flex">
+
+                </VaultCard> -->
+
             </div>
-        </div>
+            <div class="col-8 justify-items-center">
+                <h3 class="sub-title fw-bold">Keeps</h3><br>
+                <div v-for="v in vaults" :key="v.id" class="col-sm-6 col-md-4 col-lg-2 p-2"></div>
+            </div>
+        </section>
+
+
+
 
 
     </div>
+
+    <!--SECTION Keeps-->
+    <div class="masonry-container-profile">
+        <div class="keep-container" v-for="k in keeps" :key="k.id">
+            <!-- Keep Masonry -->
+            <div class="p-2">
+                <img @click="openKeepDetails(k)" :src="k.img" alt="keep image" class="img-fluid img-custom"
+                    :title="'Open ' + k.name + ' details'" />
+                <div class="d-flex justify-content-between" style="height: 0px">
+                    <h5 class="keep-name">
+                        {{ k.name }}
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </template>
 
 <script>
@@ -104,6 +120,18 @@ export default {
 </script>
 
 <style>
+.bg-img {
+    height: 20vh;
+}
+
+.keep-name {
+    transform: translateY(-1.3em);
+    margin-left: 0.8em;
+    color: whitesmoke;
+    text-shadow: 3px 3px 4px black;
+    font-family: 'Marko One', serif;
+}
+
 .vault {
     color: whitesmoke;
     text-shadow: 3px 3px 4px black;

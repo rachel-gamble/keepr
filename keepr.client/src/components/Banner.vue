@@ -12,7 +12,8 @@
         </router-link>
 
         <!--SECTION CREATE BUTTON-->
-        <div class="dropdown">
+
+        <div v-if="account.id" class="dropdown">
           <button class="btn create-btn dropdown-toggle mt-2" type="button" id="dropdownMenuButton"
             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Create">
             Create
@@ -44,10 +45,14 @@ import Login from './Login.vue'
 import KeepForm from './KeepForm.vue';
 import Modal from './Modal.vue';
 import VaultForm from './VaultForm.vue';
+import { computed } from '@vue/reactivity';
+import { AppState } from '../AppState';
 
 export default {
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account)
+    }
   },
   components: { Login, Modal, KeepForm, VaultForm, }
 }
