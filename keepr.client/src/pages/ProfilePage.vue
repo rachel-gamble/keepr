@@ -18,16 +18,16 @@
         <!--SECTION Vaults-->
         <section class="row d-flex justify-content-center">
             <div class="col-10">
-                <h3 class="sub-title fw-bold mx-3">Vaults</h3><br><br>
-
+                <h3 class="sub-title fw-bold mx-3 my-1">Vaults</h3>
+                <!--v-for-->
                 <div class="masonry-container">
                     <div v-for="vault in vaults" :key="vault.id">
                         <div class="" @click="goToVault(vault)">
-                            <div class="rounded my-2 elevation-5 hover-card keep-container"
+                            <div class="rounded my-2 mb-2 elevation-5 hover-card keep-container vault-card image-custom image-fluid selectable hover-shadow"
                                 :style="`background-image: url(${vault?.img})`"
                                 :title="'Go to ' + vault?.name + ' by ' + vault?.creatorId.name">
                                 <div class="d-flex justify-content-between-mobile-cleanup">
-                                    <h4 class="keep-name">
+                                    <h4 class="vault-name">
                                         {{ vault?.name }}
                                     </h4>
                                 </div>
@@ -36,31 +36,37 @@
                         </div>
                     </div>
                 </div>
+                <!--end v-for-->
             </div>
-            <!--SECTION Keeps
--->
-            <div class="col-8 justify-items-center">
-                <h3 class="sub-title fw-bold mx-2">Keeps</h3><br><br>
-                <div v-for="v in vaults" :key="v.id" class="col-sm-6 col-md-4 col-lg-2 p-2"></div>
+        </section>
+
+        <br /><br /><br /><br /><br /><br />
+
+        <!--SECTION Keeps-->
+        <section class="row d-flex justify-content-center">
+            <div class="col-10">
+                <h3 class="sub-title fw-bold mx-3 my-1 mb-3">Keeps</h3>
+                <!--v-for--> <!-- Keep Masonry -->
+                <div class="masonry-container">
+                    <div v-for="k in keeps" :key="k.id">
+                        <div class="" @click="openKeepDetails(k)">
+                            <div class="rounded my-2 mb-2 elevation-5 hover-card keep-container vault-card image-custom image-fluid selectable hover-shadow"
+                                :style="`background-image: url(${k?.img})`"
+                                :title="'Open ' + keep?.name + ' by ' + vault?.creatorId.name">
+                                <div class="d-flex justify-content-between-mobile-cleanup">
+                                    <h4 class="vault-name">
+                                        {{ k?.name }}
+                                    </h4>
+                                </div>
+                                <br><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end v-for-->
             </div>
         </section>
     </div>
-    <!--SECTION Keeps-->
-    <div class="masonry-container-profile">
-        <div class="keep-container" v-for="k in keeps" :key="k.id">
-            <!-- Keep Masonry -->
-            <div class="p-2">
-                <img @click="openKeepDetails(k)" :src="k.img" alt="keep image" class="img-fluid img-custom"
-                    :title="'Open ' + k.name + ' details'" />
-                <div class="d-flex justify-content-between" style="height: 0px">
-                    <h5 class="keep-name">
-                        {{ k.name }}
-                    </h5>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </template>
 
 <script>
@@ -74,10 +80,12 @@ import { keepsService } from '../services/KeepsService'
 import { vaultsService } from '../services/VaultsService'
 import { useRoute, useRouter } from 'vue-router'
 import { Modal } from 'bootstrap'
+import KeepDetails from '../components/KeepDetails.vue'
 
 export default {
     props: {
         vault: { type: Object, required: true },
+        keep: { type: Object, required: true },
     },
     setup(props) {
         const route = useRoute();
@@ -120,6 +128,12 @@ export default {
                 router.push({ name: 'Vault', params: { id: v.id } })
             },
 
+            async openKeepDetails(k) {
+                AppState.activeKeep = k;
+                Modal.getOrCreateInstance(document.getElementById('keepDetails')).show()
+                await keepsService.incrementViews();
+            },
+
             createVault() {
                 Modal.getOrCreateInstance(document.getElementById("new-vault-modal")).show()
             },
@@ -128,7 +142,8 @@ export default {
             }
         };
 
-    }
+    },
+    components: { KeepDetails, },
 }
 </script>
 
@@ -153,18 +168,6 @@ export default {
     width: 85vw;
     height: 50vh;
     object-fit: cover;
-}
-
-.bg-img {
-    height: 20vh;
-}
-
-.keep-name {
-    transform: translateY(3em);
-    margin-left: 0.8em;
-    color: whitesmoke;
-    text-shadow: 3px 3px 4px black;
-    font-family: 'Marko One', serif;
 }
 
 .vault {

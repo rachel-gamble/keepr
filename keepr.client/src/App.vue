@@ -70,9 +70,25 @@ export default {
   margin-right: 0.5em;
 }
 
-.vault-img {
+.vault-card {
+  height: 20vh;
+  // width: 50vw;
   background-size: cover;
 }
+
+//SECTION Vault Style
+
+.vault-name {
+  transform: translateY(4.5em);
+  margin-left: 0.5em;
+  color: whitesmoke;
+  text-shadow: 3px 3px 4px black;
+  font-family: 'Marko One', serif;
+}
+
+// .vault-img {
+//   background-size: cover;
+// }
 
 .keep-container {
   padding: 0px;
