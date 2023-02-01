@@ -115,14 +115,24 @@ public class VaultsRepository
         }, new { id }).ToList();
     }
 
-    internal List<VaultKeep> GetVaultKeepsByVaultId(int id)
+    internal List<KeepVaultVueModel> GetVaultKeepsByVaultId(int id)
     {
         string sql = @"
-            SELECT
-            vk.*
-            FROM keeps vk
-            WHERE vk.id = @id
+             SELECT
+                k.*,
+                vk.id AS vaultKeepId,
+                a.*
+            FROM vaultkeeps vk
+            JOIN keeps k ON vk.keepId = k.id
+            JOIN accounts a ON k.creatorId = a.id
+            WHERE vk.vaultId = @id;
             ";
-        return _db.Query<VaultKeep>(sql, new { id }).ToList();
+        List<KeepVaultVueModel> Keeps = _db.Query<KeepVaultVueModel, Profile, KeepVaultVueModel>(sql, (vk, account) =>
+        {
+            vk.Creator = account;
+            return vk;
+        }, new { id }).ToList();
+        return Keeps;
     }
 }
+

@@ -16,7 +16,7 @@ public class Keep
     public DateTime UpdatedAt { get; set; }
 }
 
-public class KeepVaultHomes : Keep
+public class KeepVaultVueModel : Keep
 {
     public int VaultKeepId { get; set; }
 }

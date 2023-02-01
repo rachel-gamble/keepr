@@ -91,14 +91,30 @@ public class VaultsController : ControllerBase
 
     //NOTE - look @ restaurant controller for example in helpReviews
 
+    // [HttpGet("{id}/keeps")]
+    // public async Task<ActionResult<List<VaultKeep>>> GetVaultKeepsByVaultId(int id)
+    // {
+    //     try
+    //     {
+    //         Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
+    //         // if (accountId != null) { userInfo == accountId };
+    //         List<VaultKeep> vaultKeeps = _VaultService.GetVaultKeepsByVaultId(id, userInfo?.Id);
+    //         return Ok(vaultKeeps);
+    //     }
+    //     catch (System.Exception e)
+    //     {
+    //         return BadRequest(e.Message);
+    //     }
+    // }
+
     [HttpGet("{id}/keeps")]
-    public async Task<ActionResult<List<VaultKeep>>> GetVaultKeepsByVaultId(int id)
+    public async Task<ActionResult<List<KeepVaultVueModel>>> GetVaultKeepsByVaultId(int id)
     {
         try
         {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
             // if (accountId != null) { userInfo == accountId };
-            List<VaultKeep> vaultKeeps = _VaultService.GetVaultKeepsByVaultId(id, userInfo?.Id);
+            List<KeepVaultVueModel> vaultKeeps = _VaultService.GetVaultKeepsByVaultId(id, userInfo?.Id);
             return Ok(vaultKeeps);
         }
         catch (System.Exception e)

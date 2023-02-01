@@ -31,5 +31,26 @@ public class VaultKeepsRepository
             WHERE vk.id = @id;";
         return _db.QueryFirstOrDefault<VaultKeep>(sql, new { id });
     }
-
+    internal List<KeepVaultVueModel> GetKeepsByVaultId(int vaultId)
+    {
+        var sql = @"
+    SELECT
+    vk.*,
+    COUNT(k.id) AS Kept,
+    vk.id AS VaultKeepId,
+    vk.creatorId AS VaultKeepCreatorId,
+    k.*,
+    a.*
+    FROM vaultKeeps vk
+    JOIN accounts a ON a.id = vk.creatorId
+    JOIN keeps k ON k.id = vk.keepId
+    WHERE vk.vaultId = @vaultId
+    GROUP BY vk.id
+    ;";
+        return _db.Query<KeepVaultVueModel, Profile, KeepVaultVueModel>(sql, (keep, profile) =>
+        {
+            keep.Creator = profile;
+            return keep;
+        }, new { vaultId }).ToList();
+    }
 }

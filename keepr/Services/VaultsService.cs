@@ -66,7 +66,7 @@ public class VaultsService
     }
 
 
-    internal List<VaultKeep> GetVaultKeepsByVaultId(int id, string userId)
+    internal List<KeepVaultVueModel> GetVaultKeepsByVaultId(int id, string userId)
 
     {
         Vault found = Get(id, userId);
@@ -74,7 +74,7 @@ public class VaultsService
         {
             throw new Exception("You do not have access");
         }
-        List<VaultKeep> vaultKeeps = _repo.GetVaultKeepsByVaultId(id);
+        List<KeepVaultVueModel> vaultKeeps = _repo.GetVaultKeepsByVaultId(id);
         return vaultKeeps;
     }
 }
