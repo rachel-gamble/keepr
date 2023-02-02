@@ -29,6 +29,8 @@
                 :style="`background-image: url(${vault?.img})`"
                 :title="'Go to ' + vault?.name + ' by ' + vault?.creatorId.name">
                 <div class="d-flex justify-content-between-mobile-cleanup">
+                  <div v-if="vault.isPrivate" class="mdi mdi-lock text-white m-2 elevation-5" title="is private"></div>
+
                   <h4 class="vault-name">
                     {{ vault?.name }}
                   </h4>

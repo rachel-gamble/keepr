@@ -15,7 +15,7 @@
           <div class="list-group">
             <router-link :to="{ name: 'Account' }">
               <div class="list-group-item dropdown-item list-group-item-action" title="Go to my Profile.">
-                My Profile
+                My Account
               </div>
             </router-link>
             <a data-bs-toggle="modal" data-bs-target="#accountForm" class="dropdown-item" @click="showModal"
