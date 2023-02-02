@@ -1,24 +1,21 @@
 <template>
-  <div class="container-fluid app-bg">
-    <div class="row">
-      <!--SECTION Keep Img-->
-      <section class="masonry-container p-3">
-        <div @click="openKeepDetails(k)" v-for="k in keeps" :key="k.id"
-          class="card my-4 elevation-5 hover-card keep-container selectable" style="min-height: 18vh;">
-          <img :src="k?.img ? k.img : 'https://thiscatdoesnotexist'" alt="keep image"
-            class="img-fluid hover-shadow rounded img-custom" :title="'Open ' + k.name + ' details'">
-          <!--SECTION Keep Name + Creator-->
-          <div class="d-flex justify-content-between mobile-cleanup align-items-center" style="height: 0px">
-            <h4 class="keep-name">
-              {{ k.name }}
-            </h4>
-            <img @click="goToProfile(k.creator.id)" :src="k.creator.picture" alt="profile image"
-              class="thumbnail-img selectable rounded-circle" :title="'Go to ' + k.creator.name + 'profile page'" />
-          </div>
+  <div class="app-bg px-3">
+    <!--SECTION Keep Img-->
+    <section class="masonry-container">
+      <div @click="openKeepDetails(k)" v-for="k in keeps" :key="k.id"
+        class="my-4 elevation-5 hover-card keep-container selectable" style="">
+        <img :src="k?.img ? k.img : 'https://thiscatdoesnotexist'" alt="keep image"
+          class="img-fluid hover-shadow rounded img-custom" :title="'Open ' + k.name + ' details'">
+        <!--SECTION Keep Name + Creator-->
+        <div class="d-flex justify-content-between mobile-cleanup align-items-center" style="height: 0px">
+          <h4 class="keep-name">
+            {{ k.name }}
+          </h4>
+          <img @click="goToProfile(k.creator.id)" :src="k.creator.picture" alt="profile image"
+            class="thumbnail-img selectable rounded-circle" :title="'Go to ' + k.creator.name + 'profile page'" />
         </div>
-      </section>
-
-    </div>
+      </div>
+    </section>
   </div>
 </template>
 

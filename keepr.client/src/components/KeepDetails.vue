@@ -32,9 +32,9 @@
                 </section>
 
 
-                <section class="row align-bottom oxygen">
-                    <div class="d-flex">
-                        <div class="col-6">
+                <section class="row oxygen">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="col-6 my-2">
                             <form class="dropdown" @submit.prevent="addKeepToVault()">
                                 <label class="ms-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
                                 <select name="" v-model="vaultSelect" class="action selectable m-1" title="Add to vault"
@@ -49,7 +49,7 @@
                             </form>
                         </div>
 
-                        <div class="col-6 d-flex align-content-end">
+                        <div class="col-6 d-flex justify-content-end">
                             <img :src="activeKeep?.creator.picture" alt=""
                                 class="img-fluid prof-img rounded-circle app-bg selectable"
                                 :title="`Created by ${activeKeep?.creator.name}`" @click="goToProfile()" />
@@ -61,78 +61,6 @@
                 </section>
             </div>
         </section>
-
-        <!--SECTION Right SIDE-->
-
-        <!-- <div class="col-md-6 col-sm-12 order-md-2 order-sm-2 align-items-center right-side"> -->
-
-        <!-- view count -->
-        <!-- <div class="row">
-                    <div class="d-flex counts m-2 justify-content-center">
-                        <i class="mdi mdi-eye mx-1"></i>
-                        <p class=""> {{ activeKeep?.views }} </p>
-                        <p class="mx-2">|</p> -->
-        <!-- keep count-->
-        <!-- <p class="keep-box px-1"> K </p>
-                        <p class="mx-1">{{ activeKeep?.kept }}</p>
-                    </div>
-                    <div class="text-center">
-                        <span v-show="account.id == activeKeep?.creator.id"
-                            class="btn btn-light mdi mdi-trash-can app-bg" title="Delete this keep"
-                            @click.prevent="removeKeep()"></span>
-                    </div>
-                </div> -->
-        <!--body-->
-        <!--title + description-->
-        <!-- <div class="row">
-
-                    <div class="align-items-center middle">
-                        <div class="text-center keep-title">
-                            <h2 class="mx-1">{{ activeKeep?.name }}</h2>
-                        </div>
-                        <div class="mx-2 justify-content-center keep-body ">
-                            {{ activeKeep?.description }}
-                        </div>
-                    </div>
-
-                </div> -->
-        <!--bottom-->
-        <!-- <div class="row justify-space-between"> -->
-
-        <!--SECTION Add to Vault Button-->
-        <!-- <div class="col-md-6 oxygen bottom">
-                        <div v-if="account.id" style="" class="col-md-6 col-sm-12">
-                            <form class="dropdown" @submit.prevent="addKeepToVault()">
-                                <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
-                                <select name="" v-model="vaultSelect" class="action selectable" title="Add to vault"
-                                    required>
-                                    <option v-for="mv in myVaults" :key="mv" :value="mv" class="action"
-                                        :title="mv.name">
-                                        {{ mv?.name.substring(0, 15) }}
-                                    </option>
-                                </select>
-                                <button type="submit" class="btn vault-btn selectable fs-6 mb-2 mt-1 mx-1"
-                                    title="save keep">save</button>
-                            </form>
-                        </div>
-                    </div> -->
-
-
-        <!-- profile info -->
-        <!-- <div class="mt-1 my-3 bottom col-md-5 col-sm-12 text-end" style="">
-                        <img :src="activeKeep?.creator.picture" alt=""
-                            class="img-fluid prof-img rounded-circle app-bg selectable"
-                            :title="`Created by ${activeKeep?.creator.name}`" @click="goToProfile()" />
-                        <div class="fs-6 oxygen c-name">
-                            {{ activeKeep?.creator.name }}
-                        </div>
-                    </div> -->
-
-        <!-- 
-                </div>
-            </div> -->
-
-
     </div>
 </template>
 
@@ -201,43 +129,6 @@ export default {
 input {
     border: #A76BBD;
 }
-
-/* .left-side {
-    justify-content: center;
-} */
-
-/* .middle {
-    position: absolute;
-    top: 55%;
-    left: 75%;
-    text-overflow: wrap;
-    transform: translate(-50%, -50%)
-} */
-
-/* .bottom {
-    align-self: flex-end;
-    text-overflow: wrap;
-    position: absolute;
-    bottom: 0;
-} */
-
-/* @media only screen and (max-width:1068px) {
-
-    .middle {
-        position: relative;
-        top: 0%;
-        left: 0%;
-        text-overflow: wrap;
-        transform: translate(0%, 0%)
-    }
-
-    .bottom {
-        align-self: flex-end;
-        text-overflow: wrap;
-        position: absolute;
-        bottom: 0;
-    }
-} */
 
 @media only screen and (max-width:768px) {
     /* .middle {
