@@ -41,12 +41,11 @@ export default {
         const editable = ref({})
         return {
             editable,
-            showModal: false,
             async createKeep() {
                 try {
                     await keepsService.createKeep(editable.value)
-                    Modal.getOrCreateInstance(document.getElementById('keepDetails')).hide()
-                    this.showModal = false;
+                    Modal.getOrCreateInstance(document.getElementById('keepForm')).hide()
+                    Pop.toast("Keep created.✨", 'success')
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error.message)
