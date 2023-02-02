@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { onMounted, computed } from 'vue';
+import { computed, watchEffect } from 'vue';
 import { vaultKeepsService } from '../services/VaultKeepsService';
 import Pop from '../utils/Pop';
 import { useRoute, useRouter } from 'vue-router';
@@ -70,7 +70,7 @@ export default {
         const route = useRoute();
         const router = useRouter();
 
-        onMounted(async () => {
+        watchEffect(async () => {
             try {
                 await vaultsService.getById(route.params.id)
                 await vaultKeepsService.getKeepsByVaultId(route.params.id)
@@ -119,6 +119,7 @@ export default {
                     if (await Pop.confirm("Remove this Keep from the Vault?", 'warning')) {
                         await vaultKeepsService.removeFromVault(k)
                         Modal.getOrCreateInstance(document.getElementById('keepDetails')).hide()
+                        Pop.toast("Keep removed from vault. 🌱", 'success')
                     }
                 } catch (error) {
                     logger.error(error)
