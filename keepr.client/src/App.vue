@@ -77,7 +77,7 @@ export default {
 }
 
 .profile-icon {
-  width: 20vw;
+  width: 20vh;
   height: 20vh;
   /* border:1px solid; */
   border-radius: 50%;

@@ -1,11 +1,11 @@
 <template>
   <div class="container-fluid app-bg">
-    <section class="row">
+    <section class="row justify-content-center">
 
-      <img :src="account.coverImg" class="img-fluid">
+      <img :src="account.coverImg" class="img-fluid banner-img">
       <div class="about text-center">
-        <img :src="account.picture" alt="" class="rounded-circle prof-pic" />
-        <h1 class="sub-title m-2">{{ account.name }}</h1>
+        <img :src="account.picture" alt="" class="profile-icon" />
+        <h1 class="m-2 subtitle oxygen fs-6">{{ account.name }}</h1>
 
         <!--counters-->
 
@@ -40,13 +40,17 @@
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 export default {
+  props: {
+    vault: { type: Object, required: true },
+    keep: { type: Object, required: true },
+  },
   setup() {
     return {
       account: computed(() => AppState.account),
       profile: computed(() => AppState.activeProfile),
       keeps: computed(() => AppState.keeps),
       vaults: computed(() => AppState.userVaults),
-      numberOfKeeps: computed(() => AppState.keeps.length),
+      numberOfKeeps: computed(() => AppState.userKeeps.length),
       numberOfVaults: computed(() => AppState.userVaults.length),
     }
   }

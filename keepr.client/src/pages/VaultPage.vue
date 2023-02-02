@@ -34,10 +34,13 @@
                             :style="`background-image: url(${k?.img})`"
                             :title="'Open ' + k?.name + ' by ' + k?.creator.name">
                             <div class="d-flex justify-content-between-mobile-cleanup">
-                                <div class="mdi mdi-trash-can text-white m-2" @click="removeVaultKeep(k)"></div>
+
+                                <div v-if="account?.id == activeVault?.creatorId"
+                                    class="mdi mdi-trash-can text-white m-2" @click="removeFromVault(k)"></div>
                                 <h4 class="vault-name">
                                     {{ k?.name }}
                                 </h4>
+
                             </div>
                             <br><br>
                         </div>
@@ -84,7 +87,9 @@ export default {
             keepsInVault: computed(() => AppState.vaultKeeps.length),
             activeVault: computed(() => AppState.activeVault),
             account: computed(() => AppState.account),
+            keep: computed(() => AppState.keep),
             numberOfKeeps: computed(() => AppState.numberOfKeeps),
+            // numberOfKeeps: computed(() => AppState.keeps.length),
 
             async openVaultKeepModal(k) {
                 AppState.activeKeep = k;
@@ -109,8 +114,16 @@ export default {
                 await keepsService.incrementViews();
             },
 
-            async removeVaultKeep(k) {
-
+            async removeFromVault(k) {
+                try {
+                    if (await Pop.confirm("Remove this Keep from the Vault?", 'warning')) {
+                        await vaultKeepsService.removeFromVault(k)
+                        Modal.getOrCreateInstance(document.getElementById('keepDetails')).hide()
+                    }
+                } catch (error) {
+                    logger.error(error)
+                    Pop.toast("Error removing keep.", 'error')
+                }
             }
         };
 

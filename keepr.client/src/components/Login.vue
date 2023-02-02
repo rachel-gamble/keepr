@@ -62,6 +62,6 @@ export default {
 img {
   width: 10vh;
   height: 10vh;
-  object-fit: cover;
+  object-fit: cover
 }
 </style>

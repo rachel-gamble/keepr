@@ -3,7 +3,7 @@
         <section class="row app-bg">
             <!--SECTION LEFT SIDE-->
             <div class="col-md-6 p-0">
-                <img :src="activeKeep?.img" alt="" class="img-fluid rounded-top selectable hover-shadow"
+                <img :src="activeKeep?.img" alt="" class="img-fluid rounded-top selectable hover-shadow keep-img"
                     title="keep image">
             </div>
 
@@ -26,14 +26,14 @@
                 </div>
                 <!--body-->
                 <!--title + description-->
-                <section class="align-items-center middle">
+                <div class="col-5 align-items-center middle">
                     <div class="text-center keep-title">
                         <h2 class="mx-1">{{ activeKeep?.name }}</h2>
                     </div>
                     <div class="mx-2 justify-content-center keep-body">
                         {{ activeKeep?.description }}
                     </div>
-                </section>
+                </div>
 
                 <!--bottom-->
                 <section class="d-flex bottom">
@@ -135,6 +135,18 @@ export default {
     height: 3em;
     width: 3em;
     object-fit: cover;
+}
+
+/* .keep-img {
+    height: 60vh !important;
+} */
+
+.middle {
+    position: absolute;
+    top: 53%;
+    left: 75%;
+    text-overflow: wrap;
+    transform: translate(-50%, -50%)
 }
 
 .bottom {

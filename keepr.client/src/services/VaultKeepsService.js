@@ -22,6 +22,7 @@ class VaultKeepsService {
     async removeFromVault() {
         const vaultKeepId = AppState.activeKeep.vaultKeepId
         await api.delete("api/vaultkeeps/" + vaultKeepId)
+        console.log('keep removed from vault')
         const index = AppState.vaultKeeps.find(vk => vk.id == vaultKeepId)
         // adds keep to the top of the vault, yay figured the splice out!
         AppState.vaultKeeps.splice(index, 1)
