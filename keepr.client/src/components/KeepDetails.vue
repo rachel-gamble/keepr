@@ -1,25 +1,72 @@
 <template>
-    <div class="container-fluid app-bg modal-size">
-        <section class="row app-bg">
-            <!--SECTION LEFT SIDE-->
-            <div class="col-md-6 col-sm-12 order-md-1 order-sm-1 p-0 app-bg">
-                <img :src="activeKeep?.img" alt="" class="img-fluid rounded-top selectable hover-shadow keep-img app-bg"
-                    title="keep image">
+    <div class="app-bg">
+        <!--SECTION LEFT SIDE-->
+        <section class="row">
+            <div class="col-md-6 col-sm-12 order-md-1 order-sm-1 app-bg left-side d-flex p-0">
+                <img :src="activeKeep?.img" alt="" class="img-fluid rounded-top hover-shadow app-bg" title="">
             </div>
-
             <!--SECTION Right SIDE-->
-
-            <div class="col-md-6 col-sm-12 order-md-2 order-sm-2 align-items-center right-side">
-
-                <!-- view count -->
-                <div class="row">
-
-                    <div class="d-flex counts m-2 justify-content-center">
+            <div class="col-md-6 order-md-2 order-sm-2">
+                <section class="row p-0 my-2">
+                    <div class="d-flex justify-content-center">
                         <i class="mdi mdi-eye mx-1"></i>
                         <p class=""> {{ activeKeep?.views }} </p>
                         <p class="mx-2">|</p>
-                        <!-- keep count-->
                         <p class="keep-box px-1"> K </p>
+                        <p class="mx-1">{{ activeKeep?.kept }}</p>
+                    </div>
+                </section>
+                <section class="row">
+                    <div class="justify-content-center">
+                        <div class="text-center keep-title">
+                            <h2 class="mx-1">{{ activeKeep?.name }}</h2>
+                        </div>
+                        <div class="mx-2 keep-body text-start">
+                            {{ activeKeep?.description }}
+                        </div>
+                    </div>
+                </section>
+                <section class="row">
+                    <div class="d-flex justify-content-between">
+                        <div class="col-6">
+                            <form class="dropdown" @submit.prevent="addKeepToVault()">
+                                <label class="" for="add-to-vault-select"><small>Add To Vault:</small></label>
+                                <select name="" v-model="vaultSelect" class="action selectable" title="Add to vault"
+                                    required>
+                                    <option v-for="mv in myVaults" :key="mv" :value="mv" class="action"
+                                        :title="mv.name">
+                                        {{ mv?.name.substring(0, 15) }}
+                                    </option>
+                                </select>
+                                <button type="submit" class="btn vault-btn selectable fs-6 mb-2 mt-1 mx-1"
+                                    title="save keep">save</button>
+                            </form>
+                        </div>
+                        <div class="col-6">
+                            <img :src="activeKeep?.creator.picture" alt=""
+                                class="img-fluid prof-img rounded-circle app-bg selectable"
+                                :title="`Created by ${activeKeep?.creator.name}`" @click="goToProfile()" />
+                            <div class="fs-6 oxygen c-name">
+                                {{ activeKeep?.creator.name }}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <!--SECTION Right SIDE-->
+
+        <!-- <div class="col-md-6 col-sm-12 order-md-2 order-sm-2 align-items-center right-side"> -->
+
+        <!-- view count -->
+        <!-- <div class="row">
+                    <div class="d-flex counts m-2 justify-content-center">
+                        <i class="mdi mdi-eye mx-1"></i>
+                        <p class=""> {{ activeKeep?.views }} </p>
+                        <p class="mx-2">|</p> -->
+        <!-- keep count-->
+        <!-- <p class="keep-box px-1"> K </p>
                         <p class="mx-1">{{ activeKeep?.kept }}</p>
                     </div>
                     <div class="text-center">
@@ -27,10 +74,10 @@
                             class="btn btn-light mdi mdi-trash-can app-bg" title="Delete this keep"
                             @click.prevent="removeKeep()"></span>
                     </div>
-                </div>
-                <!--body-->
-                <!--title + description-->
-                <div class="row">
+                </div> -->
+        <!--body-->
+        <!--title + description-->
+        <!-- <div class="row">
 
                     <div class="align-items-center middle">
                         <div class="text-center keep-title">
@@ -41,16 +88,17 @@
                         </div>
                     </div>
 
-                </div>
-                <!--bottom-->
-                <div class="row justify-space-between">
+                </div> -->
+        <!--bottom-->
+        <!-- <div class="row justify-space-between"> -->
 
-                    <div class="col-md-6 oxygen bottom">
-                        <!--SECTION Add to Vault Button-->
+        <!--SECTION Add to Vault Button-->
+        <!-- <div class="col-md-6 oxygen bottom">
                         <div v-if="account.id" style="" class="col-md-6 col-sm-12">
                             <form class="dropdown" @submit.prevent="addKeepToVault()">
-                                <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label><br />
-                                <select name="" v-model="vaultSelect" class="action" title="Add to vault" required>
+                                <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
+                                <select name="" v-model="vaultSelect" class="action selectable" title="Add to vault"
+                                    required>
                                     <option v-for="mv in myVaults" :key="mv" :value="mv" class="action"
                                         :title="mv.name">
                                         {{ mv?.name.substring(0, 15) }}
@@ -60,19 +108,24 @@
                                     title="save keep">save</button>
                             </form>
                         </div>
-                    </div>
-                    <!-- profile info -->
-                    <div class="mt-1 my-3 bottom col-md-5 col-sm-12 text-end" style="">
+                    </div> -->
+
+
+        <!-- profile info -->
+        <!-- <div class="mt-1 my-3 bottom col-md-5 col-sm-12 text-end" style="">
                         <img :src="activeKeep?.creator.picture" alt=""
                             class="img-fluid prof-img rounded-circle app-bg selectable"
                             :title="`Created by ${activeKeep?.creator.name}`" @click="goToProfile()" />
-                        <div class="fs-6 oxygen">
+                        <div class="fs-6 oxygen c-name">
                             {{ activeKeep?.creator.name }}
                         </div>
-                    </div>
+                    </div> -->
+
+        <!-- 
                 </div>
-            </div>
-        </section>
+            </div> -->
+
+
     </div>
 </template>
 
@@ -138,24 +191,30 @@ export default {
 </script>
 
 <style scoped>
+input {
+    border: #A76BBD;
+}
 
+/* .left-side {
+    justify-content: center;
+} */
 
-.middle {
+/* .middle {
     position: absolute;
     top: 55%;
     left: 75%;
     text-overflow: wrap;
     transform: translate(-50%, -50%)
-}
+} */
 
-.bottom {
+/* .bottom {
     align-self: flex-end;
     text-overflow: wrap;
     position: absolute;
     bottom: 0;
-}
+} */
 
-@media only screen and (max-width:1068px) {
+/* @media only screen and (max-width:1068px) {
 
     .middle {
         position: relative;
@@ -171,32 +230,33 @@ export default {
         position: absolute;
         bottom: 0;
     }
-}
+} */
 
 @media only screen and (max-width:768px) {
-    .middle {
+    /* .middle {
         position: relative;
         top: 0%;
         left: 0%;
         text-overflow: wrap;
-        transform: translate(0%, 0%)
-    }
+        transform: translate(0%, 0%);
 
-    .modal-size {
+    } */
+
+    /* .modal-size {
         height: 70vh;
     }
 
     .keep-img {
         height: 60vh;
-    }
+    } */
 }
 
 @media only screen and (max-width:538px) {
-
+    /* 
     .keep-img {
-        height: 50px;
-    }
-
+        height: 50vh;
+    } */
+    /* 
     .middle {
         position: relative;
         top: 0%;
@@ -219,13 +279,13 @@ export default {
         justify-content: space-around;
         position: absolute;
         bottom: 0;
-    }
+    } */
 }
 
 /* .keep-img {
     height: 60vh !important;
 } */
-
+/* 
 .prof-img {
     border-radius: 50%;
     height: 3em;
@@ -239,9 +299,9 @@ export default {
 
 .keep-body {
     font-family: 'Sansation';
+    word-wrap: break-word;
     white-space: normal;
     text-overflow: wrap;
-    word-wrap: break-word
 }
 
 .keep-box {
@@ -254,7 +314,7 @@ export default {
 .counts {
     color: #636E72;
     font-family: 'Sansation';
-}
+} */
 
 /* .left-section {
   display: flex;
@@ -269,13 +329,13 @@ export default {
     color: #FEF6F0;
 }
 
+/* 
 .save-btn {
     position: absolute;
     width: 88px;
     height: 37px;
     left: 934px;
     top: 754px;
-
     font-family: 'Oxygen';
     font-style: normal;
     font-weight: 700;
@@ -284,7 +344,6 @@ export default {
     display: flex;
     align-items: center;
     text-align: center;
-
     color: #FEF6F0;
 }
 
@@ -294,91 +353,59 @@ export default {
     right: 32.57%;
     top: 19.82%;
     bottom: 78.71%;
-
-    /* American River */
-
     background: #636E72;
 }
 
 .view-count {
-    /* 322 */
     position: absolute;
     width: 24px;
     height: 16px;
     left: 980px;
     top: 203px;
-
     font-family: 'Sansation';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
-    /* identical to box height */
-
-
-    /* American River */
-
     color: #636E72;
-}
+} */
 
-.keep-icon {
-    /* k */
-
-
+/* .keep-icon {
     position: absolute;
     width: 12px;
     height: 15px;
     left: 1032px;
     top: 202px;
-
     font-family: 'Marko One';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 19px;
     text-align: center;
-
-    /* American River */
-
     color: #636E72;
-}
+} */
 
-.keep-border {
-    /* Rectangle 2 */
-
-
+/* .keep-border {
     position: absolute;
     width: 20px;
     height: 20px;
     left: 1028px;
     top: 201px;
-
-    /* American River */
-
     border: 1px solid #636E72;
     border-radius: 5px;
-}
+} */
 
-.keep-count {
-    /* 75 */
-
-
+/* .keep-count {
     position: absolute;
     width: 16px;
     height: 16px;
     left: 1057px;
     top: 203px;
-
     font-family: 'Sansation';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
-    /* identical to box height */
-
-
-    /* American River */
-
     color: #636E72;
-}
+} */
 </style>
