@@ -2,47 +2,54 @@
     <div class="container-fluid app-bg modal-size">
         <section class="row app-bg">
             <!--SECTION LEFT SIDE-->
-            <div class="col-md-6 col-sm-12 order-sm-1 p-0 app-bg">
+            <div class="col-md-6 col-sm-12 order-md-1 order-sm-1 p-0 app-bg">
                 <img :src="activeKeep?.img" alt="" class="img-fluid rounded-top selectable hover-shadow keep-img app-bg"
                     title="keep image">
             </div>
 
             <!--SECTION Right SIDE-->
 
-            <div class="col-md-6 col-sm-12 order-sm-2 align-items-center">
+            <div class="col-md-6 col-sm-12 order-md-2 order-sm-2 align-items-center right-side">
 
                 <!-- view count -->
-                <div class="d-flex counts m-2 justify-content-center">
-                    <i class="mdi mdi-eye mx-1"></i>
-                    <p class=""> {{ activeKeep?.views }} </p>
-                    <p class="mx-2">|</p>
-                    <!-- keep count-->
-                    <p class="keep-box px-1"> K </p>
-                    <p class="mx-1">{{ activeKeep?.kept }}</p>
-                </div>
-                <div class="text-center">
-                    <span v-show="account.id == activeKeep?.creator.id" class="btn btn-light mdi mdi-trash-can app-bg"
-                        title="Delete this keep" @click.prevent="removeKeep()"></span>
+                <div class="row">
+
+                    <div class="d-flex counts m-2 justify-content-center">
+                        <i class="mdi mdi-eye mx-1"></i>
+                        <p class=""> {{ activeKeep?.views }} </p>
+                        <p class="mx-2">|</p>
+                        <!-- keep count-->
+                        <p class="keep-box px-1"> K </p>
+                        <p class="mx-1">{{ activeKeep?.kept }}</p>
+                    </div>
+                    <div class="text-center">
+                        <span v-show="account.id == activeKeep?.creator.id"
+                            class="btn btn-light mdi mdi-trash-can app-bg" title="Delete this keep"
+                            @click.prevent="removeKeep()"></span>
+                    </div>
                 </div>
                 <!--body-->
                 <!--title + description-->
-                <div class="col-5 align-items-center middle">
-                    <div class="text-center keep-title">
-                        <h2 class="mx-1">{{ activeKeep?.name }}</h2>
+                <div class="row">
+
+                    <div class="align-items-center middle">
+                        <div class="text-center keep-title">
+                            <h2 class="mx-1">{{ activeKeep?.name }}</h2>
+                        </div>
+                        <div class="mx-2 justify-content-center keep-body ">
+                            {{ activeKeep?.description }}
+                        </div>
                     </div>
-                    <div class="mx-2 justify-content-center keep-body">
-                        {{ activeKeep?.description }}
-                    </div>
+
                 </div>
-
                 <!--bottom-->
-                <section class="d-flex bottom">
+                <div class="row justify-space-between">
 
-                    <div class="col-6 oxygen">
+                    <div class="col-md-6 oxygen bottom">
                         <!--SECTION Add to Vault Button-->
-                        <div v-if="account.id" style="">
+                        <div v-if="account.id" style="" class="col-md-6 col-sm-12">
                             <form class="dropdown" @submit.prevent="addKeepToVault()">
-                                <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
+                                <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label><br />
                                 <select name="" v-model="vaultSelect" class="action" title="Add to vault" required>
                                     <option v-for="mv in myVaults" :key="mv" :value="mv" class="action"
                                         :title="mv.name">
@@ -55,15 +62,15 @@
                         </div>
                     </div>
                     <!-- profile info -->
-                    <div class="col-5 mx-4 mt-1 my-3 text-center" style="">
+                    <div class="mt-1 my-3 bottom col-md-5 col-sm-12 text-end" style="">
                         <img :src="activeKeep?.creator.picture" alt=""
-                            class=" col-12 img-fluid prof-img rounded-circle app-bg selectable"
+                            class="img-fluid prof-img rounded-circle app-bg selectable"
                             :title="`Created by ${activeKeep?.creator.name}`" @click="goToProfile()" />
-                        <div class="fs-6 col-12 oxygen">
+                        <div class="fs-6 oxygen">
                             {{ activeKeep?.creator.name }}
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
         </section>
     </div>
@@ -131,9 +138,7 @@ export default {
 </script>
 
 <style scoped>
-.modal-size {
-    height: 70vh;
-}
+
 
 .middle {
     position: absolute;
@@ -151,9 +156,6 @@ export default {
 }
 
 @media only screen and (max-width:1068px) {
-    .modal-size {
-        height: 70vh;
-    }
 
     .middle {
         position: relative;
@@ -161,6 +163,13 @@ export default {
         left: 0%;
         text-overflow: wrap;
         transform: translate(0%, 0%)
+    }
+
+    .bottom {
+        align-self: flex-end;
+        text-overflow: wrap;
+        position: absolute;
+        bottom: 0;
     }
 }
 
@@ -176,19 +185,40 @@ export default {
     .modal-size {
         height: 70vh;
     }
+
+    .keep-img {
+        height: 60vh;
+    }
 }
 
 @media only screen and (max-width:538px) {
-    .modal-size {
-        height: 100vh;
+
+    .keep-img {
+        height: 50px;
     }
 
     .middle {
         position: relative;
         top: 0%;
         left: 0%;
-        text-overflow: wrap;
-        transform: translate(0%, 0%)
+        overflow: hidden;
+        white-space: normal;
+        text-overflow: ellipsis;
+        transform: translate(0%, 0%);
+        height: 40vh;
+    }
+
+    .bottom {
+        position: absolute;
+        bottom: 0;
+        white-space: normal;
+        margin-top: 50vh;
+    }
+
+    .right-side {
+        justify-content: space-around;
+        position: absolute;
+        bottom: 0;
     }
 }
 
@@ -209,6 +239,9 @@ export default {
 
 .keep-body {
     font-family: 'Sansation';
+    white-space: normal;
+    text-overflow: wrap;
+    word-wrap: break-word
 }
 
 .keep-box {
