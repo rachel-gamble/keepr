@@ -24,7 +24,7 @@
                 <div class="masonry-container">
                     <div v-for="vault in vaults" :key="vault.id">
                         <div class="" @click="goToVault(vault)">
-                            <div class="rounded my-2 mb-2 elevation-5 hover-card keep-container vault-card image-custom image-fluid selectable hover-shadow"
+                            <div class="rounded my-2 mb-2 elevation-5 keep-container vault-card image-custom image-fluid selectable hover-shadow"
                                 :style="`background-image: url(${vault?.img})`"
                                 :title="'Go to ' + vault?.name + ' by ' + vault?.creatorId.name">
                                 <div class="d-flex justify-content-between-mobile-cleanup">
@@ -51,7 +51,7 @@
                 <div class="masonry-container">
                     <div v-for="k in keeps" :key="k.id">
                         <div class="" @click="openKeepDetails(k)">
-                            <div class="rounded my-2 mb-2 elevation-5 hover-card keep-container vault-card image-custom image-fluid selectable hover-shadow"
+                            <div class="rounded my-2 mb-2 elevation-5 keep-container vault-card image-custom image-fluid selectable hover-shadow"
                                 :style="`background-image: url(${k?.img})`"
                                 :title="'Open ' + keep?.name + ' by ' + vault?.creatorId.name">
                                 <div class="d-flex justify-content-between-mobile-cleanup">
