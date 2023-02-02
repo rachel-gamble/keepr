@@ -3,9 +3,9 @@
     <div class="row">
       <!--SECTION Keep Img-->
       <section class="masonry-container p-3">
-        <div v-for="k in keeps" :key="k.id" class="card my-4 elevation-5 hover-card keep-container selectable"
-          style="min-height: 18vh;">
-          <img @click="openKeepDetails(k)" :src="k?.img ? k.img : 'https://thiscatdoesnotexist'" alt="keep image"
+        <div @click="openKeepDetails(k)" v-for="k in keeps" :key="k.id"
+          class="card my-4 elevation-5 hover-card keep-container selectable" style="min-height: 18vh;">
+          <img :src="k?.img ? k.img : 'https://thiscatdoesnotexist'" alt="keep image"
             class="img-fluid hover-shadow rounded img-custom" :title="'Open ' + k.name + ' details'">
           <!--SECTION Keep Name + Creator-->
           <div class="d-flex justify-content-between mobile-cleanup align-items-center" style="height: 0px">

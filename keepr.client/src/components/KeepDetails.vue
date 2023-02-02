@@ -5,10 +5,12 @@
             <div class="col-md-6 col-sm-12 order-md-1 order-sm-1 app-bg left-side d-flex p-0">
                 <img :src="activeKeep?.img" alt="" class="img-fluid rounded-top hover-shadow app-bg" title="">
             </div>
+
+
             <!--SECTION Right SIDE-->
-            <div class="col-md-6 order-md-2 order-sm-2">
-                <section class="row p-0 my-2">
-                    <div class="d-flex justify-content-center">
+            <div class="col-md-6 order-md-2 order-sm-2 d-flex flex-column justify-content-between">
+                <section class="row p-0 my-2 counts">
+                    <div class="d-flex justify-content-center align-content-center">
                         <i class="mdi mdi-eye mx-1"></i>
                         <p class=""> {{ activeKeep?.views }} </p>
                         <p class="mx-2">|</p>
@@ -16,6 +18,8 @@
                         <p class="mx-1">{{ activeKeep?.kept }}</p>
                     </div>
                 </section>
+
+
                 <section class="row">
                     <div class="justify-content-center">
                         <div class="text-center keep-title">
@@ -26,27 +30,30 @@
                         </div>
                     </div>
                 </section>
-                <section class="row">
-                    <div class="d-flex justify-content-between">
+
+
+                <section class="row align-bottom oxygen">
+                    <div class="d-flex">
                         <div class="col-6">
                             <form class="dropdown" @submit.prevent="addKeepToVault()">
-                                <label class="" for="add-to-vault-select"><small>Add To Vault:</small></label>
-                                <select name="" v-model="vaultSelect" class="action selectable" title="Add to vault"
+                                <label class="ms-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
+                                <select name="" v-model="vaultSelect" class="action selectable m-1" title="Add to vault"
                                     required>
                                     <option v-for="mv in myVaults" :key="mv" :value="mv" class="action"
                                         :title="mv.name">
                                         {{ mv?.name.substring(0, 15) }}
                                     </option>
                                 </select>
-                                <button type="submit" class="btn vault-btn selectable fs-6 mb-2 mt-1 mx-1"
+                                <button type="submit" class="btn vault-btn selectable fs-6 my-1 mx-1"
                                     title="save keep">save</button>
                             </form>
                         </div>
-                        <div class="col-6">
+
+                        <div class="col-6 d-flex align-content-end">
                             <img :src="activeKeep?.creator.picture" alt=""
                                 class="img-fluid prof-img rounded-circle app-bg selectable"
                                 :title="`Created by ${activeKeep?.creator.name}`" @click="goToProfile()" />
-                            <div class="fs-6 oxygen c-name">
+                            <div class="fs-6 oxygen c-name mx-2">
                                 {{ activeKeep?.creator.name }}
                             </div>
                         </div>
@@ -297,6 +304,7 @@ input {
     font-family: 'Marko One', serif;
 }
 
+*/
 .keep-body {
     font-family: 'Sansation';
     word-wrap: break-word;
@@ -304,17 +312,21 @@ input {
     text-overflow: wrap;
 }
 
-.keep-box {
+.san-font {
+    font-family: 'Sansation';
+}
+
+/* .keep-box {
     font-family: 'Marko One', serif;
     box-sizing: border-box;
     border: 1.66787px solid #636E72;
     border-radius: 5px;
-}
+} */
 
 .counts {
     color: #636E72;
     font-family: 'Sansation';
-} */
+}
 
 /* .left-section {
   display: flex;

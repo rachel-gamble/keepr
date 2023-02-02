@@ -1,6 +1,6 @@
 <template>
   <section class="row app-bg m-3">
-    <section class="col-md-12 nav-section">
+    <div class="col-md-12 nav-section">
       <div class="left-section d-flex justify-content-between">
 
         <!--SECTION HOME BUTTON-->
@@ -36,7 +36,7 @@
         <Login />
       </div>
       <!--END-->
-    </section>
+    </div>
   </section>
 </template>
 
