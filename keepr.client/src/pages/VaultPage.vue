@@ -2,7 +2,7 @@
     <div class="container-fluid app-bg oxygen">
         <!--SECTION Banner + Vault Details-->
         <section class="row d-flex justify-content-center text-center">
-            <div class="column">
+            <div class="">
                 <img :src="activeVault?.img" class="banner-img justify-item-center text-center"
                     alt="profile cover image" title="Cover image"><br />
             </div>
@@ -17,7 +17,7 @@
                     Vault</button>
 
                 <div class="counts">
-                    <span class="bold">{{ numberOfKeeps }} *11* Keeps</span>
+                    <span class="bold">{{ vaultKeeps.length }} Keeps</span>
                 </div>
             </div>
         </section>
@@ -30,7 +30,7 @@
                 <div v-for="k in vaultKeeps" :key="k.id" class="col-lg-3 col-md-6 col-sm-12">
                     <div class="">
                         <div @click="openKeepDetails(k)"
-                            class="rounded my-2 mb-2 elevation-5 hover-card keep-container vault-card image-custom image-fluid selectable hover-shadow"
+                            class="rounded my-2 mb-2 elevation-5 hover-card keep-container vault-card image-custom image-fluid selectable hover-shadow mm"
                             :style="`background-image: url(${k?.img})`"
                             :title="'Open ' + k?.name + ' by ' + k?.creator.name">
                             <div class="d-flex justify-content-between-mobile-cleanup">
@@ -138,9 +138,12 @@ export default {
     transform: translateY(-12vh);
 }
 
+/* .mm{
+
+} */
+
 .vault-page-name {
     transform: translateY(-18vh);
-    margin-left: 0.5em;
     color: whitesmoke;
     text-shadow: 3px 3px 4px black;
     font-family: 'Marko One', serif;
