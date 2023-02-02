@@ -1,6 +1,6 @@
 <template>
   <section class="row app-bg m-3">
-    <div class="col-md-12 nav-section">
+    <section class="col-md-12 nav-section">
       <div class="left-section d-flex justify-content-between">
 
         <!--SECTION HOME BUTTON-->
@@ -36,7 +36,7 @@
         <Login />
       </div>
       <!--END-->
-    </div>
+    </section>
   </section>
 </template>
 
@@ -70,13 +70,19 @@ section {
   align-items: center;
 }
 
-.left-section {
-  display: flex;
+@media (max-width: 576px) {
+  .left-section {
+    flex-wrap: wrap;
+  }
+
+  .home-btn {
+    width: 100%;
+  }
 }
 
-.right-section {
+/* .right-section {
   display: flex;
-}
+} */
 
 .keepr-logo {
   /* position: absolute;
