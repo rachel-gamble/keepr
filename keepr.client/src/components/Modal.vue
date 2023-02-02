@@ -2,7 +2,7 @@
   <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
+      <div class="modal-content app-bg">
         <div class="modal-header app-bg">
           <slot name="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">{{ modalTitle }}</h1>

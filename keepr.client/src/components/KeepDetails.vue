@@ -1,9 +1,9 @@
 <template>
-    <div class="container-fluid app-bg">
+    <div class="container-fluid app-bg modal-size">
         <section class="row app-bg">
             <!--SECTION LEFT SIDE-->
-            <div class="col-md-6 col-sm-12 order-sm-1 p-0">
-                <img :src="activeKeep?.img" alt="" class="img-fluid rounded-top selectable hover-shadow keep-img"
+            <div class="col-md-6 col-sm-12 order-sm-1 p-0 app-bg">
+                <img :src="activeKeep?.img" alt="" class="img-fluid rounded-top selectable hover-shadow keep-img app-bg"
                     title="keep image">
             </div>
 
@@ -21,8 +21,8 @@
                     <p class="mx-1">{{ activeKeep?.kept }}</p>
                 </div>
                 <div class="text-center">
-                    <div v-show="account.id == activeKeep?.creator.id" class="btn btn-light mdi mdi-trash-can app-bg"
-                        title="Delete this keep" @click.prevent="removeKeep()"></div>
+                    <span v-show="account.id == activeKeep?.creator.id" class="btn btn-light mdi mdi-trash-can app-bg"
+                        title="Delete this keep" @click.prevent="removeKeep()"></span>
                 </div>
                 <!--body-->
                 <!--title + description-->
@@ -129,21 +129,14 @@ export default {
 }
 </script>
 
-<style>
-.prof-img {
-    border-radius: 50%;
-    height: 3em;
-    width: 3em;
-    object-fit: cover;
+<style scoped>
+.modal-size {
+    height: 70vh;
 }
-
-/* .keep-img {
-    height: 60vh !important;
-} */
 
 .middle {
     position: absolute;
-    top: 53%;
+    top: 55%;
     left: 75%;
     text-overflow: wrap;
     transform: translate(-50%, -50%)
@@ -156,6 +149,58 @@ export default {
     bottom: 0;
 }
 
+@media only screen and (max-width:1068px) {
+    .modal-size {
+        height: 70vh;
+    }
+
+    .middle {
+        position: relative;
+        top: 0%;
+        left: 0%;
+        text-overflow: wrap;
+        transform: translate(0%, 0%)
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .middle {
+        position: relative;
+        top: 0%;
+        left: 0%;
+        text-overflow: wrap;
+        transform: translate(0%, 0%)
+    }
+
+    .modal-size {
+        height: 70vh;
+    }
+}
+
+@media only screen and (max-width:538px) {
+    .modal-size {
+        height: 100vh;
+    }
+
+    .middle {
+        position: relative;
+        top: 0%;
+        left: 0%;
+        text-overflow: wrap;
+        transform: translate(0%, 0%)
+    }
+}
+
+/* .keep-img {
+    height: 60vh !important;
+} */
+
+.prof-img {
+    border-radius: 50%;
+    height: 3em;
+    width: 3em;
+    object-fit: cover;
+}
 
 .keep-title {
     font-family: 'Marko One', serif;
@@ -189,41 +234,6 @@ export default {
     background-color: #A76BBD;
     color: #FEF6F0;
 }
-
-/* .keep-title {
-    position: absolute;
-    width: 430px;
-    height: 61px;
-    left: 796px;
-    top: 362px;
-
-    font-family: 'Marko One';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 48px;
-    line-height: 64px;
-    text-align: center;
-
-    /* Dracula Orchid */
-
-/* color: #2D3436;
-} */
-
-/* .keep-body {
-    position: absolute;
-    width: 427px;
-    height: 152px;
-    left: 800px;
-    top: 437px;
-
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 175%;
-
-    color: #636E72;
-} */
 
 .save-btn {
     position: absolute;
