@@ -12,8 +12,8 @@
             <div class="up">
                 <span></span>
                 <!--SECTION Button-->
-                <button v-show="activeVault?.creator.id == account.id" @click="removeVault()"
-                    class="btn btn-dark">Delete
+                <button v-show="activeVault?.creator.id == account.id" @click="removeVault()" class="btn btn-dark"
+                    title="delete vault">Delete
                     Vault</button>
 
                 <div class="counts">
@@ -36,7 +36,8 @@
                             <div class="d-flex justify-content-between-mobile-cleanup">
 
                                 <div v-if="account?.id == activeVault?.creatorId"
-                                    class="mdi mdi-trash-can text-white m-2" @click="removeFromVault(k)"></div>
+                                    class="mdi mdi-trash-can text-white m-2 hover selectable elevation-5"
+                                    @click="removeFromVault(k)" title="remove keep"></div>
                                 <h4 class="vault-name">
                                     {{ k?.name }}
                                 </h4>

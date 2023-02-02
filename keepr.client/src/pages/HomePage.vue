@@ -13,7 +13,7 @@
               {{ k.name }}
             </h4>
             <img @click="goToProfile(k.creator.id)" :src="k.creator.picture" alt="profile image"
-              class="thumbnail-img selectable rounded-circle" />
+              class="thumbnail-img selectable rounded-circle" :title="'Go to ' + k.creator.name + 'profile page'" />
           </div>
         </div>
       </section>

@@ -44,12 +44,13 @@
                             <form class="dropdown" @submit.prevent="addKeepToVault()">
                                 <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
                                 <select name="" v-model="vaultSelect" class="action" title="Add to vault" required>
-                                    <option v-for="mv in myVaults" :key="mv" :value="mv" class="action">
+                                    <option v-for="mv in myVaults" :key="mv" :value="mv" class="action"
+                                        :title="mv.name">
                                         {{ mv?.name.substring(0, 15) }}
                                     </option>
                                 </select>
                                 <button type="submit" class="btn vault-btn selectable fs-6 mb-2 mt-1 mx-1"
-                                    title="Submit">save</button>
+                                    title="save keep">save</button>
                             </form>
                         </div>
                     </div>
