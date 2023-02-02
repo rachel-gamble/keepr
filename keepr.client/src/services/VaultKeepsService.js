@@ -10,6 +10,7 @@ class VaultKeepsService {
         const res = await api.post('api/vaultkeeps', vaultKeep)
         const modifiedKeep = AppState.activeKeep
         modifiedKeep.kept++
+        debugger
         await api.put("api/keeps/" + modifiedKeep.id, modifiedKeep)
         logger.log('keep added to vault')
     }

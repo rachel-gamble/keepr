@@ -13,7 +13,7 @@
 
         <!--SECTION CREATE BUTTON-->
 
-        <div v-if="account.id" class="dropdown">
+        <div v-if="account.id && route.name != 'Profile'" class="dropdown">
           <button class="btn create-btn dropdown-toggle mt-2" type="button" id="dropdownMenuButton"
             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Create">
             Create
@@ -47,10 +47,13 @@ import Modal from './Modal.vue';
 import VaultForm from './VaultForm.vue';
 import { computed } from '@vue/reactivity';
 import { AppState } from '../AppState';
+import { useRoute, useRouter } from 'vue-router';
 
 export default {
   setup() {
+    const route = useRoute()
     return {
+      route,
       account: computed(() => AppState.account)
     }
   },

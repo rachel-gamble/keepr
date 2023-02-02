@@ -35,6 +35,9 @@
                 <section class="row oxygen">
                     <div class="d-flex justify-content-center align-items-center">
                         <div class="col-6 my-2">
+                            <span v-if="activeKeep?.creatorId == account.id"
+                                class="mdi mdi-trash-can selectable hover text-center" @click.prevent="removeKeep()"
+                                title="delete keep"></span>
                             <form class="dropdown" @submit.prevent="addKeepToVault()">
                                 <label class="ms-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
                                 <select name="" v-model="vaultSelect" class="action selectable m-1" title="Add to vault"
