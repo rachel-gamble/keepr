@@ -115,6 +115,7 @@ export default {
   width: 85vw;
   height: 50vh;
   object-fit: cover;
+  margin: auto;
 }
 
 // .vault-img {
@@ -126,6 +127,7 @@ export default {
   animation-name: fadeInto;
   animation-duration: 5000ms;
   margin: auto;
+  column-span: none;
 }
 
 //SECTION background colors 
@@ -210,18 +212,22 @@ footer {
 .masonry-container {
   column-count: 4;
   column-gap: 3em;
+  // column-fill: balance;
+  overflow: hidden;
 }
 
 @media only screen and (max-width:1068px) {
   .masonry-container {
     column-count: 3;
     column-gap: 3em;
+    overflow: hidden;
   }
 
   @media only screen and (max-width:768px) {
     .masonry-container {
       column-count: 2;
       column-gap: 3em;
+      overflow: hidden;
     }
   }
 
@@ -229,6 +235,7 @@ footer {
     .masonry-container {
       column-count: 1;
       column-gap: 3em;
+      overflow: hidden;
     }
   }
 }

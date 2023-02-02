@@ -105,6 +105,7 @@ export default {
                         await keepsService.removeKeep()
                         Modal.getOrCreateInstance(document.getElementById('keepDetails')).hide()
                         Pop.toast("Keep removed. ✅")
+                        getKeeps()
                     }
                 } catch (error) {
                     logger.error(error)

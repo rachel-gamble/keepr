@@ -4,7 +4,7 @@
 
             <div class="form-floating mb-3">
                 <input v-model="editable.name" required type="text" class="form-control" id="keepName"
-                    placeholder="Title...">
+                    placeholder="Title..." maxlength="15">
                 <label for="keepName">Title</label>
             </div>
 
@@ -18,7 +18,7 @@
                 <textarea v-model="editable.description" required type="text" class="form-control" id="keepDescription"
                     placeholder="Keep Description...">
                 </textarea>
-                <label for="keepName">Keep Description</label>
+                <label for="keepName" maxlength="25">Keep Description</label>
             </div>
 
             <div class="modal-footer">

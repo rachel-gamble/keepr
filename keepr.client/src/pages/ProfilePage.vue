@@ -1,16 +1,17 @@
 <template>
     <div class="container-fluid app-bg oxygen">
         <!--SECTION Banner + Profile Details-->
-
-        <section class="row d-flex justify-content-center text-center">
-            <img :src="profile?.coverImg" class="banner-img" alt="profile cover image" title="Profile cover image">
-            <img :src="profile?.picture" alt="profile picture" class="profile-icon">
-            <div class="flex-column">
-                <h1>{{ profile?.name }}</h1>
-                <div class="counts">
-                    <span class="bold">{{ numberOfVaults }} Vaults</span>
-                    <span class="mx-1">|</span>
-                    <span class="bold">Keeps: {{ numberOfKeeps }}</span>
+        <section class="row">
+            <div class="d-flex flex-column text-center justify-content-center">
+                <img :src="profile?.coverImg" class="banner-img" alt="profile cover image" title="Profile cover image">
+                <img :src="profile?.picture" alt="profile picture" class="profile-icon">
+                <div class="flex-column">
+                    <h1>{{ profile?.name }}</h1>
+                    <div class="counts">
+                        <span class="bold">{{ numberOfVaults }} Vaults</span>
+                        <span class="mx-1">|</span>
+                        <span class="bold">Keeps: {{ numberOfKeeps }}</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -147,7 +148,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .oxygen {
     font-family: 'Oxygen', sans-serif;
 }
@@ -163,6 +164,19 @@ export default {
 .masonry-container-profile {
     column-count: 6;
     column-gap: 0.5em;
+}
+
+.profile-icon {
+    width: 20vh;
+    height: 20vh;
+    margin: auto;
+    /* border:1px solid; */
+    border-radius: 50%;
+    object-fit: cover;
+    justify-content: center;
+    align-items: center;
+    /* transform: translateY(-10vh); */
+    margin-bottom: -8vh;
 }
 
 @media only screen and (max-width: 1068px) {

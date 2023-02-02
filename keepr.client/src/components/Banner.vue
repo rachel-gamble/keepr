@@ -1,7 +1,7 @@
 <template>
   <section class="row app-bg m-3">
     <section class="col-md-12 nav-section">
-      <div class="left-section d-flex">
+      <div class="left-section d-flex justify-content-between">
 
         <!--SECTION HOME BUTTON-->
 
@@ -98,7 +98,7 @@ section {
   box-sizing: border-box;
   border: 1.66787px solid #2D2D2D;
   border-radius: 4.76534px;
-  transform: translateX(-5vw);
+  transform: translateX(-3vw);
 }
 
 .home-btn {
