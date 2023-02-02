@@ -7,13 +7,15 @@ public class VaultKeepsController : ControllerBase
     private readonly Auth0Provider _auth;
     private readonly VaultsService _VaultService;
     private readonly VaultKeepsService _VaultKeepsService;
+    private readonly KeepsService _ks;
 
 
-    public VaultKeepsController(Auth0Provider auth, VaultsService VaultService, VaultKeepsService vaultKeepsService)
+    public VaultKeepsController(Auth0Provider auth, VaultsService VaultService, VaultKeepsService vaultKeepsService, KeepsService ks)
     {
         _auth = auth;
         _VaultService = VaultService;
         _VaultKeepsService = vaultKeepsService;
+        _ks = ks;
     }
 
 
@@ -25,6 +27,8 @@ public class VaultKeepsController : ControllerBase
         {
             Account userInfo = await _auth.GetUserInfoAsync<Account>(HttpContext);
             Vault vault = _VaultService.GetOne(vaultKeepData.VaultId, userInfo.Id);
+            Keep keep = _ks.GetKeepById(vaultKeepData.KeepId);
+            keep.Kept++;
             if (userInfo == null || vault.CreatorId != userInfo.Id) { throw new Exception("You do not have permission to add to this vault."); }
             vaultKeepData.CreatorId = userInfo.Id;
             VaultKeep newVaultKeep = _VaultKeepsService.Create(vaultKeepData, userInfo?.Id);
