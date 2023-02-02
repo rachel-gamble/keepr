@@ -65,9 +65,8 @@ import { AppState } from '../AppState';
 import { Modal } from 'bootstrap';
 import { keepsService } from '../services/KeepsService';
 
-
 export default {
-    setup() {
+    setup(props) {
         const route = useRoute();
         const router = useRouter();
 

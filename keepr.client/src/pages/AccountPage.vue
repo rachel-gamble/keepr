@@ -18,51 +18,43 @@
     </section>
     <!--SECTION Vaults-->
     <section class="row d-flex justify-content-center">
-      <div class="col-10">
-        <h3 class="sub-title fw-bold mx-3 my-1">Vaults</h3>
-        <!--v-for-->
-        <div class="masonry-container">
-          <div v-for="vault in vaults" :key="vault.id">
-            <div class="" @click="goToVault(vault)">
-              <div
-                class="rounded my-2 mb-2 elevation-5 hover-card keep-container vault-card image-custom image-fluid selectable hover-shadow"
-                :style="`background-image: url(${vault?.img})`"
-                :title="'Go to ' + vault?.name + ' by ' + vault?.creatorId.name">
-                <div class="d-flex justify-content-between-mobile-cleanup">
-                  <div v-if="vault.isPrivate" class="mdi mdi-lock text-white m-2 elevation-5" title="is private"></div>
+      <h3 class="sub-title fw-bold mx-3 my-1">Vaults</h3>
+      <!--v-for-->
+      <div v-for="vault in vaults" :key="vault.id" class="col-lg-3 col-md-6 col-sm-12">
+        <div class="" @click="goToVault(vault)">
+          <div
+            class="rounded my-2 mb-2 elevation-5 hover-card keep-container vault-card image-custom image-fluid selectable hover-shadow"
+            :style="`background-image: url(${vault?.img})`"
+            :title="'Go to ' + vault?.name + ' by ' + vault?.creator.name">
+            <div class="d-flex justify-content-between-mobile-cleanup">
+              <div v-if="vault.isPrivate" class="mdi mdi-lock text-white m-2 elevation-5" title="is private"></div>
 
-                  <h4 class="vault-name">
-                    {{ vault?.name }}
-                  </h4>
-                </div>
-                <br><br>
-              </div>
+              <h4 class="vault-name">
+                {{ vault?.name }}
+              </h4>
             </div>
+            <br><br>
           </div>
         </div>
+
         <!--end v-for-->
       </div>
     </section>
 
     <section class="row d-flex justify-content-center">
-      <div class="col-10">
-        <h3 class="sub-title fw-bold mx-3 my-1 mb-3">Keeps</h3>
-        <!--v-for--> <!-- Keep Masonry -->
-        <div class="masonry-container">
-          <div v-for="k in keeps" :key="k.id">
-            <div class="" @click="openKeepDetails(k)">
-              <div
-                class="rounded my-2 mb-2 elevation-5 hover-card keep-container vault-card image-custom image-fluid selectable hover-shadow"
-                :style="`background-image: url(${k?.img})`"
-                :title="'Open ' + keep?.name + ' by ' + vault?.creatorId.name">
-                <div class="d-flex justify-content-between-mobile-cleanup">
-                  <h4 class="vault-name">
-                    {{ k?.name }}
-                  </h4>
-                </div>
-                <br><br>
-              </div>
+      <h3 class="sub-title fw-bold mx-3 my-1 mb-3">Keeps</h3>
+      <!--v-for--> <!-- Keep Masonry -->
+      <div v-for="k in keeps" :key="k.id" class="col-lg-3 col-md-6 col-sm-12">
+        <div class="" @click="openKeepDetails(k)">
+          <div
+            class="rounded my-2 mb-2 elevation-5 hover-card keep-container vault-card image-custom image-fluid selectable hover-shadow"
+            :style="`background-image: url(${k?.img})`" :title="'Open ' + k?.name + ' by ' + k?.creator.name">
+            <div class="d-flex justify-content-between-mobile-cleanup">
+              <h4 class="vault-name">
+                {{ k?.name }}
+              </h4>
             </div>
+            <br><br>
           </div>
         </div>
         <!--end v-for-->
@@ -93,7 +85,7 @@ export default {
     const router = useRouter();
     watchEffect(async () => {
       try {
-        if (route.params.id && route.name == "Profile") {
+        if (route.params.id && route.name == "Account") {
           await profilesService.getUserProfile(route.params.id);
           await keepsService.getUserKeeps(route.params.id);
           await vaultsService.getUserVaults(route.params.id);
