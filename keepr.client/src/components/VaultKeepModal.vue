@@ -3,7 +3,7 @@
         <section class="row app-bg">
             <!--SECTION LEFT SIDE-->
             <div class="col-md-6 p-0">
-                <img :src="activeKeep?.img" alt="" class="img-fluid rounded-top selectable hover-shadow"
+                <img :src="activeKeep?.img" alt="" class="img-fluid rounded-top selectable hover-shadow keep-img"
                     title="keep image">
             </div>
 
@@ -13,42 +13,56 @@
 
                 <!-- view count -->
                 <div class="d-flex counts m-2 justify-content-center">
-                    <i class="mdi mdi-eye mx-1 bold"></i>
+                    <i class="mdi mdi-eye mx-1"></i>
                     <p class=""> {{ activeKeep?.views }} </p>
                     <p class="mx-2">|</p>
                     <!-- keep count-->
                     <p class="keep-box px-1"> K </p>
                     <p class="mx-1">{{ activeKeep?.kept }}</p>
                 </div>
-
+                <div class="text-center">
+                    <div v-show="account.id == activeKeep?.creator.id" class="btn btn-light mdi mdi-trash-can app-bg"
+                        title="Delete this keep" @click.prevent="removeKeep()"></div>
+                </div>
                 <!--body-->
                 <!--title + description-->
-                <section class="align-content-center">
+                <div class="col-5 align-items-center middle">
                     <div class="text-center keep-title">
-                        <h2>{{ activeKeep?.name }}</h2>
+                        <h2 class="mx-1">{{ activeKeep?.name }}</h2>
                     </div>
-                    <div class="keep-body">
+                    <div class="mx-2 justify-content-center keep-body">
                         {{ activeKeep?.description }}
                     </div>
-                </section>
+                </div>
 
                 <!--bottom-->
-                <section class="justify-space-between m-2">
+                <section class="d-flex bottom">
 
-                    <!-- add keep to vault-->
-                    <!-- remove keep from vault-->
-                    <button v-show="account?.id == activeVault?.creatorId" class="btn orchid-btn mdi mdi-cancel"
-                        title="Remove Keep" @click="removeFromVault()">
-                        Remove</button>
+                    <div class="col-6 oxygen">
+                        <!--SECTION Add to Vault Button-->
+                        <div v-if="account.id" style="">
+                            <form class="dropdown" @submit.prevent="addKeepToVault()">
+                                <label class="p-2" for="add-to-vault-select"><small>Add To Vault:</small></label>
+                                <select name="" v-model="vaultSelect" class="action" title="Add to vault" required>
+                                    <option v-for="mv in myVaults" :key="mv" :value="mv" class="action">
+                                        {{ mv?.name.substring(0, 15) }}
+                                    </option>
+                                </select>
+                                <button type="submit" class="btn vault-btn selectable fs-6 mb-2 mt-1 mx-1"
+                                    title="Submit">save</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- profile info -->
+                    <div class="col-5 mx-4 mt-1 my-3 text-center" style="">
+                        <img :src="activeKeep?.creator.picture" alt=""
+                            class=" col-12 img-fluid prof-img rounded-circle app-bg selectable"
+                            :title="`Created by ${activeKeep?.creator.name}`" @click="goToProfile()" />
+                        <div class="fs-6 col-12 oxygen">
+                            {{ activeKeep?.creator.name }}
+                        </div>
+                    </div>
                 </section>
-
-                <!-- profile info -->
-                <div class="mt-1">
-                    <img :src="activeKeep?.creator.picture" alt=""
-                        class="img-fluid prof-img rounded-circle app-bg selectable"
-                        :title="`Created by ${activeKeep?.creator.name}`" @click="goToProfile()" />
-                    {{ activeKeep?.creator.name }}
-                </div>
             </div>
         </section>
     </div>
@@ -63,10 +77,6 @@ import { ref, computed } from 'vue';
 import { Modal } from 'bootstrap';
 import { keepsService } from '../services/KeepsService';
 import { vaultKeepsService } from '../services/VaultKeepsService';
-// import { Auth0ConfigurationOptions } from '@bcwdev/auth0provider-client';
-
-
-
 export default {
 
     setup(props) {
@@ -92,9 +102,9 @@ export default {
             async removeKeep() {
                 try {
                     if (await Pop.confirm("Remove this keep?")) {
-                        await vaultKeepsService.removeFromVault()
+                        await keepsService.removeKeep()
+                        Modal.getOrCreateInstance(document.getElementById('keepDetails')).hide()
                         Pop.toast("Keep removed. ✅")
-                        Modal.getOrCreateInstance(document.getElementById("#keepModal")).hide()
                     }
                 } catch (error) {
                     logger.error(error)
@@ -122,9 +132,30 @@ export default {
 <style>
 .prof-img {
     border-radius: 50%;
-    height: 5em;
-    width: 5em;
+    height: 3em;
+    width: 3em;
+    object-fit: cover;
 }
+
+/* .keep-img {
+    height: 60vh !important;
+} */
+
+.middle {
+    position: absolute;
+    top: 53%;
+    left: 75%;
+    text-overflow: wrap;
+    transform: translate(-50%, -50%)
+}
+
+.bottom {
+    align-self: flex-end;
+    text-overflow: wrap;
+    position: absolute;
+    bottom: 0;
+}
+
 
 .keep-title {
     font-family: 'Marko One', serif;
@@ -132,11 +163,6 @@ export default {
 
 .keep-body {
     font-family: 'Sansation';
-}
-
-.orchid-btn {
-    color: #A76BBD;
-
 }
 
 .keep-box {
@@ -147,7 +173,8 @@ export default {
 }
 
 .counts {
-    color: #636E72
+    color: #636E72;
+    font-family: 'Sansation';
 }
 
 /* .left-section {

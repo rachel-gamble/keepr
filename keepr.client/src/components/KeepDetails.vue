@@ -2,14 +2,14 @@
     <div class="container-fluid app-bg">
         <section class="row app-bg">
             <!--SECTION LEFT SIDE-->
-            <div class="col-md-6 p-0">
+            <div class="col-md-6 col-sm-12 order-sm-1 p-0">
                 <img :src="activeKeep?.img" alt="" class="img-fluid rounded-top selectable hover-shadow keep-img"
                     title="keep image">
             </div>
 
             <!--SECTION Right SIDE-->
 
-            <div class="col-md-6 align-items-center">
+            <div class="col-md-6 col-sm-12 order-sm-2 align-items-center">
 
                 <!-- view count -->
                 <div class="d-flex counts m-2 justify-content-center">
